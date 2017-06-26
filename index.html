@@ -1,0 +1,563 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+	<title>Multi-page template</title>
+	
+	<link rel="stylesheet" href="css/themes/aim-solo.min.css"/>
+	<link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<!-- <script type="text/javascript" src="js/jquery.i18n.js"></script> -->
+</head>
+
+<body>
+
+	<!-- LOGIN PAGE -->
+	<div data-role="page" id="login-page">
+
+		<div data-role="header">
+			<h1>Log in</h1>
+		</div>
+
+		<div data-role="main" class="ui-content">
+			<form id="login-form" method="get">
+				<input id="username" type="text" placeholder="username"/>
+				<input id="pwd" type="password" placeholder="password"/>
+				<button type="submit">Log in</button>
+			</form>
+		</div>
+
+		<!-- <div data-role="footer">
+			<h4>Aim Solo School Project</h4>
+		</div> -->
+
+	</div>
+
+	<!-- PROJECT PAGE -->
+	<div data-role="page" id="projects-page">
+
+		<div data-role="header">
+			<h1>Selecciona un projecte</h1>
+			<a href="#" type="button" class="logout_btn" data-icon="user"></a>
+		</div>
+
+		<div data-role="main" class="ui-content">
+			<ul data-role="listview" data-inset="true" id="project-list">
+			</ul>
+		</div>
+
+		<!-- <div data-role="footer">
+			<h4>Aim Solo School Project</h4>
+		</div> -->
+
+	</div><!-- /page -->
+
+	<!-- STUDENTS PAGE -->
+	<div data-role="page" id="students-page">
+
+		<div data-role="header">
+			<h1>Estudiants</h1>
+		</div>
+
+		<div data-role="main" class="ui-content">
+			<ul data-role="listview" data-inset="true" id="student-list">
+			</ul>
+		</div>
+
+		<!-- <div data-role="footer">
+			<h4>Aim Solo School Project</h4>
+		</div> -->
+
+	</div><!-- /page -->
+
+	<!-- SELECTOR PAGE -->
+	<div data-role="page" id="selector-page">
+
+		<div data-role="header">
+			<h1></h1>
+		</div>
+
+		<div data-role="main" class="ui-content">
+		<div id='example1'>Example 1</div>
+			<a href="#comps-page" data-role="button">Competències</a>
+			<a href="#comps_millora-page" data-role="button">Competències de millora</a>
+			<a href="#intels-page" data-role="button">Intel·ligències</a>
+		</div>
+
+	</div><!-- /page -->
+	
+	<!-- COMPS PAGE -->
+	<div data-role="page" id="comps-page">
+
+		<div data-role="header">
+			<h1>Competències</h1>
+		</div>
+
+		<div data-role="main" class="ui-content">
+			<form align="center">
+				<fieldset data-role="controlgroup" data-type="horizontal" id="filter-cg">
+					<input type="checkbox" data-id="dd" id="checkbox-"><label for="checkbox-">lklk</label>
+				</fieldset>
+			</form>
+			<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar competència" data-autodividers="true" data-inset="true" id="comps-list">
+			</ul>
+		</div>
+
+		<!-- <div data-role="footer">
+			<h4>Aim Solo School Project</h4>
+		</div> -->
+		
+		<div data-role="popup" id="comps-popup">
+			<p></p>
+			<form align="center">
+				<fieldset data-role="controlgroup" data-type="horizontal">
+					<button type="button" id="no-comp">No</button>
+					<button type="button" id="cancel-comp">Cancel·lar</button>
+					<button type="button" id="si-comp">Sí</button>
+				</fieldset>
+			</form>
+		</div>
+		
+		<div data-role="popup" id="success-popup">
+			<p>La competència s'ha actualitzat</p>
+		</div>
+
+	</div><!-- /page -->
+	
+	<!-- COMPS_MILLORA PAGE -->
+	<div data-role="page" id="comps_millora-page">
+
+		<div data-role="header">
+			<h1>Competències</h1>
+		</div>
+
+		<div data-role="main" class="ui-content">
+			<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar competència" data-autodividers="true" data-inset="true" id="comps_millora-list">
+			</ul>
+		</div>
+
+		<!-- <div data-role="footer">
+			<h4>Aim Solo School Project</h4>
+		</div> -->
+		
+		<div data-role="popup" id="comps_millora-popup">
+			<p></p>
+			<form align="center">
+				<fieldset data-role="controlgroup" data-type="horizontal">
+					<button type="button" id="no-comp_millora">No</button>
+					<button type="button" id="cancel-comp_millora">Cancel·lar</button>
+					<button type="button" id="si-comp_millora">Sí</button>
+				</fieldset>
+			</form>
+		</div>
+		
+		<div data-role="popup" id="success_millora-popup">
+			<p>La competència s'ha actualitzat</p>
+		</div>
+
+	</div><!-- /page -->
+	
+	<!-- INTELS PAGE -->
+	<div data-role="page" id="intels-page">
+
+		<div data-role="header">
+			<h1>Intel·ligències</h1>
+		</div>
+
+		<div data-role="main" class="ui-content">
+			<label for="slider-corporal">Corporal: <span id="span-corporal"></span></label>
+			<input data-mini="true" class="intel-slider" type="range" data-levels="Mig|Mig alt|Alt|Molt alt|Superdotat" data-highlight="true" id="slider-corporal" min="0" max="4" value="0" >
+		
+			<label for="slider-corporal">Emocional: <span id="span-corporal"></span></label>
+			<input data-mini="true" class="intel-slider" type="range" data-levels="Mig|Mig alt|Alt|Molt alt|Superdotat" data-highlight="true" id="slider-corporal" min="0" max="4" value="0" >
+		
+			<label for="slider-corporal">Espacial: <span id="span-corporal"></span></label>
+			<input data-mini="true" class="intel-slider" type="range" data-levels="Mig|Mig alt|Alt|Molt alt|Superdotat" data-highlight="true" id="slider-corporal" min="0" max="4" value="0" >
+	
+			<label for="slider-corporal"><span id="span-corporal"></span></label>
+			<input data-mini="true" class="intel-slider" type="range" data-levels="Interpersonal contributiva: Molt alta|Interpersonal contributiva: Alta|Interpersonal contributiva: Mig alta|Interpersonal contributiva: Centrada|Interpersonal no contributiva: Centrada|Interpersonal no contributiva: Mig alta|Interpersonal no contributiva: Alta|Interpersonal no contributiva: Molt alta" data-highlight="true" id="slider-corporal" min="0" max="6" value="0" >
+		
+			<label for="slider-corporal">Intrapersonal: <span id="span-corporal"></span></label>
+			<input data-mini="true" class="intel-slider" type="range" data-levels="Mig|Mig alt|Alt|Molt alt|Superdotat" data-highlight="true" id="slider-corporal" min="0" max="3" value="0" >
+		
+			<label for="slider-corporal">Musical: <span id="span-corporal"></span></label>
+			<input data-mini="true" class="intel-slider" type="range" data-levels="Mig|Mig alt|Alt|Molt alt|Superdotat" data-highlight="true" id="slider-corporal" min="0" max="3" value="0" >
+		
+			<label for="slider-corporal">Numèrica: <span id="span-corporal"></span></label>
+			<input data-mini="true" class="intel-slider" type="range" data-levels="Mig|Mig alt|Alt|Molt alt|Superdotat" data-highlight="true" id="slider-corporal" min="0" max="4" value="0" >
+		
+			<label for="slider-corporal">Raonament lògic: <span id="span-corporal"></span></label>
+			<input data-mini="true" class="intel-slider" type="range" data-levels="Mig|Mig alt|Alt|Molt alt|Superdotat" data-highlight="true" id="slider-corporal" min="0" max="4" value="0" >
+		
+			<label for="slider-corporal">Verbal: <span id="span-corporal"></span></label>
+			<input data-mini="true" class="intel-slider" type="range" data-levels="Mig|Mig alt|Alt|Molt alt|Superdotat" data-highlight="true" id="slider-corporal" min="0" max="4" value="0" >
+
+			<label for="slider-corporal">Visual: <span id="span-corporal"></span></label>
+			<input data-mini="true" class="intel-slider" type="range" data-levels="Mig|Mig alt|Alt|Molt alt|Superdotat" data-highlight="true" id="slider-corporal" min="0" max="3" value="0" >
+		</div>
+
+	</div><!-- /page -->
+
+</body>
+</html>
+
+<script>
+var domini = 'https://comunitat.aim-solo.com/';
+var user_name;
+var user_id;
+var entitat_id;
+var project_id;
+var project_name;
+var student_id;
+var student_name;
+var student_sex;
+var comps_masc;
+var comps_fem;
+var comps_millora;
+var comp_name;
+var comp_id;
+var comps_groups = null;// = [{'id':1,'name':"Societat"}, {'id':2,'name':"Professional"}, {'id':3,'name':"Excel·lència"}];
+var current_groups = [];
+
+{ // Login page
+	$( "#login-page" ).on( "pageshow", function( e ) {
+		{ // Carreguem variables de la memòria local
+			user_id = localStorage.getItem('user_id');
+			user_name = localStorage.getItem('user_name');
+			entitat_id = localStorage.getItem('entitat_id');
+			project_id = localStorage.getItem('project_id');
+			project_name = localStorage.getItem('project_name');
+			comps_masc = JSON.parse(localStorage.getItem('comps_masc'));
+			comps_fem = JSON.parse(localStorage.getItem('comps_fem'));
+			comps_millora = JSON.parse(localStorage.getItem('comps_millora'));
+			comps_groups = JSON.parse(localStorage.getItem('comps_groups'));
+			console.log(comps_masc);
+		}
+		
+		if ((user_id != null) || (user_name != null)) {
+			console.log(user_id);
+			console.log(user_name);
+			$.mobile.navigate( "#projects-page" );
+		}
+		
+		
+		
+	});
+		
+		
+		
+		
+	$('#login-form').submit(function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		var username = $('#username').val();
+		var pwd = $('#pwd').val();
+		url = domini + "ajax/APPLogin?username=" + username + "&password=" + pwd;
+		console.log(url);
+		$.ajax({
+			url: url,
+			success: function(data) {
+				// Arriba la resposta
+				data = JSON.parse(data);
+				console.log(data);
+				if (data.success) {
+					user_name = data.name;
+					user_id = data.user_id;
+					entitat_id = data.entitat;
+					localStorage.setItem('user_id', user_id);
+					localStorage.setItem('user_name', user_name);
+					localStorage.setItem('entitat_id', entitat_id);
+					$.mobile.navigate( "#projects-page" );
+				}
+				else { alert(data.msg); }
+			}
+		});
+	});
+	
+}
+
+{ // Projects page
+	$( "#projects-page" ).on( "pageshow", function( e ) {
+		$(this).find('h1').text("Projectes de " + user_name);
+		{ // Demanem la llista de competències
+			if ((comps_masc == null) || (comps_fem == null) || (comps_groups == null) || (comps_millora == null)) {
+				$.ajax({
+					// TODO: Enviar l'idioma en funció del particular
+					url: "https://intra.aim-solo.com/schools/assets/php/ajax/ajax_return_competences.php?lang=cat&id=" + entitat_id,
+					success: function(data) {
+						// Arriba la resposta
+						data = JSON.parse(data);
+						console.log('competències');
+						console.log(data);
+						if (data.success) {
+							comps_masc = data.comps_masc;
+							comps_fem = data.comps_fem;
+							comps_groups = data.groups;
+							comps_millora = data.comps_millora;
+							//comps_groups = data;
+							localStorage.setItem('comps_masc', JSON.stringify(comps_masc));
+							localStorage.setItem('comps_fem', JSON.stringify(comps_fem));
+							localStorage.setItem('comps_groups', JSON.stringify(comps_groups));
+							localStorage.setItem('comps_millora', JSON.stringify(comps_millora));
+							build_comps_filter();
+						}
+					}
+				});
+			}
+			else {
+				build_comps_filter();
+			}
+		}
+
+		$.ajax({
+			url: domini + "ajax/getProjectsByTutor?tutor_id=" + user_id,
+			success: function(data) {
+				// Arriba la resposta
+				data = JSON.parse(data);
+				console.log(data);
+				if (data.success) {
+					list = $("#project-list");
+					list.empty();
+					data.projects.forEach(function (project, index) {
+						var list_item = $('<li><a data-id="' + project.id + '">' + project.name + '</a></li>');
+						list.append(list_item).listview('refresh');
+					});
+				}
+				else { alert(data.msg); }
+			}
+		});
+	});
+
+	$(document).on('click', "#project-list li a",function () {
+		project_id = $(this).data('id');
+		project_name = $(this).text();
+		$.mobile.navigate("#students-page");
+	});
+}
+
+{ // Students page
+	$("#students-page").on( "pageshow", function( e ) {
+		$(this).find('h1').text("Estudiants de " + project_name);
+		$.ajax({
+			url: domini + "ajax/getUsersByProjectNTutor?tutor_id=" + user_id + "&project_id=" + project_id,
+			success: function(data) {
+				// Arriba la resposta
+				data = JSON.parse(data);
+				console.log(data);
+				if (data.success) {
+					list = $("#student-list");
+					list.empty();
+					data.users.forEach(function (user, index) {
+						var list_item = $('<li><a data-id="' + user.id + '" data-sex="' + user.sex + '">' + user.name + ' ' + user.lastname + '</a></li>');
+						list.append(list_item).listview('refresh');
+					});
+				}
+				else { alert(data.msg); }
+			}
+		});
+	});
+
+	$(document).on('click', "#student-list li a",function () {
+		student_id = $(this).data('id');
+		student_sex = $(this).data('sex');
+		student_name = $(this).text();
+		$.mobile.navigate("#selector-page");
+	});
+}
+
+{ // Selector page
+	$("#selector-page").on( "pageshow", function( e ) {
+		$(this).find('h1').text(student_name);
+	});
+}
+
+{ // Comps page
+	$("#comps-page").on( "pageshow", function( e ) {
+		$(this).find('h1').text("Competències de " + student_name);
+		build_comp_list();
+		
+	});
+
+	$(document).on('click', "#comps-list li a",function () {
+		comp_id = $(this).data('id');
+		comp_name = $(this).text();
+		$('#comps-popup').popup('open');
+		$('#comps-popup p').text(student_name + ' és ' + comp_name + "?");
+	});
+	
+	$(document).on('click', "#si-comp",function () {
+		update_comp(1);
+	});
+	
+	$(document).on('click', "#no-comp",function () {
+		update_comp(0);
+	});
+	
+	$(document).on('change', "#filter-cg input", function () {
+		id = $(this).data('id');
+		if(this.checked) {
+			current_groups.push(id);
+		}
+		else {
+			console.log('yeyeyey' + current_groups.indexOf(id));
+			current_groups.splice(current_groups.indexOf(id), 1);
+		}
+		build_comp_list();
+	});
+
+	/*$(document).on('swipeleft swiperight', "#comps-list li", function (e) {
+		e.stopPropagation();
+		// e.preventDefault();
+		comp_id = $(this).data('id');
+		comp_name = $(this).text();
+		console.log(e.type);
+		console.log(e);
+		if(e.type == "swipeleft") {
+			console.log(e.swipestart);
+		}
+		else if (e.type == "swiperight") {
+			console.log(e.swipestop.coords[0] - e.swipestart.coords[0]);
+		}
+		
+	});*/
+}
+
+{ // Comps_millora page
+	$("#comps_millora-page").on( "pageshow", function( e ) {
+		$(this).find('h1').text("Competències de " + student_name);
+		build_comp_millora_list();
+	});
+
+	$(document).on('click', "#comps_millora-list li a",function () {
+		comp_id = $(this).data('id');
+		comp_name = $(this).text();
+		$('#comps_millora-popup').popup('open');
+		$('#comps_millora-popup p').text(student_name + ' és ' + comp_name + "?");
+	});
+	
+	$(document).on('click', "#si-comp_millora",function () {
+		update_comp_millora(1);
+	});
+	
+	$(document).on('click', "#no-comp_millora",function () {
+		update_comp_millora(0);
+	});
+
+}
+
+{ // Intels page
+	// TODO: El nivell es carrega pq es fa un trigger al change, però el propi change actualitza el nivell del nanu.
+	// Per tant el primer change no l'hauria d'actualitzar. Potser es pot fer amb un .done després del primer trigger.
+	// Esborrar numero a l'esquerra dels sliders
+	// I Ajax
+	$("#intels-page").on( "pageshow", function( e ) {
+		$(this).find('h1').text("Intel·ligències de " + student_name);
+		$(".intel-slider").trigger('change');
+	});
+	
+	$(".intel-slider[type='number']").each(function(e) {
+		console.log($(this));
+		$(this).visibility('hidden');
+	});
+
+	$(document).on('change', ".intel-slider",function () {
+		level = $(this).val();
+		levels = $(this).data('levels');
+		levels = levels.split('|');
+		$(this).parent().prev().find('span').text(levels[level]);
+	});
+	
+	
+}
+
+function logout() {
+	localStorage.removeItem('user_id');
+	localStorage.removeItem('user_name');
+	localStorage.clear();
+	$.mobile.navigate( "#login-page" );
+}
+
+function build_comp_list() {
+	list = "";
+	if (!student_sex) {
+		comps_masc.forEach(function (comp, index) {
+			if(current_groups.indexOf(parseInt(comp.group)) > -1 || current_groups.length == 0) {
+				list = list + '<li><a data-id="' + comp.id + '">' + comp.name + '</a></li>';
+			}
+		});
+	}
+	else {
+		comps_fem.forEach(function (comp, index) {
+			if(current_groups.indexOf(parseInt(comp.group)) > -1 || current_groups.length == 0) {
+				list = list + '<li><a data-id="' + comp.id + '">' + comp.name + '</a></li>';
+			}
+		});
+	}
+	
+	
+	$("#comps-list").html(list).listview('refresh');
+}
+
+function build_comp_millora_list() {
+	list_millora = "";
+	comps_millora.forEach(function (comp, index) {
+		if(current_groups.indexOf(comp.id) > 0 || current_groups.length == 0) {
+			list_millora = list_millora + '<li><a data-id="' + comp.id + '">' + comp.name + '</a></li>';
+		}
+	});
+
+	$("#comps_millora-list").html(list_millora).listview('refresh'); // No es pot inicialitzar abans de crear-lo
+}
+
+function build_comps_filter() {
+	filter_buttons = "";
+	comps_groups.forEach(function (comp, index) {
+		filter_buttons = filter_buttons + '<input type="checkbox" data-id="' + comp.id + '" id="checkbox-' + comp.name + '"><label for="checkbox-' + comp.name + '">' + comp.name + '</label>';
+	});
+	$("#filter-cg").html(filter_buttons);
+	$("#comps-page").trigger('create');
+}
+
+function update_comp(v) {
+	url = "https://intra.aim-solo.com/schools/assets/php/ajax/ajax_change_competence.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id;
+	console.log(url);
+	$.ajax({
+		url: url,
+		success: function(data) {
+			// Arriba la resposta
+			data = JSON.parse(data);
+			console.log(data);
+			if (data.success) {
+				$("#comps-popup").popup('close');
+				$("#success-popup").popup('open');
+			}
+			else { alert(data.msg); }
+		}
+	});
+}
+
+function update_comp_millora(v) {
+	url = "https://intra.aim-solo.com/schools/assets/php/ajax/ajax_change_competence_cm.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id;
+	console.log(url);
+	$.ajax({
+		url: url,
+		success: function(data) {
+			// Arriba la resposta
+			data = JSON.parse(data);
+			console.log(data);
+			if (data.success) {
+				$("#comps_millora-popup").popup('close');
+				$("#success_millora-popup").popup('open');
+			}
+			else { alert(data.msg); }
+		}
+	});
+}
+
+$(document).on('click', ".logout_btn", logout);
+</script>

@@ -1,0 +1,24 @@
+{
+    "@metadata": {
+        "authors": [
+          "Aniol Riu Torrens"
+        ],
+        "last-updated": "2017-05-23",
+        "locale": "cat",
+        "message-documentation": "qqq"
+    },
+    "appname-title": "Example Application",
+    "appname-sub-title": "An example application with jquery.i18n",
+	"Example 1"  							: "teiän veen",
+		"Example 2"  							: "tei'än ve'en",
+		"Example 3"  							: "teiä vede",
+		"Example 4"  							: "teirän veren",
+		"Example 5"  							: "teilän velen",
+		"Example 6"  							: "teijjän vejen",
+		"Example 7"  							: "teidän veden",
+		"Example 8"  							: "teitän veten",
+		"Example 9"  							: "teiðän veðen",
+		"Example 10" 							: "teidhän vethen",
+		"Dynamic Content" 				: "Your browser window is %s x %s",
+		"Ordered Dynamic Content" : "%2$s is the height of your browser window, and %1$s is the width."
+}
