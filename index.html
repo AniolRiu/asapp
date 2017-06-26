@@ -171,7 +171,6 @@
 		</div>
 
 		<div data-role="main" class="ui-content">
-		<h2>Sóc en Marc Celeiro</h2>
 			<label for="slider-corporal">Corporal: <span id="span-corporal"></span></label>
 			<input data-mini="true" class="intel-slider" type="range" data-levels="Mig|Mig alt|Alt|Molt alt|Superdotat" data-highlight="true" id="slider-corporal" min="0" max="4" value="0" >
 		
@@ -325,10 +324,18 @@ var current_groups = [];
 				if (data.success) {
 					list = $("#project-list");
 					list.empty();
-					data.projects.forEach(function (project, index) {
-						var list_item = $('<li><a data-id="' + project.id + '">' + project.name + '</a></li>');
-						list.append(list_item).listview('refresh');
-					});
+					if (data.projects.length == 1) {
+						// Assignar projecte tutor
+						project_id = data.projects[0].id;
+						project_name = data.projects[0].name;
+						$.mobile.navigate("#students-page");
+					}
+					else {
+						data.projects.forEach(function (project, index) {
+							var list_item = $('<li><a data-id="' + project.id + '">' + project.name + '</a></li>');
+							list.append(list_item).listview('refresh');
+						});
+					}
 				}
 				else { alert(data.msg); }
 			}
@@ -354,10 +361,18 @@ var current_groups = [];
 				if (data.success) {
 					list = $("#student-list");
 					list.empty();
-					data.users.forEach(function (user, index) {
-						var list_item = $('<li><a data-id="' + user.id + '" data-sex="' + user.sex + '">' + user.name + ' ' + user.lastname + '</a></li>');
-						list.append(list_item).listview('refresh');
-					});
+					if (data.users.length == 1) {
+						// Assignar alumne tutor
+						project_id = data.users[0].id;
+						project_name = data.users[0].name;
+						$.mobile.navigate("#selector-page");
+					}
+					else {
+						data.users.forEach(function (user, index) {
+							var list_item = $('<li><a data-id="' + user.id + '" data-sex="' + user.sex + '">' + user.name + ' ' + user.lastname + '</a></li>');
+							list.append(list_item).listview('refresh');
+						});
+					}
 				}
 				else { alert(data.msg); }
 			}
@@ -460,13 +475,13 @@ var current_groups = [];
 	$("#intels-page").on( "pageshow", function( e ) {
 		$(this).find('h1').text("Intel·ligències de " + student_name);
 		$(".intel-slider").trigger('change');
+		$(".intel-slider[type='number']").each(function(e) {
+			console.log($(this));
+			$(this).hide();
+		});
 	});
 	
-	$(".intel-slider[type='number']").each(function(e) {
-		console.log($(this));
-		$(this).visibility('hidden');
-	});
-
+	
 	$(document).on('change', ".intel-slider",function () {
 		level = $(this).val();
 		levels = $(this).data('levels');
