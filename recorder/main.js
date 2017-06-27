@@ -47,10 +47,37 @@ function gotBuffers( buffers ) {
     audioRecorder.exportWAV( doneEncoding );
 }
 
+
 function doneEncoding( blob ) {
-    Recorder.setupDownload( blob, "myRecording" + ((recIndex<10)?"0":"") + recIndex + ".wav" );
-    recIndex++;
+	var url = URL.createObjectURL(blob);
+	console.log(url);
+	var fd = new FormData();
+	fd.append('fname', 'test.wav');
+	fd.append('data', blob);
+	$.ajax({
+		type: 'POST',
+		url: '/proves/asapp/server/index.php',
+		data: fd,
+		processData: false,
+		contentType: false
+	}).done(function(data) {
+		   console.log(data);
+	});
+
+	// create a new request and send it via the objectUrl
+    // var request = new XMLHttpRequest();
+    // request.open("GET", url, true);
+    // request.responseType = "blob";
+    // request.onload = function(){
+    // // send the blob somewhere else or handle it here
+    // // use request.response
+    // }
+    // request.send();
+
+    // Recorder.setupDownload( blob, "myRecording" + ((recIndex<10)?"0":"") + recIndex + ".wav" );
+    // recIndex++;
 }
+
 
 function toggleRecording( e ) {
     if (e.classList.contains("recording")) {
