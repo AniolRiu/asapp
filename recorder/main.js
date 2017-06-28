@@ -59,7 +59,7 @@ function doneEncoding( blob ) {
 	fd.append('data', blob);
 	$.ajax({
 		type: 'POST',
-		url: '/proves/asapp/server/index.php',
+		url: 'https://192.168.1.100/proves/asapp/server/index.php',
 		data: fd,
 		processData: false,
 		contentType: false
