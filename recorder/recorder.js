@@ -73,7 +73,9 @@ DEALINGS IN THE SOFTWARE.
     }
 
     this.getBuffers = function(cb) {
+		console.log('YEYEdins');
       currCallback = cb || config.callback;
+		console.log('YEYEdins' + currCallback);
       worker.postMessage({ command: 'getBuffers' })
     }
 
@@ -99,6 +101,7 @@ DEALINGS IN THE SOFTWARE.
 
     worker.onmessage = function(e){
       var blob = e.data;
+	  console.log('yeye worker on messae');
       currCallback(blob);
     }
 
@@ -115,4 +118,8 @@ DEALINGS IN THE SOFTWARE.
 
   window.Recorder = Recorder;
 
+  
+  
+  
+  
 })(window);

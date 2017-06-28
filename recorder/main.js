@@ -12,7 +12,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-
+console.log("yeye2");
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 var audioContext = new AudioContext();
@@ -32,23 +32,26 @@ var recIndex = 0;
 */
 
 function saveAudio() {
-    audioRecorder.exportWAV( doneEncoding );
+    // audioRecorder.exportWAV( doneEncoding );
     // could get mono instead by saying
-    // audioRecorder.exportMonoWAV( doneEncoding );
+
+	audioRecorder.exportMonoWAV( doneEncoding );
+	
 }
 
 function gotBuffers( buffers ) {
-    var canvas = document.getElementById( "wavedisplay" );
 	console.log(88);
+    var canvas = document.getElementById( "wavedisplay" );
     drawBuffer( canvas.width, canvas.height, canvas.getContext('2d'), buffers[0] );
-
+    console.log('yeye');
     // the ONLY time gotBuffers is called is right after a new recording is completed - 
     // so here's where we should set up the download.
-    audioRecorder.exportWAV( doneEncoding );
+    audioRecorder.exportMonoWAV( doneEncoding );
 }
 
 
 function doneEncoding( blob ) {
+	console.log("yeye3");
 	var url = URL.createObjectURL(blob);
 	console.log(url);
 	var fd = new FormData();
@@ -64,15 +67,7 @@ function doneEncoding( blob ) {
 		   console.log(data);
 	});
 
-	// create a new request and send it via the objectUrl
-    // var request = new XMLHttpRequest();
-    // request.open("GET", url, true);
-    // request.responseType = "blob";
-    // request.onload = function(){
-    // // send the blob somewhere else or handle it here
-    // // use request.response
-    // }
-    // request.send();
+
 
     // Recorder.setupDownload( blob, "myRecording" + ((recIndex<10)?"0":"") + recIndex + ".wav" );
     // recIndex++;
@@ -80,11 +75,16 @@ function doneEncoding( blob ) {
 
 
 function toggleRecording( e ) {
+	console.log("yeye32");
     if (e.classList.contains("recording")) {
         // stop recording
+		console.log("yeye32,1");
         audioRecorder.stop();
+		console.log("yeye32,2");
         e.classList.remove("recording");
+		console.log("yeye32,3");
         audioRecorder.getBuffers( gotBuffers );
+		console.log("yeye32,4");
     } else {
         // start recording
         if (!audioRecorder)
