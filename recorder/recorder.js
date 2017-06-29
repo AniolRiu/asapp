@@ -19,7 +19,7 @@ DEALINGS IN THE SOFTWARE.
 
 (function(window){
 
-  var WORKER_PATH = 'recorderWorker.js';
+  var WORKER_PATH = 'https://192.168.1.111/proves/asapp/recorder/recorderWorkerols.js';
 
   var Recorder = function(source, cfg){
     var config = cfg || {};

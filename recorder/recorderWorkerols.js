@@ -52,51 +52,28 @@ function init(config){
 }
 
 function record(inputBuffer){
-    for (var channel = 0; channel < numChannels; channel++) {
-                    recBuffers[channel].push(inputBuffer[channel]);
-                }
-                recLength += inputBuffer[0].length;
-            }
-  //recBuffersL.push(inputBuffer[0]);
-  //recBuffersR.push(inputBuffer[1]);
-  //recLength += inputBuffer[0].length;
+  recBuffersL.push(inputBuffer[0]);
+  recBuffersR.push(inputBuffer[1]);
+  recLength += inputBuffer[0].length;
 }
 
 function exportWAV(type){
-	var buffers = [];
-    for (var channel = 0; channel < numChannels; channel++) {
-    buffers.push(mergeBuffers(recBuffers[channel], recLength));
-    }
-    var interleaved = undefined;
-    if (numChannels === 2) {
-    interleaved = interleave(buffers[0], buffers[1]);
-    } else {
-    interleaved = buffers[0];
-    }
-    var dataview = encodeWAV(interleaved);
-    var audioBlob = new Blob([dataview], { type: type });
-	
-    self.postMessage({ command: 'exportWAV', data: audioBlob });
+	var bufferL = mergeBuffers(recBuffersL, recLength);
+	var bufferR = mergeBuffers(recBuffersR, recLength);
+	var interleaved = interleave(bufferL, bufferR);
+	var dataview = encodeWAV(interleaved);
+	var audioBlob = new Blob([dataview], { type: type });
+
+	this.postMessage(audioBlob);
 }
-	
-	
-	
-  //var bufferL = mergeBuffers(recBuffersL, recLength);
-  //var bufferR = mergeBuffers(recBuffersR, recLength);
-  //var interleaved = interleave(bufferL, bufferR);
-  //var dataview = encodeWAV(interleaved);
-  //var audioBlob = new Blob([dataview], { type: type });
 
-  //this.postMessage(audioBlob);
-//}
+function exportMonoWAV(type){
+	var bufferL = mergeBuffers(recBuffersL, recLength);
+	var dataview = encodeWAV(bufferL, true);
+	var audioBlob = new Blob([dataview], { type: type });
 
-	//function exportMonoWAV(type){
-	  //var bufferL = mergeBuffers(recBuffersL, recLength);
-	  //var dataview = encodeWAV(bufferL, true);
-	  //var audioBlob = new Blob([dataview], { type: type });
-
-	  //this.postMessage(audioBlob);
-//}
+	this.postMessage(audioBlob);
+}
 
 function getBuffers() {
   var buffers = [];
@@ -110,15 +87,6 @@ function clear(){
   recBuffersL = [];
   recBuffersR = [];
 }
-
-//NOU CODI
-function initBuffers() {
-    for (var channel = 0; channel < numChannels; channel++) {
-    recBuffers[channel] = [];
-    }
-}
-			
-//NOU CODI
 			
 function mergeBuffers(recBuffers, recLength){
   var result = new Float32Array(recLength);

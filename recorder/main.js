@@ -12,7 +12,12 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-console.log("yeye2");
+
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    console.log(navigator.device.capture);
+}
+
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 var audioContext = new AudioContext();
@@ -59,7 +64,7 @@ function doneEncoding( blob ) {
 	fd.append('data', blob);
 	$.ajax({
 		type: 'POST',
-		url: 'https://192.168.1.100/proves/asapp/server/index.php',
+		url: 'https://192.168.1.111/proves/asapp/server/index.php',
 		data: fd,
 		processData: false,
 		contentType: false
