@@ -5,9 +5,7 @@
   <meta charset="utf-8">
 
   <title>The HTML5 Herald</title>
-  <meta name="description" content="Test>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
 </head>
 
 <body>
@@ -18,12 +16,15 @@
 
 <script>
 $("#btn_record").click(function(){
-navigator.device.capture.captureAudio( captureSuccess, captureError /*,  [CaptureAudioOptions options]*/ );
+	alert(8);
+	navigator.device.capture.captureAudio( captureSuccess, captureError /*,  [CaptureAudioOptions options]*/ );
 });
+
 function captureSuccess(){
  alert("success");
 }
+
 function captureError(){
- alert("error");
- }
+	alert("error");
+}
 </script>
