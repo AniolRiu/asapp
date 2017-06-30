@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Multi-page template</title>
+	<title>AIM SOLO School Project</title>
 	
 	<link rel="stylesheet" href="css/themes/aim-solo.min.css"/>
 	<link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
@@ -15,6 +15,17 @@
 </head>
 
 <body>
+
+	<div data-role="popup" id="logout-popup" data-dismissible="false" data-overlay-theme="b" data-theme="b" style="max-width:400px;">
+		<center><div role="main" class="ui-content" style="max-width:85%;">
+			<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tornar</a><br/>
+			<h3 class="ui-title">Voleu tancar la vostra sessió?</h3><p>Sereu redirigits a la pàgina d'inici de sessió de l'aplicació.</p>
+			<br/>
+			<a class="ui-btn ui-corner-all si-logout" style="width:50%;background-color:red;color:white">Tancar la sessió</a>
+			<br/>
+    	</div>
+		</center>
+	</div>
 
 
 	<!-- LOGIN PAGE -->
@@ -44,12 +55,26 @@
 
 	<!-- PROJECT PAGE -->
 	<div data-role="page" id="projects-page">
+	
+	
+		<!-- <div data-role="popup" id="logout-popup-project" data-dismissible="false" data-overlay-theme="b" data-theme="b" style="max-width:400px;"> -->
+			<!-- <center><div role="main" class="ui-content" style="max-width:80%;"> -->
+<!--         		<h3 class="ui-title">Voleu sortir de la vostra sessió?</h3> -->
+<!--     			<p>Sereu redirigits a la pàgina d'inici de sessió de l'aplicació. Comproveu que totes les dades s'han desat correctament.</p> -->
+				<!-- <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a> -->
+				<!-- <br/> -->
+				<!-- <a class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b si-logout" style="width:50%;background-color:red;color:white">Tancar la sessió</a> -->
+				<!-- <br/> -->
+<!--     		</div> -->
+			<!-- </center> -->
+		<!-- </div> -->
+
 
 		<div data-role="header">
 			<h1>Selecciona un projecte</h1>
 
 			<a href="#" type="button" data-icon="user" style="visibility:hidden">Botó</a>
-			<a href="#" type="button" class="logout_btn" data-icon="power">Sortir</a>
+			<a href="#logout-popup" data-rel="popup" type="button" class="logout_btn" data-icon="power">Sortir</a>
 		</div>
 
 		<div data-role="main" class="ui-content">
@@ -60,16 +85,26 @@
 		<!-- <div data-role="footer">
 			<h4>Aim Solo School Project</h4>
 		</div> -->
+		
+		<!-- <div data-role="popup" id="logout-popup"> -->
+			<!-- <form align="center"> -->
+				<!-- <fieldset data-role="controlgroup" data-type="horizontal"> -->
+					<!-- <button type="button" id="no-logout">Tornar</button> -->
+					<!-- <button type="button" id="si-logout">Sí</button> -->
+				<!-- </fieldset> -->
+			<!-- </form> -->
+		<!-- </div> -->
+	
 
 	</div><!-- /page -->
 
 	<!-- STUDENTS PAGE -->
 	<div data-role="page" id="students-page">
-
+	
 		<div data-role="header">
 			<h1>Estudiants</h1>
 			<a href="#" type="button" class="goback_btn" data-icon="back">Tornar</a>
-			<a href="#" type="button" class="logout_btn" data-icon="power">Sortir</a>
+			<a href="#logout-popup" data-rel="popup" type="button" class="logout_btn" data-icon="power">Sortir</a>
 		</div>
 
 		<div data-role="main" class="ui-content">
@@ -89,7 +124,7 @@
 		<div data-role="header">
 			<h1>Pàgina de l'alumne</h1>
 			<a href="#" type="button" class="goback_btn" data-icon="back">Tornar</a>
-			<a href="#" type="button" class="logout_btn" data-icon="power">Sortir</a>
+			<a href="#logout-popup" data-rel="popup" type="button" class="logout_btn" data-icon="power">Sortir</a>
 		</div>
 
 		<div data-role="main" class="ui-content">
@@ -97,16 +132,18 @@
 			<a href="#comps_millora-page" data-role="button">Competències de millora</a>
 			<a href="#intels-page" data-role="button">Intel·ligències</a>
 		</div>
+	
 
 	</div><!-- /page -->
 	
 	<!-- COMPS PAGE -->
 	<div data-role="page" id="comps-page">
 
+
 		<div data-role="header">
 			<h1>Competències</h1>
 			<a href="#" type="button" class="goback_btn" data-icon="back">Tornar</a>
-			<a href="#" type="button" class="logout_btn" data-icon="power">Sortir</a>
+			<a href="#logout-popup" data-rel="popup" type="button" class="logout_btn" data-icon="power">Sortir</a>
 		</div>
 
 		<div data-role="main" class="ui-content">
@@ -146,7 +183,7 @@
 		<div data-role="header">
 			<h1>Competències</h1>
 			<a href="#" type="button" class="goback_btn" data-icon="back">Tornar</a>
-			<a href="#" type="button" class="logout_btn" data-icon="power">Sortir</a>
+			<a href="#logout-popup" data-rel="popup" type="button" class="logout_btn" data-icon="power">Sortir</a>
 		</div>
 
 		<div data-role="main" class="ui-content">
@@ -181,7 +218,7 @@
 		<div data-role="header">
 			<h1>Intel·ligències</h1>
 			<a href="#" type="button" class="goback_btn" data-icon="back">Tornar</a>
-			<a href="#" type="button" class="logout_btn" data-icon="power">Sortir</a>
+			<a href="#logout-popup" data-rel="popup" type="button" class="logout_btn" data-icon="power">Sortir</a>
 			
 		</div>
 
@@ -305,14 +342,7 @@ $("#diamond").click(function() {
 	
 }
 
-
-{ // Selector page
-	$( "#selector-page" ).on( "pageshow", function( e ) {
-		$(this).find('h1').text(student_name);
-	});
-}
-
-{ // Projects page
+{ // Project page
 	$( "#projects-page" ).on( "pageshow", function( e ) {
 		$(this).find('h1').text("Projectes de " + user_name);
 		{ // Demanem la llista de competències
@@ -387,7 +417,6 @@ $("#diamond").click(function() {
 			success: function(data) {
 				// Arriba la resposta
 				data = JSON.parse(data);
-				console.log(data);
 				if (data.success) {
 					list = $("#student-list");
 					list.empty();
@@ -421,6 +450,7 @@ $("#diamond").click(function() {
 	$("#selector-page").on( "pageshow", function( e ) {
 		$(this).find('h1').text(student_name);
 	});
+	
 }
 
 { // Comps page
@@ -435,14 +465,6 @@ $("#diamond").click(function() {
 		comp_name = $(this).text();
 		$('#comps-popup').popup('open');
 		$('#comps-popup p').text(student_name + ' és ' + comp_name + "?");
-	});
-	
-	$(document).on('click', "#si-comp",function () {
-		update_comp(1);
-	});
-	
-	$(document).on('click', "#no-comp",function () {
-		update_comp(0);
 	});
 	
 	$(document).on('change', "#filter-cg input", function () {
@@ -535,10 +557,14 @@ $("#diamond").click(function() {
 }
 
 function logout() {
-	localStorage.removeItem('user_id');
-	localStorage.removeItem('user_name');
-	localStorage.clear();
-	$.mobile.navigate( "#login-page" );
+	$('#logout-popup').popup('open');
+	
+	
+}
+
+function goback() {
+	parent.history.back();
+	return false;
 }
 
 function build_comp_list() {
@@ -557,7 +583,6 @@ function build_comp_list() {
 			}
 		});
 	}
-	
 	
 	$("#comps-list").html(list).listview('refresh');
 }
@@ -618,5 +643,18 @@ function update_comp_millora(v) {
 	});
 }
 
-$(document).on('click', ".logout_btn", logout);
+$(document).on('click', ".goback_btn", goback);
+<!-- $(document).on('click', ".logout_btn", logout(8)); -->
+
+$(document).on('click', ".si-logout",function () {
+	localStorage.removeItem('user_id');
+	localStorage.removeItem('user_name');
+	localStorage.clear();
+	$.mobile.navigate( "#login-page" );;
+});
+
+$(document).on('ready',function(){
+$('#logout-popup').popup();
+});
+
 </script>
