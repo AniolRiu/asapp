@@ -15,25 +15,32 @@
 </head>
 
 <body>
+	<style>
+		div[data-role=popup]{
+			background-color:white;
+		}
+	</style>
 
-	<div data-role="popup" id="logout-popup" data-dismissible="false" data-overlay-theme="b" data-theme="b" style="max-width:400px;">
-		<center><div role="main" class="ui-content" style="max-width:85%;">
-			<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tornar</a><br/>
-			<h3 class="ui-title">Voleu tancar la vostra sessió?</h3><p>Sereu redirigits a la pàgina d'inici de sessió de l'aplicació.</p>
-			<br/>
-			<a class="ui-btn ui-corner-all si-logout" style="width:50%;background-color:red;color:white">Tancar la sessió</a>
-			<br/>
-    	</div>
+	<div data-role="popup" id="logout-popup" data-overlay-theme="b" data-theme="b" style="max-width:400px;">
+		<center>
+			<div role="main" class="ui-content" style="max-width:85%;">
+				<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+				<h3 class="ui-title">Voleu tancar la vostra sessió?</h3><p>Sereu redirigits a la pàgina d'inici de sessió de l'aplicació.</p>
+				<br/>
+				<a class="ui-btn ui-corner-all si-logout" style="width:50%;background-color:red;color:white">Tancar la sessió</a>
+				<br/>
+	    	</div>
 		</center>
 	</div>
 	
-	<div data-role="popup" id="success-popup" data-dismissible="false" data-overlay-theme="b" data-theme="b" style="max-width:400px;">
-		<center><div role="main" class="ui-content" style="max-width:85%;">
-			<h4 class="ui-title">La competència s'ha actualitzat</h4>
-			<br/>
-			<a href="#" data-rel="back" class="ui-btn ui-corner-all si-update" style="width:50%">Tornar</a>
-			<br/>
-    	</div>
+	<div data-role="popup" id="success-popup" data-overlay-theme="b" data-theme="b" style="max-width:400px;">
+		<center>
+			<div role="main" class="ui-content" style="max-width:85%;">
+				<h4 class="ui-title">La competència s'ha actualitzat</h4>
+				<br/>
+				<a href="#" data-rel="back" class="ui-btn ui-corner-all si-update" style="width:50%">Tornar</a>
+				<br/>
+	    	</div>
 		</center>
 	</div>
 
@@ -271,6 +278,11 @@ var comp_id;
 var comps_groups = null;// = [{'id':1,'name':"Societat"}, {'id':2,'name':"Professional"}, {'id':3,'name':"Excel·lència"}];
 var current_groups = [];
 
+$(document).on('ready',function(){
+	$('#logout-popup').popup();
+	$('#success-popup').popup();
+});
+
 $("#recorder").click(function() {
 	window.location.href="recorder.html";
 });
@@ -449,6 +461,7 @@ $("#diamond").click(function() {
 { // Comps page
 	$("#comps-page").on( "pageshow", function( e ) {
 		$(this).find('h1').text("Competències: " + student_name);
+		$('#success-popup').popup();
 		build_comp_list();
 		
 	});
@@ -469,33 +482,32 @@ $("#diamond").click(function() {
 	});
 
 	{ //Coses rares comentades...
-	<!-- $(document).on('change', "#filter-cg input", function () { -->
-		<!-- id = $(this).data('id'); -->
-		<!-- if(this.checked) { -->
-			<!-- current_groups.push(id); -->
-		<!-- } -->
-		<!-- else { -->
-			<!-- console.log('yeyeyey' + current_groups.indexOf(id)); -->
-			<!-- current_groups.splice(current_groups.indexOf(id), 1); -->
-		<!-- } -->
-		<!-- build_comp_list(); -->
-	<!-- }); -->
-	
-	<!-- $(document).on('swipeleft swiperight', "#comps-list li", function (e) { -->
-		<!-- e.stopPropagation(); -->
-		<!-- // e.preventDefault(); -->
-		<!-- comp_id = $(this).data('id'); -->
-		<!-- comp_name = $(this).text(); -->
-		<!-- console.log(e.type); -->
-		<!-- console.log(e); -->
-		<!-- if(e.type == "swipeleft") { -->
-			<!-- console.log(e.swipestart); -->
-		<!-- } -->
-		<!-- else if (e.type == "swiperight") { -->
-			<!-- console.log(e.swipestop.coords[0] - e.swipestart.coords[0]); -->
-		<!-- } -->
+		$(document).on('change', "#filter-cg input", function () {
+			id = $(this).data('id');
+			if(this.checked) {
+				current_groups.push(id);
+			}
+			else {
+				current_groups.splice(current_groups.indexOf(id), 1);
+			}
+			build_comp_list();
+		});
 		
-	<!-- }); -->
+		/*$(document).on('swipeleft swiperight', "#comps-list li", function (e) {
+			e.stopPropagation();
+			// e.preventDefault();
+			comp_id = $(this).data('id');
+			comp_name = $(this).text();
+			console.log(e.type);
+			console.log(e);
+			if(e.type == "swipeleft") {
+				console.log(e.swipestart);
+			}
+			else if (e.type == "swiperight") {
+				console.log(e.swipestop.coords[0] - e.swipestart.coords[0]);
+			}
+			
+		});*/
 	}
 }
 
@@ -643,7 +655,6 @@ function update_comp(v) {
 			console.log(data);
 			if (data.success) {
 				$("#comps-popup").popup('close');
-				$("#success-popup").popup('open');
 			}
 			else { alert(data.msg); }
 		}
@@ -676,9 +687,7 @@ $(document).on('click', ".si-logout",function () {
 	$.mobile.navigate( "#login-page" );
 });
 
-$(document).on('ready',function(){
-	$('#logout-popup').popup();
-	$('#success-popup').popup();
+$(".comp-popup").on("popupafterclose", function(){
+	$("#success-popup").popup('open');
 });
-
 </script>
