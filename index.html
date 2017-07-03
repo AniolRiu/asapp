@@ -26,6 +26,17 @@
     	</div>
 		</center>
 	</div>
+	
+	<div data-role="popup" id="success-popup" data-dismissible="false" data-overlay-theme="b" data-theme="b" style="max-width:400px;">
+		<center><div role="main" class="ui-content" style="max-width:85%;">
+			<h4 class="ui-title">La competència s'ha actualitzat</h4>
+			<br/>
+			<a href="#" data-rel="back" class="ui-btn ui-corner-all si-update" style="width:50%">Tornar</a>
+			<br/>
+    	</div>
+		</center>
+	</div>
+
 
 
 	<!-- LOGIN PAGE -->
@@ -159,11 +170,6 @@
 			</form>
 		</div>
 		
-		
-		<div data-role="popup" id="success-popup">
-			<p>La competència s'ha actualitzat</p>
-		</div>
-
 	</div><!-- /page -->
 	
 	<!-- COMPS_MILLORA PAGE -->
@@ -196,10 +202,6 @@
 			</form>
 		</div>
 		</center>
-		
-		<div data-role="popup" id="success_millora-popup">
-			<p>La competència s'ha actualitzat</p>
-		</div>
 
 	</div><!-- /page -->
 	
@@ -224,7 +226,7 @@
 			<input data-mini="true" class="intel-slider" type="range" data-id_intel="3" data-levels="Baix|Mig-baix|Mig|Mig alt|Alt|Molt alt|Superdotat" data-highlight="true" id="slider-" min="-2" max="4" value="0" >
 	
 			<label for="slider-corporal"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="4" data-levels="Interpersonal contributiva: Molt alta|Interpersonal contributiva: Alta|Interpersonal contributiva: Mig alta|Interpersonal contributiva: Centrada|Interpersonal no contributiva: Centrada|Interpersonal no contributiva: Mig alta|Interpersonal no contributiva: Alta|Interpersonal no contributiva: Molt alta" data-highlight="true" id="slider-" min="0" max="6" value="0" >
+			<input data-mini="true" class="intel-slider" type="range" data-id_intel="4" data-levels="Interpersonal no contributiva: Molt alta|Interpersonal no contributiva: Alta|Interpersonal no contributiva: Mig alta|Interpersonal no contributiva: Centrada|Interpersonal contributiva: Centrada|Interpersonal contributiva: Mig alta|Interpersonal contributiva: Alta|Interpersonal contributiva: Molt alta" data-highlight="true" id="slider-interpersonal" min="0" max="7" value="0" >
 		
 			<label for="slider-corporal">Intrapersonal: <span id="span-corporal"></span></label>
 			<input data-mini="true" class="intel-slider" type="range" data-id_intel="5" data-levels="Baix|Mig-baix|Mig|Mig alt|Alt|Molt alt|Superdotat" data-highlight="true" id="slider-" min="-2" max="4" value="0" >
@@ -466,7 +468,7 @@ $("#diamond").click(function() {
 		update_comp(0);
 	});
 
-	
+	{ //Coses rares comentades...
 	<!-- $(document).on('change', "#filter-cg input", function () { -->
 		<!-- id = $(this).data('id'); -->
 		<!-- if(this.checked) { -->
@@ -494,6 +496,7 @@ $("#diamond").click(function() {
 		<!-- } -->
 		
 	<!-- }); -->
+	}
 }
 
 { // Comps_millora page
@@ -550,10 +553,11 @@ $("#diamond").click(function() {
 	{ // Quan es canvia el nivell de l'slider canvia també l'etiqueta
 		$(document).on('change', ".intel-slider",function (e) {
 			e.preventDefault();
-			level = $(this).val();
+			level = parseInt($(this).val());
 			levels = $(this).data('levels');
 			levels = levels.split('|');
-			$(this).parent().prev().find('span').text(levels[parseInt(level) + 2]);
+			if ($(this).get(0).id != "slider-interpersonal") level += 2;
+			$(this).parent().prev().find('span').text(levels[level]);
 		});
 	}
 	
@@ -630,7 +634,7 @@ function build_comps_filter() {
 }
 
 function update_comp(v) {
-	url = domini_intra + "/    assets/php/ajax/ajax_change_competence.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id;
+	url = domini_intra + "/assets/php/ajax/ajax_change_competence.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id;
 	console.log(url);
 	$.ajax({
 		url: url,
@@ -641,8 +645,7 @@ function update_comp(v) {
 				$("#comps-popup").popup('close');
 				$("#success-popup").popup('open');
 			}
-			else {
-			}
+			else { alert(data.msg); }
 		}
 	});
 }
@@ -657,7 +660,7 @@ function update_comp_millora(v) {
 			console.log(data);
 			if (data.success) {
 				$("#comps_millora-popup").popup('close');
-				$("#success_millora-popup").popup('open');
+				$("#success-popup").popup('open');
 			}
 			else { alert(data.msg); }
 		}
@@ -670,11 +673,12 @@ $(document).on('click', ".si-logout",function () {
 	localStorage.removeItem('user_id');
 	localStorage.removeItem('user_name');
 	localStorage.clear();
-	$.mobile.navigate( "#login-page" );;
+	$.mobile.navigate( "#login-page" );
 });
 
 $(document).on('ready',function(){
-$('#logout-popup').popup();
+	$('#logout-popup').popup();
+	$('#success-popup').popup();
 });
 
 </script>
