@@ -275,6 +275,8 @@ var comps_fem;
 var comps_millora;
 var comp_name;
 var comp_id;
+var nstudents;
+var nprojects;
 var comps_groups = null;// = [{'id':1,'name':"Societat"}, {'id':2,'name':"Professional"}, {'id':3,'name':"Excel·lència"}];
 var current_groups = [];
 
@@ -428,10 +430,12 @@ $("#diamond").click(function() {
 				if (data.success) {
 					list = $("#student-list");
 					list.empty();
-					if (data.users.length == 1) {
-						// Assignar alumne tutor
-						project_id = data.users[0].id;
-						project_name = data.users[0].name;
+					nstudents = data.users.length;
+					if (nstudents == 1) {
+						console.log(data);
+						student_id = data.users[0].id;
+						student_sex = data.users[0].sex;
+						student_name = data.users[0].name + ' ' + data.users[0].lastname;
 						$.mobile.navigate("#selector-page");
 					}
 					else {
@@ -456,7 +460,21 @@ $("#diamond").click(function() {
 
 { // Selector page
 	$("#selector-page").on( "pageshow", function( e ) {
-		$(this).find('h1').text(student_name);
+		$(this).find('h1').text('Alumne: ' + student_name);
+		
+	if (nstudents == 1 && nprojects == 1) {
+		student_id = data.users[0].id;
+		student_sex = data.users[0].sex;
+		student_name = data.users[0].name + ' ' + data.users[0].lastname;
+		$.mobile.navigate("#selector-page");
+	}
+	else {
+		data.users.forEach(function (user, index) {
+			var list_item = $('<li><a data-id="' + user.id + '" data-sex="' + user.sex + '">' + user.name + ' ' + user.lastname + '</a></li>');
+			list.append(list_item).listview('refresh');
+		});
+	}
+					
 	});
 	
 }
@@ -698,6 +716,7 @@ function update_comp_millora(v) {
 }
 
 $(document).on('click', ".goback_btn", goback);
+
 
 $(document).on('click', ".si-logout",function () {
 	localStorage.removeItem('user_id');
