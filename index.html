@@ -33,19 +33,6 @@
 		</center>
 	</div>
 	
-	<div data-role="popup" id="success-popup" data-overlay-theme="b" data-theme="b" style="max-width:400px;">
-		<center>
-			<div role="main" class="ui-content" style="max-width:85%;">
-				<h4 class="ui-title">La competència s'ha actualitzat</h4>
-				<br/>
-				<a href="#" data-rel="back" class="ui-btn ui-corner-all si-update" style="width:50%">Tornar</a>
-				<br/>
-	    	</div>
-		</center>
-	</div>
-
-
-
 	<!-- LOGIN PAGE -->
 	<div data-role="page" id="login-page">
 
@@ -99,7 +86,6 @@
 				<!-- </fieldset> -->
 			<!-- </form> -->
 		<!-- </div> -->
-	
 
 	</div><!-- /page -->
 
@@ -133,9 +119,10 @@
 		</div>
 
 		<div data-role="main" class="ui-content">
+			<a href="#intels-page" data-role="button">Intel·ligències</a>
 			<a href="#comps-page" data-role="button">Competències</a>
 			<a href="#comps_millora-page" data-role="button">Competències de millora</a>
-			<a href="#intels-page" data-role="button">Intel·ligències</a>
+			<a href="#emocions-page" data-role="button">Emocions</a>
 		</div>
 	
 
@@ -152,9 +139,9 @@
 		</div>
 
 		<div data-role="main" class="ui-content">
-			<form align="center">
+		<form align="center">
 				<fieldset data-role="controlgroup" data-type="horizontal" id="filter-cg">
-					<input type="checkbox" data-id="dd" id="checkbox-"><label for="checkbox-">lklk</label>
+					<input type="checkbox" data-id="dd" id="checkbox-"><label for="checkbox-">Grups</label>
 				</fieldset>
 			</form>
 			<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar competència" data-autodividers="true" data-inset="true" id="comps-list">
@@ -166,18 +153,25 @@
 		</div> -->
 		
 		
-		<div data-role="popup" id="comps-popup">
+		<center>
+		<div data-rel="popup" data-role="popup" id="comps-popup" align="center" data-theme="b">
 			<p></p>
 			<form align="center">
 				<fieldset data-role="controlgroup" data-type="horizontal">
 					<button type="button" id="no-comp" data-icon="delete">No</button>
-					<button type="button" id="cancel-comp">Cancel·lar</button>
 					<button type="button" id="si-comp" data-icon="check">Sí</button>
 				</fieldset>
 			</form>
 		</div>
+		</center>
 		
-	</div><!-- /page -->
+		
+			
+		<div data-role="footer" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
+			<center><button id="comps-update" style="border-color:green;background-color:green;color:white" class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow-icon">La competència s'ha actualitzat correctament</a></center>
+		</div>
+	
+	</div>
 	
 	<!-- COMPS_MILLORA PAGE -->
 	<div data-role="page" id="comps_millora-page">
@@ -189,6 +183,7 @@
 		</div>
 
 		<div data-role="main" class="ui-content">
+				<!-- <h3 id="comp_millora-update">Estat de la competència</h3> -->
 			<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar competència" data-autodividers="true" data-inset="true" id="comps_millora-list">
 			</ul>
 		</div>
@@ -197,18 +192,23 @@
 			<h4>Aim Solo School Project</h4>
 		</div> -->
 		
-		<center>
-		<div data-role="popup" id="comps_millora-popup">
+	
+		<div data-rel="popup" data-role="popup" id="comps_millora-popup" align="center" data-theme="b">
 			<p></p>
 			<form align="center">
 				<fieldset data-role="controlgroup" data-type="horizontal">
 					<button type="button" id="no-comp_millora" data-icon="delete">No</button>
-					<button type="button" id="cancel-comp_millora">Cancel·lar</button>
 					<button type="button" id="si-comp_millora" data-icon="check">Sí</button>
 				</fieldset>
 			</form>
 		</div>
-		</center>
+	
+		
+			
+	<div data-role="footer" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
+		<center><button id="comp_millora-update" style="border-color:green;background-color:green;color:white" class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow-icon">La competència s'ha actualitzat correctament</a></center>
+	</div>
+	
 
 	</div><!-- /page -->
 	
@@ -255,7 +255,7 @@
 		</div>
 
 	</div><!-- /page -->
-
+		
 </body>
 </html>
 
@@ -281,6 +281,9 @@ var current_groups = [];
 $(document).on('ready',function(){
 	$('#logout-popup').popup();
 	$('#success-popup').popup();
+	$("#comps-update").hide();
+	$("#comp_millora-update").hide();
+	
 });
 
 $("#recorder").click(function() {
@@ -460,8 +463,8 @@ $("#diamond").click(function() {
 
 { // Comps page
 	$("#comps-page").on( "pageshow", function( e ) {
-		$(this).find('h1').text("Competències: " + student_name);
-		$('#success-popup').popup();
+		$("#comp-update").hide();
+		$(this).find('h1').text("Competències: " + student_name);;
 		build_comp_list();
 		
 	});
@@ -478,7 +481,9 @@ $("#diamond").click(function() {
 	});
 	
 	$(document).on('click', "#no-comp",function () {
+		$("#comps-update").hide();
 		update_comp(0);
+		$("#comps-popup").popup('close');
 	});
 
 	{ //Coses rares comentades...
@@ -513,6 +518,7 @@ $("#diamond").click(function() {
 
 { // Comps_millora page
 	$("#comps_millora-page").on( "pageshow", function( e ) {
+		$("#comp_millora-update").hide();
 		$(this).find('h1').text("Competències de millora: " + student_name);
 		build_comp_millora_list();
 	});
@@ -647,7 +653,6 @@ function build_comps_filter() {
 
 function update_comp(v) {
 	url = domini_intra + "/assets/php/ajax/ajax_change_competence.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id;
-	console.log(url);
 	$.ajax({
 		url: url,
 		success: function(data) {
@@ -655,25 +660,39 @@ function update_comp(v) {
 			console.log(data);
 			if (data.success) {
 				$("#comps-popup").popup('close');
+				$("#comps-update").show( 400 );
+				setTimeout(
+				  function() 
+				  {
+					$("#comps-update").hide( 400 );
+				  }, 3000);
 			}
-			else { alert(data.msg); }
+			else { alert(data.msg);
+			}
 		}
 	});
 }
 
 function update_comp_millora(v) {
 	url = domini_intra + "/assets/php/ajax/ajax_change_competence_cm.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id;
-	console.log(url);
 	$.ajax({
 		url: url,
 		success: function(data) {
 			data = JSON.parse(data);
-			console.log(data);
 			if (data.success) {
 				$("#comps_millora-popup").popup('close');
-				$("#success-popup").popup('open');
+				$("#comp_millora-update").show( 400 );
+				setTimeout(
+				 
+				function() {
+					$("#comp_millora-update").hide( 400 );
+				}, 3000);
+				
 			}
-			else { alert(data.msg); }
+			else {
+				alert(data.msg);
+				$("#comps_millora-popup").popup('close');
+			}
 		}
 	});
 }

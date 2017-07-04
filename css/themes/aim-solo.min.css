@@ -29,7 +29,7 @@ button,
 legend,
 .ui-input-text input,
 .ui-input-search input {
-	color: inherit;
+	color: #FFFFFF;
 	text-shadow: inherit;
 }
 /* Form labels (overrides font-weight bold in bars, and mini font-size) */
