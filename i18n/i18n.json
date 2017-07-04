@@ -1,0 +1,21 @@
+{
+    "@metadata": {
+        "authors": [
+          "Aniol Riu Torrens"
+        ],
+        "last-updated": "2017-05-23",
+        "locale": "cat"
+    },
+    "login title": [
+		"AS EduComp"
+		],
+	"iniciar sessio" : [
+		"Iniciar sessió"
+		],
+	"Usuari" : [
+		"Usuari"
+		],
+	"Contrassenya" : [
+		"Contrassenya"
+		]
+}

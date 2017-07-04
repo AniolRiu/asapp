@@ -37,14 +37,14 @@
 	<div data-role="page" id="login-page">
 
 		<div data-role="header">
-			<h1>AIM SOLO School Project</h1>
+			<h1 data-text="login title"></h1>
 		</div>
 
 		<div data-role="main" class="ui-content">
 			<form id="login-form" method="get">
 				<input id="username" type="text" placeholder="Usuari"/>
-				<input id="pwd" type="password" placeholder="Contrasenya"/>
-				<button type="submit" data-icon="user">Iniciar la sessió</button>
+				<input id="pwd" type="password" placeholder="Contrassenya"/>
+				<button type="submit" data-icon="user" data-text="iniciar sessio"></button>
 			</form>
 		</div>
 		
@@ -158,8 +158,8 @@
 			<p></p>
 			<form align="center">
 				<fieldset data-role="controlgroup" data-type="horizontal">
-					<button type="button" id="no-comp" data-icon="delete">No</button>
-					<button type="button" id="si-comp" data-icon="check">Sí</button>
+					<button type="button" id="no-comp" data-icon="delete" data-text="No"></button>
+					<button type="button" id="si-comp" data-icon="check" data-text="Sí"></button>
 				</fieldset>
 			</form>
 		</div>
@@ -279,12 +279,29 @@ var nstudents;
 var nprojects;
 var comps_groups = null;// = [{'id':1,'name':"Societat"}, {'id':2,'name':"Professional"}, {'id':3,'name':"Excel·lència"}];
 var current_groups = [];
+var i18n;
 
 $(document).on('ready',function(){
 	$('#logout-popup').popup();
 	$('#success-popup').popup();
 	$("#comps-update").hide();
 	$("#comp_millora-update").hide();
+	
+	{ // Gestionem traduccions
+		$.getJSON("i18n/i18n.json", function(json) {
+			i18n = json;
+			{ // Recorrem translatables
+				$("[data-text]").each(function(){
+					$(this).text(__($(this).data("text")));
+				});
+			}
+			{ // Recorrem placeholders
+				$("[placeholder]").each(function(){
+					$(this).attr('placeholder',__($(this).attr('placeholder')));
+				});
+			}
+		});
+	}
 	
 });
 
@@ -317,12 +334,7 @@ $("#diamond").click(function() {
 			$.mobile.navigate( "#projects-page" );
 		}
 		
-		
-		
 	});
-		
-		
-		
 		
 	$('#login-form').submit(function(e) {
 		e.preventDefault();
@@ -460,23 +472,8 @@ $("#diamond").click(function() {
 
 { // Selector page
 	$("#selector-page").on( "pageshow", function( e ) {
-		$(this).find('h1').text('Alumne: ' + student_name);
-		
-	if (nstudents == 1 && nprojects == 1) {
-		student_id = data.users[0].id;
-		student_sex = data.users[0].sex;
-		student_name = data.users[0].name + ' ' + data.users[0].lastname;
-		$.mobile.navigate("#selector-page");
-	}
-	else {
-		data.users.forEach(function (user, index) {
-			var list_item = $('<li><a data-id="' + user.id + '" data-sex="' + user.sex + '">' + user.name + ' ' + user.lastname + '</a></li>');
-			list.append(list_item).listview('refresh');
-		});
-	}
-					
+		$(this).find('h1').text('Alumne: ' + student_name);					
 	});
-	
 }
 
 { // Comps page
@@ -728,4 +725,10 @@ $(document).on('click', ".si-logout",function () {
 $(".comp-popup").on("popupafterclose", function(){
 	$("#success-popup").popup('open');
 });
+
+function __(text) {
+	// i18n[text][0] <- el numero és l'idioma
+	if(text in i18n) return i18n[text][0];
+	else return text;
+}
 </script>
