@@ -6,16 +6,184 @@
         "last-updated": "2017-05-23",
         "locale": "cat"
     },
-    "login title": [
-		"AS EduComp"
-		],
-	"iniciar sessio" : [
-		"Iniciar sessió"
-		],
-	"Usuari" : [
-		"Usuari"
-		],
-	"Contrassenya" : [
-		"Contrassenya"
-		]
+    "login title" : {
+		"cat":"AS EduComp",
+		"spa":"AS EduComp"
+		},
+	"Iniciar sessio" : {
+		"cat":"Iniciar la sessió",
+		"spa":"Iniciar sesión"
+		},
+	"Usuari" : {
+		"cat":"Usuari",
+		"spa":"Usuario"
+		},
+	"Contrasenya" : {
+		"cat":"Contrasenya",
+		"spa":"Contraseña"
+		},
+	"Tornar" : {
+		"cat":"Tornar",
+		"spa":"Volver"
+		},
+	"Sortir" : {
+		"cat":"Sortir",
+		"spa":"Salir"
+		},
+	"Projectes" : {
+		"cat":"Projectes",
+		"spa":"Proyectos"
+		},
+	"Estudiants" : {
+		"cat":"Estudiants",
+		"spa":"Estudiantes"
+		},
+	"Intels" : {
+		"cat":"Intel·ligències",
+		"spa":"Inteligencias"
+		},
+	"Comps" : {
+		"cat":"Competències",
+		"spa":"Competencias"
+		},
+	"Comps_millora" : {
+		"cat":"Competències de millora",
+		"spa":"Competencias de mejora"
+		},
+	"Emocions" : {
+		"cat":"Emocions",
+		"spa":"Emociones"
+		},
+	"Corporal" : {
+		"cat":"Corporal: ",
+		"spa":"Corporal: "
+		},
+	"Emocional" : {
+		"cat":"Emocional: ",
+		"spa":"Emocional: "
+		},
+	"Espacial" : {
+		"cat":"Espacial: ",
+		"spa":"Espacial: "
+		},
+	"Interpersonal-no" : {
+		"cat":"Interpersonal no contribuitva: ",
+		"spa":"Interpersonal no constributiva: "
+		},
+	"Interpersonal-contr" : {
+		"cat":"Interpersonal contributiva: ",
+		"spa":"Interpersonal contributiva: "
+		},
+	"Intrapersonal" : {
+		"cat":"Intrapersonal: ",
+		"spa":"Intrapersonal: "
+		},
+	"Musical" : {
+		"cat":"Musical: ",
+		"spa":"Musical: "
+		},
+	"Numerica" : {
+		"cat":"Numèrica: ",
+		"spa":"Numerica: "
+		},
+	"RaonamentLogic" : {
+		"cat":"Raonament lògic: ",
+		"spa":"Razonamiento logico: "
+		},
+	"Verbal" : {
+		"cat":"Verbal: ",
+		"spa":"Verbal: "
+		},
+	"Visual" : {
+		"cat":"Visual: ",
+		"spa":"Visual: "
+		},
+	"Baix" : {
+		"cat":"Baix",
+		"spa":"Bajo"
+		},
+	"MigBaix" : {
+		"cat":"Mig baix",
+		"spa":"Medio bajo"
+		},
+	"Mig" : {
+		"cat":"Mig",
+		"spa":"Mediano"
+		},
+	"MigAlt" : {
+		"cat":"Mig alt",
+		"spa":"Medio alto"
+		},
+	"Alt" : {
+		"cat":"Alt",
+		"spa":"Alto"
+		},
+	"MoltAlt" : {
+		"cat":"Molt alt",
+		"spa":"Muy alto"
+		},
+	"Superdotat" : {
+		"cat":"Superdotat",
+		"spa":"Superdotado"
+		},	
+	"Buscar competència" : {
+		"cat":"Buscar competència",
+		"spa":"Buscar competencia"
+		},
+	"VoleuTancarLaSessio" : {
+		"cat":"Voleu tancar la vostra sessió?",
+		"spa":"¿Quiere cerrar su sesión?"
+		},
+	"TextTancarSessio" : {
+		"cat":"Sereu redirigits a la pàgina d'inici de sessió de l'aplicació",
+		"spa":"Usted será redirigido a la página de inicio de sesión de la aplicación"
+		},
+	"TancarSessio" : {
+		"cat":"Tancar la sessió",
+		"spa":"Cerrar sesión"
+		},
+	"CompActualitzada" : {
+		"cat":"Canvis desats correctament",
+		"spa":"Cambios guardados correctamente"
+		},
+	"Estudiants de" : {
+		"cat":"Estudiants de",
+		"spa":"Estudiantes de"
+		},
+	"Projectes de" : {
+		"cat":"Projectes de",
+		"spa":"Proyectos de"
+		},
+	"Competències de" : {
+		"cat":"Competències de",
+		"spa":"Competencias de"
+		},
+	"Competències de millora de" : {
+		"cat":"Competències de millora de",
+		"spa":"Competencias de mejora de"
+		},
+	"Alumne" : {
+		"cat":"Alumne:",
+		"spa":"Alumno:"
+		},
+	"Intel·ligències de" : {
+		"cat":"Intel·ligències de",
+		"spa":"Inteligencias de"
+		},
+	"Emocions de" : {
+		"cat":"Emocions de",
+		"spa":"Emociones de"
+		},
+	"Baix|Mig baix|Mig|Mig alt|Alt|Molt alt|Superdotat" : {
+		"cat":"Baix|Mig baix|Mig|Mig alt|Alt|Molt alt|Superdotat",
+		"spa":"Bajo|Medio bajo|Mediano|Medio alto|Alto|Muy alto|Superdotado"
+		},
+	"Interpersonal no contributiva: Molt alta|Interpersonal no contributiva: Alta|Interpersonal no contributiva: Mig alta|Interpersonal no contributiva: Centrada|Interpersonal contributiva: Centrada|Interpersonal contributiva: Mig alta|Interpersonal contributiva: Alta|Interpersonal contributiva: Molt alta" : {
+		"cat":"Interpersonal no contributiva: Molt alta|Interpersonal no contributiva: Alta|Interpersonal no contributiva: Mig alta|Interpersonal no contributiva: Centrada|Interpersonal contributiva: Centrada|Interpersonal contributiva: Mig alta|Interpersonal contributiva: Alta|Interpersonal contributiva: Molt alta",
+		"spa":"Interpersonal no contributiva: Muy alta|Interpersonal no contributiva: Alta|Interpersonal no contributiva: Medio alta|Interpersonal no contributiva: Centrada|Interpersonal contributiva: Centrada|Interpersonal contributiva: Medio alta|Interpersonal contributiva: Alta|Interpersonal contributiva: Muy alta"
+		},
+	"PopupComps" : {
+		"cat": "Assignar-la a",
+		"spa": "¿Establecerla a"
+		}
 }
