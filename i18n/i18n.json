@@ -27,8 +27,8 @@
 		"spa":"Volver"
 		},
 	"Sortir" : {
-		"cat":"Sortir",
-		"spa":"Salir"
+		"cat":"Tancar la sessió",
+		"spa":"Cerrar sesión"
 		},
 	"Projectes" : {
 		"cat":"Projectes",
@@ -84,11 +84,11 @@
 		},
 	"Numerica" : {
 		"cat":"Numèrica: ",
-		"spa":"Numerica: "
+		"spa":"Numérica: "
 		},
 	"RaonamentLogic" : {
 		"cat":"Raonament lògic: ",
-		"spa":"Razonamiento logico: "
+		"spa":"Razonamiento lógico: "
 		},
 	"Verbal" : {
 		"cat":"Verbal: ",
@@ -98,34 +98,6 @@
 		"cat":"Visual: ",
 		"spa":"Visual: "
 		},
-	"Baix" : {
-		"cat":"Baix",
-		"spa":"Bajo"
-		},
-	"MigBaix" : {
-		"cat":"Mig baix",
-		"spa":"Medio bajo"
-		},
-	"Mig" : {
-		"cat":"Mig",
-		"spa":"Mediano"
-		},
-	"MigAlt" : {
-		"cat":"Mig alt",
-		"spa":"Medio alto"
-		},
-	"Alt" : {
-		"cat":"Alt",
-		"spa":"Alto"
-		},
-	"MoltAlt" : {
-		"cat":"Molt alt",
-		"spa":"Muy alto"
-		},
-	"Superdotat" : {
-		"cat":"Superdotat",
-		"spa":"Superdotado"
-		},	
 	"Buscar competència" : {
 		"cat":"Buscar competència",
 		"spa":"Buscar competencia"
@@ -185,5 +157,29 @@
 	"PopupComps" : {
 		"cat": "Assignar-la a",
 		"spa": "¿Establecerla a"
+		},
+	"Opcions" : {
+		"cat": "Opcions",
+		"spa": "Opciones"
+		},
+	"CanviarProjecte" : {
+		"cat": "Canviar de projecte",
+		"spa": "Cambiar de proyecto"
+		},
+	"Sincronitzar" : {
+		"cat": "Sincronitzar",
+		"spa": "Sincronizar"
+		},
+	"Menu" : {
+		"cat": "Menú",
+		"spa": "Menú"
+		},
+	"Buscar emoció" : {
+		"cat": "Buscar emoció",
+		"spa": "Buscar emoción"
+		},
+	"UnMoment" : {
+		"cat": "Un moment, si us plau...",
+		"spa": "Un momento, por favor..."
 		}
 }
