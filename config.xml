@@ -11,11 +11,8 @@
 	Aniol Riu
 </author>
 
-<meta name="theme-color" content="#FFFFFF" />
 <preference name="fullscreen" value="false" />
-<preference name="StatusBarBackgroundColor" value="#FFFFFF" />
-<preference name="StatusBarStyle" value="blacktranslucent" />
-<!-- <preference name="StatusBarOverlaysWebView" value="true" /> -->
+<preference name="StatusBarOverlaysWebView" value="true" />
 
 <icon src="res/icon.png" />
 <platform name="android">
