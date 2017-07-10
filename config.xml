@@ -11,8 +11,8 @@
 	Aniol Riu
 </author>
 
-<preference name="fullscreen" value="true" />
-<preference name="StatusBarOverlaysWebView" value="true" />
+<preference name="fullscreen" value="false" />
+<!-- <preference name="StatusBarOverlaysWebView" value="true" /> -->
 
 <icon src="res/icon.png" />
 <platform name="android">
