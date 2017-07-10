@@ -31,7 +31,7 @@
 		background-repeat:no-repeat;
 		background-position:crop;
 		background-attachment:fixed;
-		background-size:100% ;
+		background-size:100%;
 		}
 		.ui-page {
 		background: transparent;
@@ -39,8 +39,17 @@
 		.ui-content{
 		background: transparent;
 		}
+		
+		.splash {
+		background-repeat:no-repeat;
+		background-position:crop;
+		background-attachment:fixed;
+		background-size:75%;
+		background-position: center;
+		text-align: center;
+		}
 	</style>
-
+	
 	<div data-role="popup" id="logout-popup" data-overlay-theme="b" data-theme="b" style="max-width:400px;">
 		<center>
 			<div role="main" class="ui-content" style="max-width:85%;">
@@ -52,6 +61,12 @@
 				<br/>
 	    	</div>
 		</center>
+	</div>
+	
+	<!-- SPLASHCREEN -->
+	<div data-role="page" id="splash" class="splash" style="background-image: url('logo.png');"> 
+		<div class="splash2">
+		</div>
 	</div>
 	
 	<!-- LOGIN PAGE -->
@@ -312,7 +327,8 @@
 		<center><h3 style="color:grey">AS EduComp</h3></center><br/>
 		<button type="button" onClick="sync()" style="border-color:white;background-color:white;color:black" class="ui-btn ui-corner-all ui-btn-a ui-icon-refresh ui-btn-icon-left ui-btn-inline" data-text="Sincronitzar"></button>
 		<a href="#projects-page" data-rel="change" style="border-color:white;background-color:white;color:black" class="ui-btn ui-corner-all ui-btn-a ui-icon-bullets ui-btn-icon-left ui-btn-inline" data-text="CanviarProjecte"></a>
-		<a href="#logout-popup" data-rel="popup" style="border-color:white;background-color:white;color:black" class="ui-btn ui-corner-all ui-btn-a ui-icon-power ui-btn-icon-left ui-btn-inline" data-text="Sortir"></a>
+		<a href="#logout-popup" data-rel="popup" style="border-color:white;background-color:white;color:black" class="ui-btn ui-corner-all ui-btn-a ui-icon-power ui-btn-icon-left ui-btn-inline" data-text="Tancar"></a>
+		<button type="button" onClick="exit()" style="border-color:white;background-color:white;color:black" class="ui-btn ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left ui-btn-inline" data-text="Sortir"></a>
 	</div><!-- /rightpanel1 -->
 	
 </body>
@@ -375,7 +391,8 @@ $(document).on('ready',function(){
 					$(this).attr('data-levels',__($(this).attr('data-levels')))
 				});
 			}
-
+			
+			// Els events del loading han d'estar al callback del getJSON pq contenen strings
 			$( document ).ajaxStart(function() {
 				$.mobile.loading( "show", {
 					text: __("UnMoment"),
@@ -401,27 +418,33 @@ $("#diamond").click(function() {
 	window.location.href="recorder/new1.html";
 });
 
+{ //Splash screen
+	{ // Carreguem variables de la memòria local
+		user_id = localStorage.getItem('user_id');
+		user_name = localStorage.getItem('user_name');
+		entitat_id = localStorage.getItem('entitat_id');
+		project_id = localStorage.getItem('project_id');
+		project_name = localStorage.getItem('project_name');
+		comps_masc = JSON.parse(localStorage.getItem('comps_masc'));
+		comps_fem = JSON.parse(localStorage.getItem('comps_fem'));
+		comps_millora = JSON.parse(localStorage.getItem('comps_millora'));
+		comps_groups = JSON.parse(localStorage.getItem('comps_groups'));
+		emocions = JSON.parse(localStorage.getItem('emocions'));
+	}
+	
+	$( "#splash" ).on( "pageshow", function( e ) {
+		setTimeout(function() {
+			if ((user_id != null) || (user_name != null)) {
+				$.mobile.changePage("#projects-page", "fade");
+			}
+			else {
+				$.mobile.changePage("#login-page", "fade");
+			}
+		}, 2000);
+	})
+}
+
 { // Login page
-	$( "#login-page" ).on( "pageshow", function( e ) {
-		{ // Carreguem variables de la memòria local
-			user_id = localStorage.getItem('user_id');
-			user_name = localStorage.getItem('user_name');
-			entitat_id = localStorage.getItem('entitat_id');
-			project_id = localStorage.getItem('project_id');
-			project_name = localStorage.getItem('project_name');
-			comps_masc = JSON.parse(localStorage.getItem('comps_masc'));
-			comps_fem = JSON.parse(localStorage.getItem('comps_fem'));
-			comps_millora = JSON.parse(localStorage.getItem('comps_millora'));
-			comps_groups = JSON.parse(localStorage.getItem('comps_groups'));
-			emocions = JSON.parse(localStorage.getItem('emocions'));
-		}
-		
-		if ((user_id != null) || (user_name != null)) {
-			console.log(project_id);
-			login();
-		}
-		
-	});
 		
 	$('#login-form').submit(function(e) {
 		e.preventDefault();
@@ -894,6 +917,10 @@ function sync() {
 			}
 		}
 	});
+}
+
+function exit() {
+	navigator.app.exitApp();
 }
 
 $(document).on('click', ".goback_btn", goback);

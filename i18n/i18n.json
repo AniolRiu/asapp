@@ -26,7 +26,7 @@
 		"cat":"Tornar",
 		"spa":"Volver"
 		},
-	"Sortir" : {
+	"Tancar" : {
 		"cat":"Tancar la sessió",
 		"spa":"Cerrar sesión"
 		},
@@ -181,5 +181,9 @@
 	"UnMoment" : {
 		"cat": "Un moment, si us plau...",
 		"spa": "Un momento, por favor..."
+		},
+	"Sortir" : {
+		"cat": "Sortir de l'app",
+		"spa": "Salir de la app"
 		}
 }
