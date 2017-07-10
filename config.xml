@@ -12,6 +12,8 @@
 </author>
 
 <preference name="fullscreen" value="true" />
+<preference name="StatusBarOverlaysWebView" value="true" />
+
 <icon src="res/icon.png" />
 <platform name="android">
 	<icon src="res/android/drawable-ldpi/ic_launcher.png" density="ldpi" />
