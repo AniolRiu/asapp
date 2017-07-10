@@ -29,7 +29,7 @@
 		background: url(background.jpg);
 		background-repeat:no-repeat;
 		background-position:fixed;
-		background-attachment:scroll;
+		background-attachment:fixed;
 		background-size:100% 100%;
 		}
 		.ui-page {
@@ -85,6 +85,7 @@
 		<div data-role="header">
 			<h1 data-text="Projectes">Projectes</h1>
 			<a href="#" type="button" class="goback_btn" data-icon="back" data-text="Tornar">Tornar</a>
+			<a href="#rightpanel" data-rel="panel" type="button" class="logout_btn" data-icon="bars" data-text="Menu">Menú</a>
 		</div>
 
 		<div data-role="main" class="ui-content">
@@ -349,7 +350,10 @@ $(document).on('ready',function(){
 	$("#comps-footer").hide();
 	$("#comp_millora-footer").hide();
 	$StatusBar.hide();
-	
+	if ((user_id != null) || (user_name != null)) {
+		console.log(project_id);
+		login();
+	}
 	
 	{ // Gestionem traduccions
 		$.getJSON("i18n/i18n.json", function(json) {
