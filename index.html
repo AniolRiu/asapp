@@ -328,7 +328,7 @@
 		<button type="button" onClick="sync()" style="border-color:white;background-color:white;color:black" class="ui-btn ui-corner-all ui-btn-a ui-icon-refresh ui-btn-icon-left ui-btn-inline" data-text="Sincronitzar"></button>
 		<a href="#projects-page" data-rel="change" style="border-color:white;background-color:white;color:black" class="ui-btn ui-corner-all ui-btn-a ui-icon-bullets ui-btn-icon-left ui-btn-inline" data-text="CanviarProjecte"></a>
 		<a href="#logout-popup" data-rel="popup" style="border-color:white;background-color:white;color:black" class="ui-btn ui-corner-all ui-btn-a ui-icon-power ui-btn-icon-left ui-btn-inline" data-text="Tancar"></a>
-		<button type="button" onClick="exit()" style="border-color:white;background-color:white;color:black" class="ui-btn ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left ui-btn-inline" data-text="Sortir"></a>
+		<button type="button" id="exitApp" style="border-color:white;background-color:white;color:black" class="ui-btn ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left ui-btn-inline" data-text="Sortir"></a>
 	</div><!-- /rightpanel1 -->
 	
 </body>
@@ -409,6 +409,7 @@ $(document).on('ready',function(){
 	}
 	
 });
+
 
 $("#recorder").click(function() {
 	window.location.href="recorder.html";
