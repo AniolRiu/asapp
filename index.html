@@ -77,11 +77,14 @@
 		</div>
 
 		<div data-role="main" class="ui-content">
-			<form id="login-form" method="get">
-				<input id="username" type="text" placeholder="E-mail"/>
-				<input id="pwd" type="password" placeholder="Password"/>
-				<button type="submit" data-text="Login"></button>
-			</form>
+			<form id="login-form" method="get"><center><br/>
+				<h1>#hashtag</h1>
+				<br/>
+				<input id="username" type="text" placeholder="E-mail" style="background-color:#004168;border-color:#004168;color:#bfcfd9"/>
+				<input id="pwd" type="password" placeholder="Password" style="background-color:#004168;border-color:#004168;color:#bfcfd9"/>
+				<br/>
+				<button type="submit" data-text="Login" style="width:30%"></button>
+			</center></form>
 		</div>
 		
 		<!-- <button id="recorder">Recorder</button> -->
@@ -105,7 +108,7 @@
 		</div>
 		<div data-role="main" class="ui-content">
 		<center><h4 data-text="Projectes">Projectes</h4></center>
-		<hr>
+		<hr><br/>
 		<ul data-role="listview" data-inset="true" id="project-list">
 		</ul>
 		</div>
@@ -127,7 +130,7 @@
 
 		<div data-role="main" class="ui-content">
 		<center><h4>Estudiants</h4></center>
-		<hr>
+		<hr><br/>
 		<ul data-role="listview" data-inset="true" id="student-list">
 		</ul>
 		</div>
@@ -149,10 +152,13 @@
 
 		<div data-role="main" class="ui-content">
 		<center><h4>Pàgina de</h4></center>
-		<hr>
+		<hr><br/>
 			<a href="#intels-page" data-role="button" data-text="Intels">Intel·ligències</a>
+			<br/>
 			<a href="#comps-page" data-role="button" data-text="Comps">Competències</a>
+			<br/>
 			<a href="#comps_millora-page" data-role="button" data-text="Comps_millora">Competències de millora</a>
+			<br/>
 			<a href="#emocions-page" data-role="button" data-text="Emocions">Emocions</a>
 		</div>
 	
@@ -171,12 +177,13 @@
 
 		<div data-role="main" class="ui-content">
 		<center><h4>Competències</h4></center>
-		<hr>
+		<hr><br/>
 		<form align="center">
   				<fieldset data-role="controlgroup" data-type="horizontal" id="filter-cg">
  					<input type="checkbox" data-id="dd" id="checkbox-"><label for="checkbox-" >Grups</label>
   				</fieldset>
   			</form>
+			<br/><br/>
   			<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar competència" data-autodividers="true" data-inset="true" id="comps-list">
  			</ul>
  		</div>
@@ -184,15 +191,15 @@
 		<!-- <div data-role="footer">
 			<h4>Aim Solo School Project</h4>
 		</div> -->
-		
+
 		
 		<center>
-		<div data-rel="popup" data-role="popup" id="comps-popup" align="center" data-theme="b">
+		<div data-rel="popup" data-role="popup" id="comps-popup" align="center" style="background-color:#004168">
 			<p></p>
 			<form align="center">
 				<fieldset data-role="controlgroup" data-type="horizontal">
-					<button type="button" id="no-comp" data-icon="delete" data-text="No"></button>
-					<button type="button" id="si-comp" data-icon="check" data-text="Sí"></button>
+					<button type="button" id="si-comp" style="background-color:#004168;border-color:#004168;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-notext">Sí</button>
+					<button type="button" id="no-comp" style="background-color:#004168;border-color:#004168;margin-right:1px" class="ui-btn ui-icon-delete ui-btn-icon-notext">No</button>
 				</fieldset>
 			</form>
 		</div>
@@ -215,7 +222,7 @@
 
 		<div data-role="main" class="ui-content">
 		<center><h4>Competències de millora</h4></center>
-		<hr>
+		<hr><br/>
 			<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar competència" data-autodividers="true" data-inset="true" id="comps_millora-list">
 			</ul>
 		</div>
@@ -224,12 +231,12 @@
 			<h4>Aim Solo School Project</h4>
 		</div> -->
 	
-		<div data-rel="popup" data-role="popup" id="comps_millora-popup" align="center" data-theme="b">
+		<div data-rel="popup" data-role="popup" id="comps_millora-popup" align="center" style="background-color:#004168">
 			<p></p>
 			<form align="center">
 				<fieldset data-role="controlgroup" data-type="horizontal">
-					<button type="button" id="no-comp_millora" data-icon="delete">No</button>
-					<button type="button" id="si-comp_millora" data-icon="check">Sí</button>
+					<button type="button" id="si-comp_millora" style="background-color:#004168;border-color:#004168;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-notext">Sí</button>
+					<button type="button" id="no-comp_millora" style="background-color:#004168;border-color:#004168;margin-right:1px" class="ui-btn ui-icon-delete ui-btn-icon-notext">No</button>
 				</fieldset>
 			</form>
 		</div>
@@ -300,7 +307,7 @@
 
 		<div data-role="main" class="ui-content">
 		<center><h4>Emocions</h4></center>
-		<hr>
+		<hr><br/>
 			<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar emoció" data-inset="true" id="emocions-list">
 			</ul>
 		</div>
