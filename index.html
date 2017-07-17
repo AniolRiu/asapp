@@ -26,28 +26,39 @@
 		}
 		
 		body {
-		background:url(background.jpg);
-		background-color:#004063;
-		background-repeat:no-repeat;
-		background-position:crop;
-		background-attachment:fixed;
-		background-size:100%;
+			background:url(background.jpg);
+			background-color:#004063;
+			background-repeat:no-repeat;
+			background-position:crop;
+			background-attachment:fixed;
+			background-size:100%;
 		}
 		.ui-page {
-		background: transparent;
+			background: transparent;
 		}
 		.ui-content{
-		background: transparent;
+			background: transparent;
 		}
 		
 		.splash {
-		background-repeat:no-repeat;
-		background-position:crop;
-		background-attachment:fixed;
-		background-size:75%;
-		background-position: center;
-		text-align: center;
+			background-repeat:no-repeat;
+			background-position:crop;
+			background-attachment:fixed;
+			background-size:75%;
+			background-position: center;
+			text-align: center;
 		}
+		.ui-slider-track.ui-mini {
+			background-color:white!important;
+			height:16px;
+			top:20px;
+		}
+		.ui-slider-track.ui-mini .ui-slider-handle {
+			height:18px;
+			widht:18px;
+			margin:-10px 0 0 -10px;
+		}
+			
 	</style>
 	
 	<div data-role="popup" id="logout-popup" data-overlay-theme="b" data-theme="b" style="max-width:400px;">
@@ -77,9 +88,9 @@
 		</div>
 
 		<div data-role="main" class="ui-content">
-			<form id="login-form" method="get"><center><br/>
-				<h1>#hashtag</h1>
-				<br/>
+			<form id="login-form" method="get"><center><br/><br/>
+				<img src="logo.png" alt="AIM SOLO" width="50%">
+				<br/><br/><br/>
 				<input id="username" type="text" placeholder="E-mail" style="background-color:#004168;border-color:#004168;color:#bfcfd9"/>
 				<input id="pwd" type="password" placeholder="Password" style="background-color:#004168;border-color:#004168;color:#bfcfd9"/>
 				<br/>
@@ -102,7 +113,7 @@
 	
 
 		<div data-role="header" data-position="inline">
-			<h1>#hashtag</h1>
+			<h1>AS EduComp</h1>
 			<a href="#" type="button" class="goback_btn ui-btn-icon-notext" data-icon="back" data-text="Tornar" style="visibility:hidden">Tornar</a>
 			<a href="#rightpanel" data-rel="panel" class="ui-btn ui-icon-bars ui-btn-icon-notext" style="background-color:#186792; border-color:#186792; color=#3dc3ef" data-text="Menu">Menú</a>
 		</div>
@@ -123,7 +134,7 @@
 	<div data-role="page" id="students-page">
 	
 		<div data-role="header">
-			<h1>#hashtag</h1>
+			<h1>AS EduComp</h1>
 			<a href="#" class="ui-btn ui-icon-back goback_btn ui-btn-icon-notext" style="background-color:#186792; border-color:#186792; color=#3dc3ef" data-text="Tornar">Tornar</a>
 			<a href="#rightpanel" data-rel="panel" type="button" class="ui-btn ui-icon-bars ui-btn-icon-notext" style="background-color:#186792; border-color:#186792; color=#3dc3ef" data-text="Menu">Menú</a>
 		</div>
@@ -145,7 +156,7 @@
 	<div data-role="page" id="selector-page">
 
 		<div data-role="header">
-			<h1>#hashtag</h1>
+			<h1>AS EduComp</h1>
 			<a href="#" class="ui-btn ui-icon-back goback_btn ui-btn-icon-notext" style="background-color:#186792; border-color:#186792; color=#3dc3ef" data-text="Tornar">Tornar</a>
 			<a href="#rightpanel" data-rel="panel" type="button" class="ui-btn ui-icon-bars ui-btn-icon-notext logout_btn" style="background-color:#186792; border-color:#186792; color=#3dc3ef" data-text="Menu">Menú</a>
 		</div>
@@ -160,6 +171,10 @@
 			<a href="#comps_millora-page" data-role="button" data-text="Comps_millora">Competències de millora</a>
 			<br/>
 			<a href="#emocions-page" data-role="button" data-text="Emocions">Emocions</a>
+			<br/>
+			<a href="#interessos-page" data-role="button" data-text="Interessos">Interessos</a>
+			<br/>
+			<a href="#habilitats-page" data-role="button" data-text="Habilitats">Habilitats</a>
 		</div>
 	
 
@@ -170,7 +185,7 @@
 
 
 		<div data-role="header">
-			<h1>#hashtag</h1>
+			<h1>AS EduComp</h1>
 			<a href="#" class="ui-btn ui-icon-back goback_btn ui-btn-icon-notext" style="background-color:#186792; border-color:#186792; color=#3dc3ef" data-text="Tornar">Tornar</a>
 			<a href="#rightpanel" data-rel="panel" class="ui-btn ui-icon-bars ui-btn-icon-notext" style="background-color:#186792; border-color:#186792; color=#3dc3ef" data-text="Menu">Menú</a>
 		</div>
@@ -180,11 +195,12 @@
 		<hr><br/>
 		<form align="center">
   				<fieldset data-role="controlgroup" data-type="horizontal" id="filter-cg">
- 					<input type="checkbox" data-id="dd" id="checkbox-"><label for="checkbox-" >Grups</label>
+					<!-- Això es comenta pq en un principi això distribueix en grups les competències. S'ha optat retirar-ho per no tenir tants elements en pantalla però funciona correctament -->
+ 					<!-- <input type="checkbox" data-id="dd" id="checkbox-"><label for="checkbox-" >Grups</label> -->
   				</fieldset>
-  			</form>
-			<br/><br/>
-  			<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar competència" data-autodividers="true" data-inset="true" id="comps-list">
+  			</form>			
+  			<!-- <ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar competència" data-autodividers="true" data-inset="true" id="comps-list"> -->
+			<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar competència" data-autodividers="true" data-inset="true" id="comps-list">
  			</ul>
  		</div>
 
@@ -195,11 +211,12 @@
 		
 		<center>
 		<div data-rel="popup" data-role="popup" id="comps-popup" align="center" style="background-color:#004168">
+			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
 			<p></p>
 			<form align="center">
 				<fieldset data-role="controlgroup" data-type="horizontal">
-					<button type="button" id="si-comp" style="background-color:#004168;border-color:#004168;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-notext">Sí</button>
-					<button type="button" id="no-comp" style="background-color:#004168;border-color:#004168;margin-right:1px" class="ui-btn ui-icon-delete ui-btn-icon-notext">No</button>
+					<button type="button" id="si-comp" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Sí</button>
+					<button type="button" id="no-comp" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-right:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">No</button>
 				</fieldset>
 			</form>
 		</div>
@@ -215,7 +232,7 @@
 	<div data-role="page" id="comps_millora-page">
 
 		<div data-role="header">
-			<h1>#hashtag</h1>
+			<h1>AS EduComp</h1>
 			<a href="#" class="ui-btn ui-icon-back goback_btn ui-btn-icon-notext" style="background-color:#186792; border-color:#186792; color=#3dc3ef" data-text="Tornar">Tornar</a>
 			<a href="#rightpanel" data-rel="panel" class="ui-btn ui-icon-bars ui-btn-icon-notext" style="background-color:#186792; border-color:#186792; color=#3dc3ef" data-text="Menu">Menú</a>
 		</div>
@@ -232,11 +249,12 @@
 		</div> -->
 	
 		<div data-rel="popup" data-role="popup" id="comps_millora-popup" align="center" style="background-color:#004168">
+			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
 			<p></p>
 			<form align="center">
 				<fieldset data-role="controlgroup" data-type="horizontal">
-					<button type="button" id="si-comp_millora" style="background-color:#004168;border-color:#004168;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-notext">Sí</button>
-					<button type="button" id="no-comp_millora" style="background-color:#004168;border-color:#004168;margin-right:1px" class="ui-btn ui-icon-delete ui-btn-icon-notext">No</button>
+					<button type="button" id="si-comp_millora" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Sí</button>
+					<button type="button" id="no-comp_millora" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">No</button>
 				</fieldset>
 			</form>
 		</div>
@@ -254,7 +272,7 @@
 	<div data-role="page" id="intels-page">
 
 		<div data-role="header">
-			<h1>#hashtag</h1>
+			<h1>AS EduComp</h1>
 			<a href="#" class="ui-btn ui-icon-back goback_btn ui-btn-icon-notext" style="background-color:#186792; border-color:#186792; color=#3dc3ef" data-text="Tornar">Tornar</a>
 			<a href="#rightpanel" data-rel="panel" class="ui-btn ui-icon-bars ui-btn-icon-notext" style="background-color:#186792; border-color:#186792; color=#3dc3ef" data-text="Menu">Menú</a>
 		</div>
@@ -264,34 +282,34 @@
 			<hr><br/>
 			
 			<label data-text="Corporal" style="font-weight: bold;float:left; padding-right:2px"></label><label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="1" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" data-highlight="true" id="slider-corporal" min="-2" max="3" value="0" >
+			<input data-mini="true" class="intel-slider" type="range" data-id_intel="1" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-corporal" min="-2" max="3" value="0" >
 			<br/><br/>
 			<label data-text="Emocional" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="2" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" data-highlight="true" id="slider-" min="-2" max="3" value="0" >
+			<input data-mini="true" class="intel-slider" type="range" data-id_intel="2" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
 			<br/><br/>
 			<label data-text="Espacial" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="3" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" data-highlight="true" id="slider-" min="-2" max="3" value="0" >
+			<input data-mini="true" class="intel-slider" type="range" data-id_intel="3" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
 			<br/><br/>
 			<label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="4" data-levels="Interpersonal no contributiva: Molt alta|Interpersonal no contributiva: Alta|Interpersonal no contributiva: Mig alta|Interpersonal no contributiva: Centrada|Interpersonal contributiva: Centrada|Interpersonal contributiva: Mig alta|Interpersonal contributiva: Alta|Interpersonal contributiva: Molt alta" data-highlight="true" id="slider-interpersonal" min="0" max="7" value="0" >
+			<input data-mini="true" class="intel-slider" type="range" data-id_intel="4" data-levels="Interpersonal no contributiva: Molt alta|Interpersonal no contributiva: Alta|Interpersonal no contributiva: Mig alta|Interpersonal no contributiva: Centrada|Interpersonal contributiva: Centrada|Interpersonal contributiva: Mig alta|Interpersonal contributiva: Alta|Interpersonal contributiva: Molt alta" id="slider-interpersonal" min="0" max="7" value="0" >
 			<br/><br/>
 			<label data-text="Intrapersonal" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="5" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" data-highlight="true" id="slider-" min="-2" max="3" value="0" >
+			<input data-mini="true" class="intel-slider" type="range" data-id_intel="5" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
 			<br/><br/>
 			<label data-text="Musical" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="6" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" data-highlight="true" id="slider-" min="-2" max="3" value="0" >
+			<input data-mini="true" class="intel-slider" type="range" data-id_intel="6" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
 			<br/><br/>
 			<label data-text="Numerica" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="7" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" data-highlight="true" id="slider-" min="-2" max="3" value="0" >
+			<input data-mini="true" class="intel-slider" type="range" data-id_intel="7" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
 			<br/><br/>
 			<label data-text="RaonamentLogic" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="8" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" data-highlight="true" id="slider-" min="-2" max="3" value="0" >
+			<input data-mini="true" class="intel-slider" type="range" data-id_intel="8" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
 			<br/><br/>
 			<label data-text="Verbal" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="9" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" data-highlight="true" id="slider-" min="-2" max="3" value="0" >
+			<input data-mini="true" class="intel-slider" type="range" data-id_intel="9" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
 			<br/><br/>
 			<label data-text="Visual" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="10" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" data-highlight="true" id="slider-" min="-2" max="3" value="0" >
+			<input data-mini="true" class="intel-slider" type="range" data-id_intel="10" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
 		</div>
 	</div><!-- /page -->
 	
@@ -300,7 +318,7 @@
 
 
 		<div data-role="header">
-			<h1>#hashtag</h1>
+			<h1>AS EduComp</h1>
 			<a href="#" class="ui-btn ui-icon-back goback_btn ui-btn-icon-notext" style="background-color:#186792; border-color:#186792; color=#3dc3ef" data-text="Tornar">Tornar</a>
 			<a href="#rightpanel" data-rel="panel" class="ui-btn ui-icon-bars ui-btn-icon-notext" style="background-color:#186792; border-color:#186792; color=#3dc3ef" data-text="Menu">Menú</a>
 		</div>
@@ -313,12 +331,13 @@
 		</div>
 
 	
-		<div data-rel="popup" data-role="popup" id="emocions-popup" align="center" style="background-color:#004168">
+		<div data-rel="popup" data-role="popup" id="emocions-popup" style="background-color:#004168">
+			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
 			<p></p>
 			<form align="center">
 				<fieldset data-role="controlgroup" data-type="horizontal">
-					<button type="button" id="si-emocions" style="background-color:#004168;border-color:#004168;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-notext">Sí</button>
-					<button type="button" id="no-emocions" style="background-color:#004168;border-color:#004168;margin-right:1px" class="ui-btn ui-icon-delete ui-btn-icon-notext">No</button>
+					<button type="button" id="si-emocions" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Sí</button>
+					<button type="button" id="no-emocions" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">No</button>
 				</fieldset>
 			</form>
 		</div>
@@ -495,6 +514,7 @@ $("#diamond").click(function() {
 					success: function(data) {
 						// Arriba la resposta
 						data = JSON.parse(data);
+						console.log(data);
 						if (data.success) {
 							comps_masc = data.comps_masc;
 							comps_fem = data.comps_fem;
@@ -502,7 +522,6 @@ $("#diamond").click(function() {
 							comps_millora = data.comps_millora;
 							emocions = data.emocions;
 							//comps_groups = data;
-							console.log(data);
 							localStorage.setItem('comps_masc', JSON.stringify(comps_masc));
 							localStorage.setItem('comps_fem', JSON.stringify(comps_fem));
 							localStorage.setItem('comps_groups', JSON.stringify(comps_groups));
@@ -607,8 +626,8 @@ $("#diamond").click(function() {
 	$(document).on('click', "#comps-list li a",function () {
 		comp_id = $(this).data('id');
 		comp_name = $(this).text();
-		$('#comps-popup').popup('open');
-		$('#comps-popup p').text(comp_name + ": " + __("PopupComps") + " " + student_name + '?');
+		$('#comps-popup').popup({ positionTo: "window" }).popup('open');
+		$('#comps-popup p').text(comp_name + "?");
 	});
 	
 	$(document).on('click', "#si-comp",function () {
@@ -662,7 +681,7 @@ $("#diamond").click(function() {
 		comp_id = $(this).data('id');
 		comp_name = $(this).text();
 		$('#comps_millora-popup').popup('open');
-		$('#comps_millora-popup p').text(comp_name + ": " + __("PopupComps") + " " + student_name + '?');
+		$('#comps_millora-popup p').text(comp_name + "?");
 	});
 	
 	$(document).on('click', "#si-comp_millora",function () {
@@ -746,7 +765,7 @@ $("#diamond").click(function() {
 		comp_id = $(this).data('id');
 		comp_name = $(this).text();
 		$('#emocions-popup').popup('open');
-		$('#emocions-popup p').text(comp_name + ": " + __("PopupComps") + " " + student_name + '?');
+		$('#emocions-popup p').text("Gestiona la " + comp_name + "?");
 	});
 	
 	$(document).on('click', "#si-emocions",function () {

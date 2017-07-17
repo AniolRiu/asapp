@@ -185,5 +185,13 @@
 	"Sortir" : {
 		"cat": "Sortir de l'app",
 		"spa": "Salir de la app"
-		}
+		},
+    "Interessos" : {
+        "cat": "Interessos",
+        "spa": "Intereses"
+        },
+    "Habilitats" : {
+        "cat": "Habilitats",
+        "spa": "Habilidades"
+        }
 }
