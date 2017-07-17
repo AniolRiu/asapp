@@ -182,8 +182,6 @@
 	
 	<!-- COMPS PAGE -->
 	<div data-role="page" id="comps-page">
-
-
 		<div data-role="header">
 			<h1>AS EduComp</h1>
 			<a href="#" class="ui-btn ui-icon-back goback_btn ui-btn-icon-notext" style="background-color:#186792; border-color:#186792; color=#3dc3ef" data-text="Tornar">Tornar</a>
@@ -191,15 +189,18 @@
 		</div>
 
 		<div data-role="main" class="ui-content">
-		<center><h4>Competències</h4></center>
-		<hr><br/>
-		<form align="center">
-  				<fieldset data-role="controlgroup" data-type="horizontal" id="filter-cg">
+			<center><h4>Competències</h4></center>
+			<hr>
+			<br/>
+			<!-- <form align="center"> -->
+  				<!-- <fieldset data-role="controlgroup" data-type="horizontal" id="filter-cg"> -->
 					<!-- Això es comenta pq en un principi això distribueix en grups les competències. S'ha optat retirar-ho per no tenir tants elements en pantalla però funciona correctament -->
  					<!-- <input type="checkbox" data-id="dd" id="checkbox-"><label for="checkbox-" >Grups</label> -->
-  				</fieldset>
-  			</form>			
-  			<!-- <ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar competència" data-autodividers="true" data-inset="true" id="comps-list"> -->
+  				<!-- </fieldset> -->
+  			<!-- </form>			 -->
+			<ul data-role="listview" data-inset="true" id="interes-comps-list">
+ 			</ul>
+			<br/>
 			<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar competència" data-autodividers="true" data-inset="true" id="comps-list">
  			</ul>
  		</div>
@@ -384,6 +385,9 @@ var current_groups = [];
 var i18n;
 var emocions;
 var lang = 'cat';
+var interes_comps = {};
+var recents_comps = [];
+var total_comp_clicks = 0;
 
 
 $(document).on('ready',function(){
@@ -494,6 +498,9 @@ $("#diamond").click(function() {
 					localStorage.setItem('user_id', user_id);
 					localStorage.setItem('user_name', user_name);
 					localStorage.setItem('entitat_id', entitat_id);
+					localStorage.setItem('interes_comps', interes_comps);
+					localStorage.setItem('recents_comps', recents_comps);
+					localStorage.setItem('total_comp_clicks', total_comp_clicks);
 					login();
 				}
 				else { alert(data.msg); }
@@ -621,10 +628,22 @@ $("#diamond").click(function() {
 		$("#footer").hide();
 		$(this).find('h4').text(__("Competències de") + " " + student_name);
 		build_comp_list();
+		
 	});
 
-	$(document).on('click', "#comps-list li a",function () {
+	$(document).on('click', "#comps-list li a, #interes-comps-list li a",function () {
 		comp_id = $(this).data('id');
+		total_comp_clicks++;
+		localStorage.setItem('total_comp_clicks', total_comp_clicks);
+		if (comp_id in interes_comps) {
+			interes_comps[comp_id]++;
+		}
+		else {
+			interes_comps[comp_id] = 1;
+		}
+		localStorage.setItem('interes_comps', interes_comps);
+		update_recents_comps(comp_id);
+		build_interes_comps_list();
 		comp_name = $(this).text();
 		$('#comps-popup').popup({ positionTo: "window" }).popup('open');
 		$('#comps-popup p').text(comp_name + "?");
@@ -859,7 +878,6 @@ function update_comp(v) {
 			if (data.success) {
 				$("#comps-popup").popup('close');
 				$("#comps-footer").show( 400 );
-				console.log(8);
 				setTimeout(
 				  function() 
 				  {
@@ -980,5 +998,86 @@ function __(text) {
 		if(lang in i18n[text])return i18n[text][lang];
 	} 
 	else return text;
+}
+
+function bySortedValue(obj, callback, context) {
+	var tuples = [];
+
+	for (var key in obj) tuples.push([key, obj[key]]);
+
+	tuples.sort(function(a, b) {
+		// a = a[1]; b=b[1];
+		console.log('Ordenem ');
+		console.log(total_comp_clicks);
+		{ // Determinem la ponderació de cada posicio
+			pos0 = total_comp_clicks * 0.8;console.log(pos0);
+			pos1 = total_comp_clicks * 0.5;
+			pos2 = total_comp_clicks * 0.3;
+			pos3 = total_comp_clicks * 0.2;
+			pos4 = total_comp_clicks * 0.1;
+		}
+
+		{// Mirem si la competència A està a la llista de recents
+			pos_a = recents_comps.indexOf(a[0]);
+			recent_a = 0.0;
+			if (pos_a == 0) recent_a += pos0;
+			if (pos_a == 1) recent_a += pos1;
+			if (pos_a == 2) recent_a += pos2;
+			if (pos_a == 3) recent_a += pos3;
+			if (pos_a == 4) recent_a += pos4;
+			console.log('recent' + recent_a);
+			valor_a = parseFloat(a[1]) + recent_a;
+			console.log('valor' + valor_a);
+		}
+		
+		{// Mirem si la competència B està a la llista de recents
+			pos_b = recents_comps.indexOf(b[0]);
+			recent_b = 0.0;
+			if (pos_b == 0) parseFloat(recent_b += pos0);
+			if (pos_b == 1) parseFloat(recent_b += pos1);
+			if (pos_b == 2) parseFloat(recent_b += pos2);
+			if (pos_b == 3) parseFloat(recent_b += pos3);
+			if (pos_b == 4) parseFloat(recent_b += pos4);
+			valor_b = parseFloat(b[1]) + recent_b;
+			console.log(valor_b);
+		}
+		
+		console.log(valor_a);
+		console.log(valor_b);
+		
+		return valor_b < valor_a ? 1 : valor_b > valor_a ? -1 : 0 
+	});
+
+	var length = tuples.length;
+	while (length--) callback.call(context, tuples[length][0], tuples[length][1]);
+}
+	
+function build_interes_comps_list() {
+	console.log(interes_comps);
+	list = "";
+	// TODO: Noms de les competències en masculí o femení
+	if (!student_sex)
+		competencies_list = comps_masc;
+	else
+		competencies_list = comps_fem;
+	
+	bySortedValue(interes_comps, function(id_comp, interes) {
+		var name;
+		for(i = 0; i < competencies_list.length; i++) {
+		comp = competencies_list[i];
+			if (comp.id == id_comp) {
+				name = comp.name;
+				break;
+			}
+		}
+		list += '<li><a data-id="' + id_comp + '">' + name + '</a></li>';
+	});
+	$("#interes-comps-list").html(list).listview('refresh');
+}
+
+function update_recents_comps(id_comp) {
+	recents_comps.unshift(id_comp);
+	recents_comps = recents_comps.slice(0,5); // Definim el límit de la llista que guarda els clicks recents
+	localStorage.setItem('recents_comps', recents_comps);
 }
 </script>
