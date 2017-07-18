@@ -50,13 +50,13 @@
 		}
 		.ui-slider-track.ui-mini {
 			background-color:white!important;
-			height:16px;
+			height:20px;
 			top:20px;
 		}
 		.ui-slider-track.ui-mini .ui-slider-handle {
-			height:18px;
-			widht:18px;
-			margin:-10px 0 0 -10px;
+			height:30px;
+			widht:30px;
+			margin:-16px 0 0 -10px;
 		}
 			
 	</style>
@@ -89,7 +89,7 @@
 
 		<div data-role="main" class="ui-content">
 			<form id="login-form" method="get"><center><br/><br/>
-				<img src="logo.png" alt="AIM SOLO" width="50%">
+				<img src="logo.png" alt="AIM SOLO" width="70%">
 				<br/><br/><br/>
 				<input id="username" type="text" placeholder="E-mail" style="background-color:#004168;border-color:#004168;color:#bfcfd9"/>
 				<input id="pwd" type="password" placeholder="Password" style="background-color:#004168;border-color:#004168;color:#bfcfd9"/>
@@ -172,10 +172,8 @@
 			<br/>
 			<a href="#emocions-page" data-role="button" data-text="Emocions">Emocions</a>
 			<br/>
-			<a href="#interessos-page" data-role="button" data-text="Interessos">Interessos</a>
-			<br/>
-			<a href="#habilitats-page" data-role="button" data-text="Habilitats">Habilitats</a>
-		</div>
+			<a href="#ambits-page" data-role="button" data-text="Àmbits">Interessos i habilitats</a>
+			</div>
 	
 
 	</div><!-- /page -->
@@ -351,6 +349,60 @@
 	
 	</div>
 	
+	<!-- ÀMBITS PAGE -->
+	<div data-role="page" id="ambits-page">
+
+
+		<div data-role="header">
+			<h1>AS EduComp</h1>
+			<a href="#" class="ui-btn ui-icon-back goback_btn ui-btn-icon-notext" style="background-color:#186792; border-color:#186792; color=#3dc3ef" data-text="Tornar">Tornar</a>
+			<a href="#rightpanel" data-rel="panel" class="ui-btn ui-icon-bars ui-btn-icon-notext" style="background-color:#186792; border-color:#186792; color=#3dc3ef" data-text="Menu">Menú</a>
+		</div>
+
+		<div data-role="main" class="ui-content">
+		<center><h4>Àmbits</h4></center>
+		<hr><br/>
+			<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar interessos" data-inset="true" id="interessos-list">
+			</ul>
+			<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar habilitats" data-inset="true" id="habilitats-list">
+			</ul>
+			
+		</div>
+
+	
+		<div data-rel="popup" data-role="popup" id="interessos-popup" style="background-color:#004168">
+			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
+			<p></p>
+			<form align="center">
+				<fieldset data-role="controlgroup" data-type="horizontal">
+					<button type="button" id="si-interessos" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Sí</button>
+					<button type="button" id="no-interessos" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">No</button>
+				</fieldset>
+			</form>
+		</div>
+		
+		<div data-rel="popup" data-role="popup" id="habilitats-popup" style="background-color:#004168">
+			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
+			<p></p>
+			<form align="center">
+				<fieldset data-role="controlgroup" data-type="horizontal">
+					<button type="button" id="si-habilitats" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Sí</button>
+					<button type="button" id="no-habilitats" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">No</button>
+				</fieldset>
+			</form>
+		</div>
+		
+			
+		<div data-role="footer" id="footer-interessos" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
+		<center><button id="ambits-update" style="border-color:green;background-color:green;color:white" class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow-icon" data-text="CompActualitzada">La competència s'ha actualitzat correctament</a></center>
+		</div>
+		
+		<div data-role="footer" id="footer-habilitats" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
+		<center><button id="ambits-update" style="border-color:green;background-color:green;color:white" class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow-icon" data-text="CompActualitzada">La competència s'ha actualitzat correctament</a></center>
+		</div>
+	
+	</div>
+	
 	<!-- rightpanel  -->
 	<div data-role="panel" id="rightpanel" data-position="right" data-display="overlay" style="background-color:rgba(24, 103, 146, 0.9)">
 		<center><h3 style="color:white">AS EduComp</h3></center><br/>
@@ -378,12 +430,15 @@ var comps_fem;
 var comps_millora;
 var comp_name;
 var comp_id;
+var interes_id;
+var habilitat_id;
 var nstudents;
 var nprojects;
 var comps_groups = null;// = [{'id':1,'name':"Societat"}, {'id':2,'name':"Professional"}, {'id':3,'name':"Excel·lència"}];
 var current_groups = [];
 var i18n;
 var emocions;
+var ambits;
 var lang = 'cat';
 var interes_comps = {};
 var recents_comps = [];
@@ -397,6 +452,8 @@ $(document).on('ready',function(){
 	$("#footer-emocions").hide();
 	$("#comps-footer").hide();
 	$("#comp_millora-footer").hide();
+	$("#footer-interessos").hide();
+	$("#footer-habilitats").hide();
 
 	{ // Gestionem traduccions
 		$.getJSON("i18n/i18n.json", function(json) {
@@ -462,6 +519,7 @@ $("#diamond").click(function() {
 		comps_millora = JSON.parse(localStorage.getItem('comps_millora'));
 		comps_groups = JSON.parse(localStorage.getItem('comps_groups'));
 		emocions = JSON.parse(localStorage.getItem('emocions'));
+		ambits = JSON.parse(localStorage.getItem('ambits'));
 	}
 	
 	$( "#splash" ).on( "pageshow", function( e ) {
@@ -501,6 +559,7 @@ $("#diamond").click(function() {
 					localStorage.setItem('interes_comps', interes_comps);
 					localStorage.setItem('recents_comps', recents_comps);
 					localStorage.setItem('total_comp_clicks', total_comp_clicks);
+					sync();
 					login();
 				}
 				else { alert(data.msg); }
@@ -528,12 +587,14 @@ $("#diamond").click(function() {
 							comps_groups = data.groups;
 							comps_millora = data.comps_millora;
 							emocions = data.emocions;
+							ambits = data.ambits;
 							//comps_groups = data;
 							localStorage.setItem('comps_masc', JSON.stringify(comps_masc));
 							localStorage.setItem('comps_fem', JSON.stringify(comps_fem));
 							localStorage.setItem('comps_groups', JSON.stringify(comps_groups));
 							localStorage.setItem('comps_millora', JSON.stringify(comps_millora));
 							localStorage.setItem('emocions', JSON.stringify(emocions));
+							localStorage.setItem('ambits', JSON.stringify(ambits));
 							build_comps_filter();
 						}
 					}
@@ -644,6 +705,7 @@ $("#diamond").click(function() {
 		localStorage.setItem('interes_comps', interes_comps);
 		update_recents_comps(comp_id);
 		build_interes_comps_list();
+		
 		comp_name = $(this).text();
 		$('#comps-popup').popup({ positionTo: "window" }).popup('open');
 		$('#comps-popup p').text(comp_name + "?");
@@ -798,6 +860,49 @@ $("#diamond").click(function() {
 	});
 }
 
+{ // Àmbits page
+	$("#ambits-page").on( "pageshow", function( e ) {
+		$(this).find('h4').text(__("Interessos i habilitats de") + " " + student_name);
+		build_ambits_list();
+		
+	});
+
+	$(document).on('click', "#interessos-list li a",function () {
+		comp_id = $(this).data('id');
+		comp_name = $(this).text();
+		$('#interessos-popup').popup('open');
+		$('#interessos-popup p').text(comp_name + "?");
+	});
+	
+	$(document).on('click', "#habilitats-list li a",function () {
+		comp_id = $(this).data('id');
+		comp_name = $(this).text();
+		$('#habilitats-popup').popup('open');
+		$('#habilitats-popup p').text("" + comp_name + "?");
+	});
+	
+	$(document).on('click', "#si-interessos",function () {
+		update_interessos(1);
+	});
+	
+	$(document).on('click', "#no-interessos",function () {
+		$("#footer-interessos").hide();
+		update_interessos(0);
+		$("#interessos-popup").popup('close');
+	});
+	
+	$(document).on('click', "#si-habilitats",function () {
+		update_habilitats(1);
+	});
+	
+	$(document).on('click', "#no-habilitats",function () {
+		$("#footer-habilitats").hide();
+		update_habilitats(0);
+		$("#habilitats-popup").popup('close');
+	});
+	
+}
+
 function login() {
 	if(project_id != null){
 		$.mobile.navigate( "#students-page" );
@@ -857,6 +962,17 @@ function build_emocions_list() {
 	});
 
 	$("#emocions-list").html(list_emocions).listview('refresh'); // No es pot inicialitzar abans de crear-lo
+}
+
+function build_ambits_list() {
+	list_ambits = "";
+	// console.log(ambits);
+	ambits.forEach(function (ambit, index) {
+		list_ambits += '<li><a data-id="' + ambit.id + '">' + ambit.name + '</a></li>';
+	});
+
+	$("#interessos-list").html(list_ambits).listview('refresh'); // No es pot inicialitzar abans de crear-lo
+	$("#habilitats-list").html(list_ambits).listview('refresh'); // No es pot inicialitzar abans de crear-lo
 }
 
 function build_comps_filter() {
@@ -939,6 +1055,55 @@ function update_emocions(v) {
 	});
 }
 
+function update_interessos(v) {
+	url = domini_intra + "/assets/php/ajax/ajax_change_interes.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id + "&m=0";
+	console.log(url);
+	$.ajax({
+		url: url,
+		success: function(data) {
+			data = JSON.parse(data);
+			if (data.success) {
+				$("#interessos-popup").popup('close');
+				$("#footer-interessos").show( 400 );
+				setTimeout(
+				 
+				function() {
+					$("#footer-interessos").hide( 400 );
+				}, 3000);
+				
+			}
+			else {
+				alert(data.msg);
+				$("#interessos-popup").popup('close');
+			}
+		}
+	});
+}
+
+function update_habilitats(v) {
+	url = domini_intra + "/assets/php/ajax/ajax_change_interes.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id + "&m=1";
+	$.ajax({
+		url: url,
+		success: function(data) {
+			data = JSON.parse(data);
+			if (data.success) {
+				$("#habilitats-popup").popup('close');
+				$("#footer-habilitats").show( 400 );
+				setTimeout(
+				 
+				function() {
+					$("#footer-habilitats").hide( 400 );
+				}, 3000);
+				
+			}
+			else {
+				alert(data.msg);
+				$("#habilitats-popup").popup('close');
+			}
+		}
+	});
+}
+
 function sync() {
 	$.ajax({
 		// TODO: Enviar l'idioma en funció del particular
@@ -947,18 +1112,20 @@ function sync() {
 			// Arriba la resposta
 			data = JSON.parse(data);
 			if (data.success) {
+				console.log(data);
 				comps_masc = data.comps_masc;
 				comps_fem = data.comps_fem;
 				comps_groups = data.groups;
 				comps_millora = data.comps_millora;
 				emocions = data.emocions;
+				ambits = data.ambits;
 				//comps_groups = data;
-				console.log(data);
 				localStorage.setItem('comps_masc', JSON.stringify(comps_masc));
 				localStorage.setItem('comps_fem', JSON.stringify(comps_fem));
 				localStorage.setItem('comps_groups', JSON.stringify(comps_groups));
 				localStorage.setItem('comps_millora', JSON.stringify(comps_millora));
 				localStorage.setItem('emocions', JSON.stringify(emocions));
+				localStorage.setItem('ambits', JSON.stringify(ambits));
 				build_comps_filter();
 				$("#rightpanel").panel("close");
 			}
@@ -1006,9 +1173,6 @@ function bySortedValue(obj, callback, context) {
 	for (var key in obj) tuples.push([key, obj[key]]);
 
 	tuples.sort(function(a, b) {
-		// a = a[1]; b=b[1];
-		console.log('Ordenem ');
-		console.log(total_comp_clicks);
 		{ // Determinem la ponderació de cada posicio
 			pos0 = total_comp_clicks * 0.8;console.log(pos0);
 			pos1 = total_comp_clicks * 0.5;
@@ -1017,33 +1181,26 @@ function bySortedValue(obj, callback, context) {
 			pos4 = total_comp_clicks * 0.1;
 		}
 
-		{// Mirem si la competència A està a la llista de recents
-			pos_a = recents_comps.indexOf(a[0]);
+		{ // Mirem si la competència A està a la llista de recents
 			recent_a = 0.0;
-			if (pos_a == 0) recent_a += pos0;
-			if (pos_a == 1) recent_a += pos1;
-			if (pos_a == 2) recent_a += pos2;
-			if (pos_a == 3) recent_a += pos3;
-			if (pos_a == 4) recent_a += pos4;
-			console.log('recent' + recent_a);
+			if (recents_comps[0] == parseInt(a[0])) recent_a += pos0;
+			if (recents_comps[1] == parseInt(a[0])) recent_a += pos1;
+			if (recents_comps[2] == parseInt(a[0])) recent_a += pos2;
+			if (recents_comps[3] == parseInt(a[0])) recent_a += pos3;
+			if (recents_comps[4] == parseInt(a[0])) recent_a += pos4;
 			valor_a = parseFloat(a[1]) + recent_a;
-			console.log('valor' + valor_a);
 		}
 		
-		{// Mirem si la competència B està a la llista de recents
-			pos_b = recents_comps.indexOf(b[0]);
+		{ // Mirem si la competència B està a la llista de recents
+			// pos_b = recents_comps.indexOf(parseInt(b[0]));
 			recent_b = 0.0;
-			if (pos_b == 0) parseFloat(recent_b += pos0);
-			if (pos_b == 1) parseFloat(recent_b += pos1);
-			if (pos_b == 2) parseFloat(recent_b += pos2);
-			if (pos_b == 3) parseFloat(recent_b += pos3);
-			if (pos_b == 4) parseFloat(recent_b += pos4);
+			if (recents_comps[0] == parseInt(b[0])) parseFloat(recent_b += pos0);
+			if (recents_comps[1] == parseInt(b[0])) parseFloat(recent_b += pos1);
+			if (recents_comps[2] == parseInt(b[0])) parseFloat(recent_b += pos2);
+			if (recents_comps[3] == parseInt(b[0])) parseFloat(recent_b += pos3);
+			if (recents_comps[4] == parseInt(b[0])) parseFloat(recent_b += pos4);
 			valor_b = parseFloat(b[1]) + recent_b;
-			console.log(valor_b);
 		}
-		
-		console.log(valor_a);
-		console.log(valor_b);
 		
 		return valor_b < valor_a ? 1 : valor_b > valor_a ? -1 : 0 
 	});
@@ -1053,6 +1210,7 @@ function bySortedValue(obj, callback, context) {
 }
 	
 function build_interes_comps_list() {
+	console.log('Printem interes_comps');
 	console.log(interes_comps);
 	list = "";
 	// TODO: Noms de les competències en masculí o femení
@@ -1060,7 +1218,7 @@ function build_interes_comps_list() {
 		competencies_list = comps_masc;
 	else
 		competencies_list = comps_fem;
-	
+	console.log('Construint la llista, abans d\'ordenar');
 	bySortedValue(interes_comps, function(id_comp, interes) {
 		var name;
 		for(i = 0; i < competencies_list.length; i++) {
@@ -1076,7 +1234,7 @@ function build_interes_comps_list() {
 }
 
 function update_recents_comps(id_comp) {
-	recents_comps.unshift(id_comp);
+	recents_comps.unshift(id_comp);	// Afegim pel principi
 	recents_comps = recents_comps.slice(0,5); // Definim el límit de la llista que guarda els clicks recents
 	localStorage.setItem('recents_comps', recents_comps);
 }

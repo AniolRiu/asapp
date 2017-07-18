@@ -186,12 +186,16 @@
 		"cat": "Sortir de l'app",
 		"spa": "Salir de la app"
 		},
-    "Interessos" : {
-        "cat": "Interessos",
-        "spa": "Intereses"
+    "Buscar interessos" : {
+        "cat": "Buscar interessos",
+        "spa": "Buscar intereses"
         },
-    "Habilitats" : {
-        "cat": "Habilitats",
-        "spa": "Habilidades"
+    "Buscar habilitats" : {
+        "cat": "Buscar habilitats",
+        "spa": "Buscar habilidades"
+        },
+	"Àmbits" : {
+        "cat": "Interessos i habilitats",
+        "spa": "Intereses y habilidades"
         }
 }
