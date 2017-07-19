@@ -572,7 +572,7 @@ $("#diamond").click(function() {
 { // Project page
 	$( "#projects-page" ).on( "pageshow", function( e ) {
 		$(this).find('h4').text(__("Projectes de") + " " + user_name);
-		{ // Demanem la llista de competències
+		{ // Demanem la llista de competències, emocions i àmbits
 			if ((comps_masc == null) || (comps_fem == null) || (comps_groups == null) || (comps_millora == null) || (emocions == null)) {
 				$.ajax({
 					// TODO: Enviar l'idioma en funció del particular
@@ -606,7 +606,7 @@ $("#diamond").click(function() {
 		}
 
 		$.ajax({
-			url: domini_com + "ajax/getProjectsByTutor?tutor_id=" + user_id,
+			url: "https://comunitat.aim-solo.com/ajax/getProjectsByTutor?tutor_id=" + user_id,
 			success: function(data) {
 				data = JSON.parse(data);
 				if (data.success) {
@@ -904,12 +904,7 @@ $("#diamond").click(function() {
 }
 
 function login() {
-	if(project_id != null){
-		$.mobile.navigate( "#students-page" );
-	}
-	else {
-		$.mobile.navigate( "#projects-page" );
-	}
+	$.mobile.navigate( "#projects-page" );
 }
 
 function logout() {
