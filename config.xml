@@ -3,9 +3,9 @@
 	xmlns="http://www.w3.org/ns/widgets" 
 	xmlns:gap="http://phonegap.com/ns/1.0"
 	id="com.approvat.randomframe" 
-	version="1.0.4"
+	version="1.0.0"
 	versionCode="5" >
-<name>AS EduComp</name>
+<name>AS EduPro</name>
 <description></description>
 <author href="http://randomframe.tk" email="artic.vb@gmail.com">
 	Aniol Riu
