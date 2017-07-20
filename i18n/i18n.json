@@ -102,6 +102,10 @@
 		"cat":"Buscar competència",
 		"spa":"Buscar competencia"
 		},
+	"Buscar estudiant" : {
+		"cat":"Buscar estudiant",
+		"spa":"Buscar estudiante"
+		},
 	"VoleuTancarLaSessio" : {
 		"cat":"Voleu tancar la vostra sessió?",
 		"spa":"¿Quiere cerrar su sesión?"

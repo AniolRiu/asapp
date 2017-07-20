@@ -142,7 +142,7 @@
 		<div data-role="main" class="ui-content">
 		<center><h4>Estudiants</h4></center>
 		<hr><br/>
-		<ul data-role="listview" data-inset="true" id="student-list">
+		<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar estudiant" data-autodividers="true" data-inset="true" id="student-list">
 		</ul>
 		</div>
 
@@ -444,7 +444,8 @@ var current_groups = [];
 var i18n;
 var emocions;
 var ambits;
-var lang = 'cat';
+var lang;
+var default_lang = 'spa';
 var interes_comps = {};
 var recents_comps = [];
 var total_comp_clicks = 0;
@@ -526,11 +527,12 @@ $("#diamond").click(function() {
 		comps_groups = JSON.parse(localStorage.getItem('comps_groups'));
 		emocions = JSON.parse(localStorage.getItem('emocions'));
 		ambits = JSON.parse(localStorage.getItem('ambits'));
+		lang = localStorage.getItem('lang');
 	}
 	
 	$( "#splash" ).on( "pageshow", function( e ) {
 		setTimeout(function() {
-			if ((user_id != null) || (user_name != null)) {
+			if ((user_id != null) && (user_name != null) && (lang != null)) {
 				$.mobile.changePage("#projects-page", "fade");
 			}
 			else {
@@ -559,12 +561,14 @@ $("#diamond").click(function() {
 					user_name = data.name;
 					user_id = data.user_id;
 					entitat_id = data.entitat;
+					lang = data.lang;
 					localStorage.setItem('user_id', user_id);
 					localStorage.setItem('user_name', user_name);
 					localStorage.setItem('entitat_id', entitat_id);
 					localStorage.setItem('interes_comps', interes_comps);
 					localStorage.setItem('recents_comps', recents_comps);
 					localStorage.setItem('total_comp_clicks', total_comp_clicks);
+					localStorage.setItem('lang', lang);
 					sync();
 					login();
 				}
@@ -601,6 +605,7 @@ $("#diamond").click(function() {
 							localStorage.setItem('comps_millora', JSON.stringify(comps_millora));
 							localStorage.setItem('emocions', JSON.stringify(emocions));
 							localStorage.setItem('ambits', JSON.stringify(ambits));
+							localStorage.setItem('lang', JSON.stringify(lang));
 							build_comps_filter();
 						}
 					}
@@ -649,7 +654,7 @@ $("#diamond").click(function() {
 	$("#students-page").on( "pageshow", function( e ) {
 		$(this).find('h4').text(__("Estudiants de") + " " + project_name);
 		$.ajax({
-			url: domini_com + "ajax/getUsersByProjectNTutor?tutor_id=" + user_id + "&project_id=" + project_id,
+			url: domini_intra + "/assets/php/ajax/ajax_return_alumnes.php?idt=" + user_id + "&idp=" + project_id,
 			success: function(data) {
 				// Arriba la resposta
 				data = JSON.parse(data);
@@ -797,14 +802,13 @@ $("#diamond").click(function() {
 					data = JSON.parse(data);
 					console.log(data);
 					if (data.success) {
+						console.log('yeye1');
 						$("input.intel-slider").each(function( index ) {
 							$(this).val(parseInt(data[index])).slider('refresh');
 							$(this).trigger('change');
-							$("#intels-footer").show( 400 );
-							$("#intels-footer").hide( 400 );
-							}, 3000);
+						});
 					}
-					else {  
+					else {
 					}
 				}
 			});
@@ -835,6 +839,10 @@ $("#diamond").click(function() {
 				success: function(data) {
 					data = JSON.parse(data);
 					console.log(data);
+					$("#intels-footer").show( 400 );
+					setTimeout(function(){
+						$("#intels-footer").hide( 400 );
+					}, 3000);
 				}
 			});
 		});
@@ -1164,6 +1172,9 @@ function showLocalStorage() {
 }
 
 function __(text) {
+	if(lang == null)lang = default_lang;
+	console.log(lang);
+	console.log(text);
 	if(text in i18n){
 		if(lang in i18n[text])return i18n[text][lang];
 	} 
