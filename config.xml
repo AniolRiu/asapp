@@ -18,6 +18,7 @@
 	<icon src="res/android/drawable-mdpi/ic_launcher.png" density="mdpi" />
 	<icon src="res/android/drawable-hdpi/ic_launcher.png" density="hdpi" />
 	<icon src="res/android/drawable-xhdpi/ic_launcher.png" density="xhdpi" />
+	
 </platform>
 
 <platform name="ios">
