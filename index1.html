@@ -51,7 +51,7 @@
 		.ui-slider-track.ui-mini {
 			background-color:white!important;
 			height:10px;
-			top:20px;
+			top:30px;
 		}
 		.ui-slider-track.ui-mini .ui-slider-handle {
 			height:30px;
@@ -583,16 +583,12 @@ $("#diamond").click(function() {
 	$( "#projects-page" ).on( "pageshow", function( e ) {
 		$(this).find('h4').text(__("Projectes de") + " " + user_name);
 		{ // Demanem la llista de competències, emocions i àmbits
-			url = domini_intra + "/assets/php/ajax/ajax_return_competences.php?lang=" + lang + "&id=" + user_id;
-			console.log(url);
 			if ((comps_masc == null) || (comps_fem == null) || (comps_groups == null) || (comps_millora == null) || (emocions == null)) {
 				$.ajax({
 					// TODO: Enviar l'idioma en funció del particular
-					url: url,
+					url: domini_intra + "/assets/php/ajax/ajax_return_competences.php?lang=" + lang + "&id=" + entitat_id,
 					success: function(data) {
 						// Arriba la resposta
-						console.log("totes les daaaaaaaaades");
-						console.log(data);
 						data = JSON.parse(data);
 						console.log(data);
 						if (data.success) {
@@ -602,7 +598,6 @@ $("#diamond").click(function() {
 							comps_millora = data.comps_millora;
 							emocions = data.emocions;
 							ambits = data.ambits;
-							lang = data.lang;
 							//comps_groups = data;
 							localStorage.setItem('comps_masc', JSON.stringify(comps_masc));
 							localStorage.setItem('comps_fem', JSON.stringify(comps_fem));
@@ -868,7 +863,7 @@ $("#diamond").click(function() {
 }
 { // Àmbits page
 	$("#ambits-page").on( "pageshow", function( e ) {
-		$(this).find('h4').text(__("Àmbits") + " " + student_name);
+		$(this).find('h4').text(__("Interessos i habilitats de") + " " + student_name);
 		build_ambits_list();
 		
 	});
@@ -986,7 +981,7 @@ function update_comp(v) {
 				  function() 
 				  {
 					$("#comps-footer").hide( 400 );
-				  }, 4000);
+				  }, 3000);
 			}
 			else { alert(data.msg);
 			}
@@ -1007,7 +1002,7 @@ function update_comp_millora(v) {
 				 
 				function() {
 					$("#comp_millora-footer").hide( 400 );
-				}, 4000);
+				}, 3000);
 				
 			}
 			else {
@@ -1030,7 +1025,7 @@ function update_emocions(v) {
 				 
 				function() {
 					$("#footer-emocions").hide( 400 );
-				}, 4000);
+				}, 3000);
 				
 			}
 			else {
@@ -1054,7 +1049,7 @@ function update_interessos(v) {
 				 
 				function() {
 					$("#footer-interessos").hide( 400 );
-				}, 4000);
+				}, 3000);
 				
 			}
 			else {
@@ -1077,7 +1072,7 @@ function update_habilitats(v) {
 				 
 				function() {
 					$("#footer-habilitats").hide( 400 );
-				}, 4000);
+				}, 3000);
 				
 			}
 			else {
@@ -1093,6 +1088,7 @@ function sync() {
 		url: domini_intra + "/assets/php/ajax/ajax_return_competences.php?lang=" + lang + "&id=" + entitat_id,
 		success: function(data) {
 			// Arriba la resposta
+			data = JSON.parse(data);
 			if (data.success) {
 				console.log(data);
 				comps_masc = data.comps_masc;
@@ -1102,14 +1098,12 @@ function sync() {
 				emocions = data.emocions;
 				ambits = data.ambits;
 				//comps_groups = data;
-				localStorage.removeItem('lang');
 				localStorage.setItem('comps_masc', JSON.stringify(comps_masc));
 				localStorage.setItem('comps_fem', JSON.stringify(comps_fem));
 				localStorage.setItem('comps_groups', JSON.stringify(comps_groups));
 				localStorage.setItem('comps_millora', JSON.stringify(comps_millora));
 				localStorage.setItem('emocions', JSON.stringify(emocions));
 				localStorage.setItem('ambits', JSON.stringify(ambits));
-				console.log(lang);
 				build_comps_filter();
 				$("#rightpanel").panel("close");
 			}
@@ -1125,7 +1119,6 @@ $(document).on('click', ".si-logout",function () {
 	console.log('Clear localStorage and exit');
 	localStorage.removeItem('user_id');
 	localStorage.removeItem('user_name');
-	localStorage.removeItem('lang');
 	localStorage.clear();
 	$.mobile.navigate( "#login-page" );
 });
@@ -1140,8 +1133,10 @@ function showLocalStorage() {
 	console.log(localStorage.getItem('project_id'));
 }
 function __(text) {
-	if(lang == null)lang = default_lang;
-	console.log(lang);
+	if(lang == null){
+		lang = default_lang;
+	}
+	
 	if(text in i18n){
 		if(lang in i18n[text])return i18n[text][lang];
 	} 
