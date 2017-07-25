@@ -201,5 +201,9 @@
 	"Àmbits" : {
         "cat": "Interessos i habilitats",
         "spa": "Intereses y habilidades"
-        }
+        },
+	"Ajuda" : {
+		"cat": "Ajuda",
+		"spa": "Ayuda"
+		}
 }
