@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="viewport" content="user-scalable=yes, width=device-width, initial-scale=1, maximum-scale=1">
 	<title>AIM SOLO School Project</title>
 	
 	<link rel="stylesheet" href="css/themes/aim-solo.min.css"/>
@@ -66,7 +66,76 @@
 		.ui-panel-position-right.ui-panel-display-overlay{
 			box-shadow:-10px 0 10px rgba(0,0,0,.50);
 		}
+
+		.ui-intels {
+			background-image: url("icons/icones_app-01.png") !important;
+			background-position: 50% 70%;
+			background-size: 70px 60px;
+			height: 100px;
+			background-repeat:no-repeat;
+			line-widht: 10px;
+			line-height: 20px;	
+			font-size: 11px;
+		}
 		
+		.ui-comps {
+			background-image: url("icons/icones_app-02.png") !important;
+			background-position: 50% 70%;
+			background-size: 70px 70px;
+			height: 100px;
+			background-repeat:no-repeat;
+			line-widht: 10px;
+			line-height: 20px;		
+			font-size: 11px;
+		}
+		
+		.ui-compsmillora {
+			background-image: url("icons/icones_app-03.png") !important;
+			background-position: 50% 70%;
+			background-size: 18px 50px;
+			height: 100px;
+			background-repeat:no-repeat;
+			line-widht: 10px;
+			line-height: 14px;		
+			font-size: 11px;
+			
+		}
+		
+		.ui-emocions {
+			background-image: url("icons/icones_app-04.png") !important;
+			background-position: 50% 70%;
+			background-size: 70px 70px;
+			height: 100px;
+			background-repeat:no-repeat;
+			line-widht: 10px;
+			line-height: 20px;
+			font-size: 11px;
+		}
+
+		
+		.ui-interessos {
+			background-image: url("icons/icones_app-05.png") !important;
+			background-position: 50% 70%;
+			background-size: 40px 70px;
+			height: 100px;
+			background-repeat:no-repeat;
+			line-widht: 10px;
+			line-height: 20px;
+			font-size: 11px;			
+		}
+		
+		.ui-habilitats {
+			background-image: url("icons/icones_app-06.png") !important;
+			background-position: 50% 70%;
+			background-size: 40px 70px;
+			height: 100px;
+			background-repeat:no-repeat;
+			line-widht: 10px;
+			line-height: 20px;
+			font-size: 11px;			
+		}
+
+
 	</style>
 	
 	<div data-role="popup" id="logout-popup" data-overlay-theme="b" data-theme="b" style="max-width:400px;">
@@ -170,18 +239,20 @@
 		</div>
 
 		<div data-role="main" class="ui-content">
-		<center><h4>Pàgina de</h4></center>
-		<hr><br/>
-			<a href="#intels-page" data-role="button" data-text="Intels">Intel·ligències</a>
-			<br/>
-			<a href="#comps-page" data-role="button" data-text="Comps">Competències</a>
-			<br/>
-			<a href="#comps_millora-page" data-role="button" data-text="Comps_millora">Competències de millora</a>
-			<br/>
-			<a href="#emocions-page" data-role="button" data-text="Emocions">Emocions</a>
-			<br/>
-			<a href="#ambits-page" data-role="button" data-text="Àmbits">Interessos i habilitats</a>
+			<center><h4>Pàgina de</h4></center>
+			<hr><br/><br/>
+			<div class="ui-grid-b">
+				<div class="ui-block-a"><a class="ui-intels" href="#intels-page" data-role="button" data-text="Intels">Intel·ligències</a></div>
+				<div class="ui-block-b"><a class="ui-comps" href="#comps-page" data-role="button" data-text="Comps">Competències</a></div>
+				<div class="ui-block-c"><a class="ui-compsmillora" href="#comps_millora-page" data-role="button" data-text="Comps_millora">Competències<br/>de millora</a></div>
 			</div>
+			<div class="ui-grid-b">
+				<div class="ui-block-a"><a class="ui-emocions" href="#emocions-page" data-role="button" data-text="Emocions">Emocions</a></div>
+				<div class="ui-block-b"><a class="ui-interessos" href="#ambits-page" data-role="button" data-text="Interessos">Interessos</a></div>
+				<div class="ui-block-c"><a class="ui-habilitats" href="#ambits-page" data-role="button" data-text="Habilitats">Habilitats</a></div>
+			</div>
+		</div>
+			
 	
 
 	</div><!-- /page -->
@@ -207,7 +278,7 @@
 			<ul data-role="listview" data-inset="true" id="interes-comps-list">
  			</ul>
 			<br/>
-			<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar competència" data-autodividers="true" data-inset="true" id="comps-list">
+			<ul data-role="listview" data-split-icon="info" data-filter="true" data-theme="a" data-split-theme="a" data-filter-placeholder="Buscar competència" data-autodividers="true" data-inset="true" id="comps-list">
  			</ul>
  		</div>
 
@@ -226,6 +297,18 @@
 					<button type="button" id="no-comp" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-right:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">No</button>
 				</fieldset>
 			</form>
+		</div>
+		</center>
+		
+		
+		<center>
+		<div data-rel="popup" data-role="popup" id="info-comps-popup" align="center" style="background-color:#004168">
+			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
+			<p></p>
+			<form align="center">
+				Aquí va la informació de glossari de cada competència
+			</form>
+			<br/>
 		</div>
 		</center>
 					
@@ -247,7 +330,7 @@
 		<div data-role="main" class="ui-content">
 		<center><h4>Competències de millora</h4></center>
 		<hr><br/>
-			<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar competència" data-autodividers="true" data-inset="true" id="comps_millora-list">
+			<ul data-role="listview" data-split-icon="info" data-filter="true" data-filter-placeholder="Buscar competència" data-autodividers="true" data-inset="true" id="comps_millora-list">
 			</ul>
 		</div>
 
@@ -265,6 +348,17 @@
 				</fieldset>
 			</form>
 		</div>
+		
+		<center>
+		<div data-rel="popup" data-role="popup" id="info-comps-millora-popup" align="center" style="background-color:#004168">
+			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
+			<p></p>
+			<form align="center">
+				Aquí va la informació de glossari de cada competència de millora
+			</form>
+			<br/>
+		</div>
+		</center>
 	
 		
 			
@@ -287,37 +381,122 @@
 		<div data-role="main" class="ui-content">
 			<center><h4>Intel·ligències</h4></center>
 			<hr><br/>
-			
-			<label data-text="Corporal" style="font-weight: bold;float:left; padding-right:2px"></label><label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="1" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-corporal" min="-2" max="3" value="0" >
-			<br/><br/>
-			<label data-text="Emocional" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="2" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
-			<br/><br/>
-			<label data-text="Espacial" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="3" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
-			<br/><br/>
-			<label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="4" data-levels="Interpersonal no contributiva: Molt alta|Interpersonal no contributiva: Alta|Interpersonal no contributiva: Mig alta|Interpersonal no contributiva: Centrada|Interpersonal contributiva: Centrada|Interpersonal contributiva: Mig alta|Interpersonal contributiva: Alta|Interpersonal contributiva: Molt alta" id="slider-interpersonal" min="0" max="7" value="0" >
-			<br/><br/>
-			<label data-text="Intrapersonal" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="5" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
-			<br/><br/>
-			<label data-text="Musical" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="6" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
-			<br/><br/>
-			<label data-text="Numerica" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="7" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
-			<br/><br/>
-			<label data-text="RaonamentLogic" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="8" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
-			<br/><br/>
-			<label data-text="Verbal" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="9" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
-			<br/><br/>
-			<label data-text="Visual" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
-			<input data-mini="true" class="intel-slider" type="range" data-id_intel="10" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
-		</div>
+			<div style="width:85%;float:left">
+				<label data-text="Corporal" style="font-weight: bold;float:left; padding-right:2px"></label><label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
+				<input data-mini="true" class="intel-slider" type="range" data-id_intel="1" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-corporal" min="-2" max="3" value="0" >
+				
+			</div>
+					<div style="width:15%;float:right" align="right">
+					<a class="intels_info" data-id_intel="1"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+			</div>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<div style="width:85%;float:left">
+				<label data-text="Emocional" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
+				<input data-mini="true" class="intel-slider" type="range" data-id_intel="2" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
+				<br/><br/>
+				</div>
+					<div style="width:15%;float:right" align="right">
+					<a class="intels_info" data-id_intel="2"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+				</div>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+			<div style="width:85%;float:left">
+				<label data-text="Espacial" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
+				<input data-mini="true" class="intel-slider" type="range" data-id_intel="3" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
+				<br/><br/>
+				</div>
+					<div style="width:15%;float:right" align="right">
+					<a class="intels_info" data-id_intel="3"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+				</div>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+			<div style="width:85%;float:left">
+				<label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
+				<input data-mini="true" class="intel-slider" type="range" data-id_intel="4" data-levels="Interpersonal no contributiva: Molt alta|Interpersonal no contributiva: Alta|Interpersonal no contributiva: Mig alta|Interpersonal no contributiva: Centrada|Interpersonal contributiva: Centrada|Interpersonal contributiva: Mig alta|Interpersonal contributiva: Alta|Interpersonal contributiva: Molt alta" id="slider-interpersonal" min="0" max="7" value="0" >
+				<br/><br/>
+				</div>
+					<div style="width:15%;float:right" align="right">
+					<a class="intels_info" data-id_intel="4"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+				</div>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+			<div style="width:85%;float:left">
+				<label data-text="Intrapersonal" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
+				<input data-mini="true" class="intel-slider" type="range" data-id_intel="5" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
+				<br/><br/>
+				</div>
+					<div style="width:15%;float:right" align="right">
+					<a class="intels_info" data-id_intel="6"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+				</div>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+			<div style="width:85%;float:left">
+				<label data-text="Musical" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
+				<input data-mini="true" class="intel-slider" type="range" data-id_intel="6" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
+				<br/><br/>
+				</div>
+					<div style="width:15%;float:right" align="right">
+					<a class="intels_info" data-id_intel="7"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+				</div>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+			<div style="width:85%;float:left">
+				<label data-text="Numerica" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
+				<input data-mini="true" class="intel-slider" type="range" data-id_intel="7" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
+				<br/><br/>
+				</div>
+					<div style="width:15%;float:right" align="right">
+					<a class="intels_info" data-id_intel="8"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+				</div>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+			<div style="width:85%;float:left">
+				<label data-text="RaonamentLogic" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
+				<input data-mini="true" class="intel-slider" type="range" data-id_intel="8" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
+				<br/><br/>
+				</div>
+					<div style="width:15%;float:right" align="right">
+					<a class="intels_info" data-id_intel="9"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+				</div>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+			<div style="width:85%;float:left">
+				<label data-text="Verbal" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
+				<input data-mini="true" class="intel-slider" type="range" data-id_intel="9" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
+				<br/><br/>
+				</div>
+					<div style="width:15%;float:right" align="right">
+					<a class="intels_info" data-id_intel="10"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+				</div>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+			<div style="width:85%;float:left">
+				<label data-text="Visual" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
+				<input data-mini="true" class="intel-slider" type="range" data-id_intel="10" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
+				</div>
+					<div style="width:15%;float:right" align="right">
+					<a class="intels_info" data-id_intel="11"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+				</div>
+	</div>
 		
 	<div data-role="footer" id="intels-footer" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
 		<center><button id="intels-update" style="border-color:green;background-color:green;color:white" class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow-icon" data-text="CompActualitzada">La competència s'ha actualitzat correctament</a></center>
@@ -338,7 +517,7 @@
 		<div data-role="main" class="ui-content">
 		<center><h4>Emocions</h4></center>
 		<hr><br/>
-			<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar emoció" data-inset="true" id="emocions-list">
+			<ul data-role="listview" data-split-icon="info" data-filter="true" data-filter-placeholder="Buscar emoció" data-inset="true" id="emocions-list">
 			</ul>
 		</div>
 
@@ -354,7 +533,16 @@
 			</form>
 		</div>
 		
-		
+		<center>
+		<div data-rel="popup" data-role="popup" id="info-emocions-popup" align="center" style="background-color:#004168">
+			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
+			<p></p>
+			<form align="center">
+				Aquí va la informació de glossari de cada emoció
+			</form>
+			<br/>
+		</div>
+		</center>		
 			
 		<div data-role="footer" id="footer-emocions" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
 		<center><button id="emocions-update" style="border-color:green;background-color:green;color:white" class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow-icon" data-text="CompActualitzada">La competència s'ha actualitzat correctament</a></center>
@@ -431,10 +619,6 @@
 		<center><h4>Ajuda</h4></center>
 		<hr><br/>
 			<div data-role="collapsible">
-				<h5>GLOSSARI</h5>
-				<p>[En aquesta secció es mostraran la llista de competències, intel·ligències i àmbits amb la seva corresponent descripció.]</p>
-			</div><br/>
-			<div data-role="collapsible">
 				<h5>Algunes frases no es veuen bé o només es veuen les icones. Què puc fer?</h5>
 				<p>Si teniu aquest problema, proveu de tancar la sessió i seguidament reiniciar l'aplicació. Si el problema persisteix, esborreu la memòria cau de l'aplicació i torneu-ho a provar.</p>
 			</div>	
@@ -460,11 +644,16 @@
 		<div class="ui-panel-inner">
 		<button type="button" onClick="sync()" style="border-color:rgb(24, 103, 146);background-color:rgb(24, 103, 146);color:white" class="ui-btn ui-corner-all ui-btn-a ui-icon-refresh ui-btn-icon-left ui-btn-inline" data-text="Sincronitzar"></button>
 		<a href="#projects-page" data-rel="change" style="border-color:rgb(24, 103, 146);background-color:rgb(24, 103, 146);color:white" class="ui-btn ui-corner-all ui-btn-a ui-icon-bullets ui-btn-icon-left ui-btn-inline" data-text="CanviarProjecte"></a>
-		<a href="#logout-popup" data-rel="popup" style="border-color:rgb(24, 103, 146);background-color:rgb(24, 103, 146);color:white" class="ui-btn ui-corner-all ui-btn-a ui-icon-power ui-btn-icon-left ui-btn-inline" data-text="Tancar"></a>
+		<a href="#logout-popup" data-rel="popup" data-transition="pop" style="border-color:rgb(24, 103, 146);background-color:rgb(24, 103, 146);color:white" class="ui-btn ui-corner-all ui-btn-a ui-icon-power ui-btn-icon-left ui-btn-inline" data-text="Tancar"></a>
 		<a href="#help-page" data-rel="change" style="border-color:rgb(24, 103, 146);background-color:rgb(24, 103, 146);color:white" class="ui-btn ui-corner-all ui-btn-a ui-icon-info ui-btn-icon-left ui-btn-inline" data-text="Ajuda"></a>
 		</div>
 	</div><!-- /rightpanel -->
+
 	
+	<div data-rel="popup" data-role="popup" id="info-popup" style="background-color:#FFF;color:#000;border-color:#FFF;">
+		<a href="#" data-rel="back" style="background-color:#000000;border-color:#000000;color:#ffffff" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		<div id="info_description" style="margin-left:20px;margin-bottom:20px;margin-top:20px;margin-right:20px;text-align: justify;"></div>
+	</div>	
 </body>
 </html>
 
@@ -503,6 +692,7 @@ $(document).on('ready',function(){
 	default_lang = 'cat';
 	$('#logout-popup').popup();
 	$('#success-popup').popup();
+	$('#info-popup').popup();
 	$("#footer").hide();
 	$("#footer-emocions").hide();
 	$("#comps-footer").hide();
@@ -743,7 +933,7 @@ $("#diamond").click(function() {
 		build_comp_list();
 		
 	});
-	$(document).on('click', "#comps-list li a, #interes-comps-list li a",function () {
+	$(document).on('click', "#comps-list li a.tag, #interes-comps-list li a.tag",function () {
 		comp_id = $(this).data('id');
 		total_comp_clicks++;
 		localStorage.setItem('total_comp_clicks', total_comp_clicks);
@@ -758,8 +948,13 @@ $("#diamond").click(function() {
 		build_interes_comps_list();
 		
 		comp_name = $(this).text();
-		$('#comps-popup').popup({ positionTo: "window" }).popup('open');
+		$('#comps-popup').popup({ transition: "pop" }).popup('open');
 		$('#comps-popup p').text(comp_name + "?");
+	});
+	$(document).on('click', "#comps-list li a.info, #interes-comps-list li a.info",function () {
+		info_id = $(this).data("id");
+		type = 2;
+		get_info(type,info_id);
 	});
 	
 	$(document).on('click', "#si-comp",function () {
@@ -806,10 +1001,10 @@ $("#diamond").click(function() {
 		$(this).find('h4').text(__("Competències de millora de") + " " + student_name);
 		build_comp_millora_list();
 	});
-	$(document).on('click', "#comps_millora-list li a",function () {
+	$(document).on('click', "#comps_millora-list li a.tag1",function () {
 		comp_id = $(this).data('id');
 		comp_name = $(this).text();
-		$('#comps_millora-popup').popup('open');
+		$('#comps_millora-popup').popup({ positionTo:"window" }).popup({ transition: "pop" }).popup('open');
 		$('#comps_millora-popup p').text(comp_name + "?");
 	});
 	
@@ -847,6 +1042,12 @@ $("#diamond").click(function() {
 				}
 			});
 		}
+		
+		$(document).on('click', ".intels_info",function () {
+			info_id = $(this).data('id_intel');
+			type = 1;
+			get_info(type,info_id);
+		});
 	});
 	
 	{ // Quan es canvia el nivell de l'slider canvia també l'etiqueta
@@ -890,7 +1091,7 @@ $("#diamond").click(function() {
 		build_emocions_list();
 		
 	});
-	$(document).on('click', "#emocions-list li a",function () {
+	$(document).on('click', "#emocions-list li a.tag",function () {
 		comp_id = $(this).data('id');
 		comp_name = $(this).text();
 		$('#emocions-popup').popup('open');
@@ -963,14 +1164,14 @@ function build_comp_list() {
 	if (!student_sex) {
 		comps_masc.forEach(function (comp, index) {
 			if(current_groups.indexOf(parseInt(comp.group)) > -1 || current_groups.length == 0) {
-				list = list + '<li><a data-id="' + comp.id + '">' + comp.name + '</a></li>';
+				list = list + '<li><a class="tag" data-id="' + comp.id + '">' + comp.name + '</a>' + '<a class="info" data-theme="a" data-position-to="window" data-transition="pop" data-id="' + comp.id + '">Informació</a></li>';
 			}
 		});
 	}
 	else {
 		comps_fem.forEach(function (comp, index) {
 			if(current_groups.indexOf(parseInt(comp.group)) > -1 || current_groups.length == 0) {
-				list = list + '<li><a data-id="' + comp.id + '">' + comp.name + '</a></li>';
+				list = list + '<li><a class="tag" data-id="' + comp.id + '">' + comp.name + '</a>' + '<a class="info" data-theme="a" data-position-to="window" data-transition="pop" data-id="' + comp.id + '">Informació</a></li>';
 			}
 		});
 	}
@@ -981,7 +1182,7 @@ function build_comp_millora_list() {
 	list_millora = "";
 	comps_millora.forEach(function (comp, index) {
 		if(current_groups.indexOf(comp.id) > 0 || current_groups.length == 0) {
-			list_millora = list_millora + '<li><a data-id="' + comp.id + '">' + comp.name + '</a></li>';
+			list_millora = list_millora + '<li><a class="tag1" data-id="' + comp.id + '">' + comp.name + '</a>' + '<a class="info1" href="#info-comps-millora-popup" data-theme="a" data-rel="popup" data-position-to="window" data-transition="pop">Informació</a></li>';
 		}
 	});
 	$("#comps_millora-list").html(list_millora).listview('refresh'); // No es pot inicialitzar abans de crear-lo
@@ -991,7 +1192,7 @@ function build_emocions_list() {
 	console.log(emocions);
 	emocions.forEach(function (emocio, index) {
 		if(current_groups.indexOf(emocio.id) > 0 || current_groups.length == 0) {
-			list_emocions += '<li><a data-id="' + emocio.id + '">' + emocio.name + '</a></li>';
+			list_emocions += '<li><a class="tag2" data-id="' + emocio.id + '"><img style="left:5%;top:30%;width:30px;weight:30px" src="icons/' + emocio.id + '.png"><br/>' + emocio.name + '</a>' + '<a class="info2" href="#info-emocions-popup" data-theme="a" data-rel="popup" data-position-to="window" data-transition="pop">Informació</a></li>';
 		}
 	});
 	$("#emocions-list").html(list_emocions).listview('refresh'); // No es pot inicialitzar abans de crear-lo
@@ -1128,6 +1329,22 @@ function update_habilitats(v) {
 		}
 	});
 }
+function get_info(type,id) {
+	url = domini_intra + "/assets/php/ajax/ajax_return_info.php?lang=" + lang + "&id=" + id + "&t=" + type;
+	$.ajax({
+		url:url,
+		success: function(data) {
+			data = JSON.parse(data);
+			if (data.success) {
+				$("#info_description").html(data.text);
+				$("#info-popup").popup('open');
+			}
+			else {
+				$("#info_description").html("No s\'ha pogut carregar!");
+			}
+		}
+	});
+}
 function sync() {
 	$.ajax({
 		// TODO: Enviar l'idioma en funció del particular
@@ -1180,8 +1397,10 @@ function showLocalStorage() {
 	console.log(localStorage.getItem('project_id'));
 }
 function __(text) {
-	if(lang == null)lang = default_lang;
-	console.log(lang);
+	if(lang == 'undefined'){
+		lang = default_lang;
+	}
+	
 	if(text in i18n){
 		if(lang in i18n[text])return i18n[text][lang];
 	} 
