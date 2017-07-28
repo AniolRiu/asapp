@@ -244,7 +244,7 @@
 			<div class="ui-grid-b">
 				<div class="ui-block-a"><a class="ui-intels" href="#intels-page" data-role="button" data-text="Intels">Intel·ligències</a></div>
 				<div class="ui-block-b"><a class="ui-comps" href="#comps-page" data-role="button" data-text="Comps">Competències</a></div>
-				<div class="ui-block-c"><a class="ui-compsmillora" href="#comps_millora-page" style="word-wrap:break-word;" data-role="button" data-text="Comps_millora">Competències<br/>de millora</a></div>
+				<div class="ui-block-c"><a class="ui-compsmillora" href="#comps_millora-page" data-role="button" data-text="Comps_millora">Competències<br/>de millora</a></div>
 			</div>
 			<div class="ui-grid-b">
 				<div class="ui-block-a"><a class="ui-emocions" href="#emocions-page" data-role="button" data-text="Emocions">Emocions</a></div>
@@ -311,6 +311,12 @@
 			<br/>
 		</div>
 		</center>
+		
+		<div data-role="popup" id="details-popup" align="center" style="background-color:#004168">
+			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
+			<input type="text" id="popup_input" /></input>
+			<button type="button" id="si-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Desar</button>
+		</div>
 					
 		<div data-role="footer" id="comps-footer" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
 			<center><button id="comps-update" style="border-color:green;background-color:green;color:white" class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow-icon" data-text="CompActualitzada">La competència s'ha actualitzat correctament</a></center>
@@ -653,7 +659,11 @@
 	<div data-rel="popup" data-role="popup" id="info-popup" style="background-color:#FFF;color:#000;border-color:#FFF;">
 		<a href="#" data-rel="back" style="background-color:#000000;border-color:#000000;color:#ffffff" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
 		<div id="info_description" style="margin-left:20px;margin-bottom:20px;margin-top:20px;margin-right:20px;text-align: justify;"></div>
-	</div>	
+	</div>
+	
+	
+
+
 </body>
 </html>
 
@@ -959,12 +969,14 @@ $("#diamond").click(function() {
 	
 	$(document).on('click', "#si-comp",function () {
 		update_comp(1);
+		$("#details-popup").popup('open');
 	});
 	
 	$(document).on('click', "#no-comp",function () {
 		$("#footer").hide();
 		update_comp(0);
 		$("#comps-popup").popup('close');
+		$("#details-popup").popup('open');
 	});
 	{ //Coses rares comentades...
 		$(document).on('change', "#filter-cg input", function () {
