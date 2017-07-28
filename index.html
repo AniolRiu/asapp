@@ -976,7 +976,9 @@ $("#diamond").click(function() {
 		$("#footer").hide();
 		update_comp(0);
 		$("#comps-popup").popup('close');
-		$("#details-popup").popup('open');
+		setTimeout( function(){
+		$("#details-popup").popup('open')
+		}, 1000 );
 	});
 	{ //Coses rares comentades...
 		$(document).on('change', "#filter-cg input", function () {
