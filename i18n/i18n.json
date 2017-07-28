@@ -47,8 +47,16 @@
 		"spa":"Competencias"
 		},
 	"Comps_millora" : {
-		"cat":"Competències<br>de millora",
-		"spa":"Competencias<br>de mejora"
+		"cat":"Competències de millora",
+		"spa":"Competencias de mejora"
+		},
+	"Comps_millora1" : {
+		"cat":"Competències",
+		"spa":"Competencias"
+		},
+	"Comps_millora2" : {
+		"cat":"de millora",
+		"spa":"de mejora"
 		},
 	"Emocions" : {
 		"cat":"Emocions",
