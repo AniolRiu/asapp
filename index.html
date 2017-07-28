@@ -314,8 +314,12 @@
 		
 		<div data-role="popup" id="details-popup" align="center" style="background-color:#004168">
 			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
-			<input type="text" id="popup_input" /></input>
-			<button type="button" id="si-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Desar</button>
+			<h3>Observacions</h3>
+			<textarea style="height: 70px;width: 90%" rows="16" cols="10"></textarea>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+				<button type="button" id="si-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Desar</button>
+				<button type="button" id="no-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-right:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">Cancel·lar</button>
+			</fieldset>
 		</div>
 					
 		<div data-role="footer" id="comps-footer" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
@@ -699,6 +703,7 @@ var recents_comps = [];
 var total_comp_clicks = 0;
 
 $(document).on('ready',function(){
+    StatusBar.backgroundColorByHexString("#02304A");
 	default_lang = 'cat';
 	$('#logout-popup').popup();
 	$('#success-popup').popup();
@@ -749,6 +754,12 @@ $(document).on('ready',function(){
 			});
 		});
 	}
+	.controller('MyCtrl', function($scope) {
+		$scope.$on('$ionicView.enter', function() {
+		if (window.StatusBar) {
+        }
+  })
+})
 	
 });
 $("#recorder").click(function() {
@@ -969,17 +980,12 @@ $("#diamond").click(function() {
 	
 	$(document).on('click', "#si-comp",function () {
 		update_comp(1);
-		$("#details-popup").popup('open');
 	});
 	
 	$(document).on('click', "#no-comp",function () {
-		$("#footer").hide();
 		update_comp(0);
-		$("#comps-popup").popup('close');
-		setTimeout( function(){
-		$("#details-popup").popup('open')
-		}, 1000 );
 	});
+	
 	{ //Coses rares comentades...
 		$(document).on('change', "#filter-cg input", function () {
 			id = $(this).data('id');
@@ -1229,6 +1235,8 @@ function build_comps_filter() {
 	$("#comps-page").trigger('create');
 }
 function update_comp(v) {
+	$("#footer").hide();
+	$("#comps-popup").popup('close');
 	url = domini_intra + "/assets/php/ajax/ajax_change_competence.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id;
 	$.ajax({
 		url: url,
@@ -1238,11 +1246,12 @@ function update_comp(v) {
 			if (data.success) {
 				$("#comps-popup").popup('close');
 				$("#comps-footer").show( 400 );
-				setTimeout(
-				  function() 
-				  {
+				setTimeout( function() {
 					$("#comps-footer").hide( 400 );
-				  }, 4000);
+				}, 4000);
+				setTimeout( function(){
+					$("#details-popup").popup('open')
+				}, 100 );
 			}
 			else { alert(data.msg);
 			}
