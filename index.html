@@ -7,8 +7,8 @@
 	<title>AIM SOLO School Project</title>
 	
 	<link rel="stylesheet" href="css/themes/aim-solo.min.css"/>
-	<link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
-	<link rel="stylesheet" href="jquery.mobile.structure-1.4.5.min.css" />
+	<link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css"/>
+	<link rel="stylesheet" href="css/themes/jquery.mobile.structure-1.4.5.min.css"/>
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	
@@ -301,19 +301,7 @@
 		</div>
 		</center>
 		
-		
-		<center>
-		<div data-rel="popup" data-role="popup" id="info-comps-popup" align="center" style="background-color:#004168">
-			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
-			<p></p>
-			<form align="center">
-				Aquí va la informació de glossari de cada competència
-			</form>
-			<br/>
-		</div>
-		</center>
-		
-		<div data-role="popup" id="details-popup" align="center" style="background-color:#004168">
+		<div data-role="popup" id="details-comps-popup" align="center" style="background-color:#004168">
 			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
 			<h3>Observacions</h3>
 			<textarea style="height: 70px;width: 90%" rows="16" cols="10"></textarea>
@@ -322,7 +310,7 @@
 				<button type="button" id="no-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-right:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">Cancel·lar</button>
 			</fieldset>
 		</div>
-					
+
 		<div data-role="footer" id="comps-footer" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
 			<center><button id="comps-update" style="border-color:green;background-color:green;color:white" class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow-icon" data-text="CompActualitzada">La competència s'ha actualitzat correctament</a></center>
 		</div>
@@ -370,7 +358,16 @@
 			<br/>
 		</div>
 		</center>
-	
+
+		<div data-role="popup" id="details-comps_millora-popup" align="center" style="background-color:#004168">
+			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
+			<h3>Observacions</h3>
+			<textarea style="height: 70px;width: 90%" rows="16" cols="10"></textarea>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+				<button type="button" id="si-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Desar</button>
+				<button type="button" id="no-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-right:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">Cancel·lar</button>
+			</fieldset>
+		</div>
 		
 			
 	<div data-role="footer" id="comp_millora-footer" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
@@ -392,121 +389,154 @@
 		<div data-role="main" class="ui-content">
 			<center><h4>Intel·ligències</h4></center>
 			<hr><br/>
-			<div style="width:85%;float:left">
+			<!-- CORPORAL -->
+			<div style="width:15%;float:left">
+				<img src="icons\inteligencies-01.png" style="width:30px;text-align:left"></a>
+			</div>
+			<div style="width:70%;float:left">
 				<label data-text="Corporal" style="font-weight: bold;float:left; padding-right:2px"></label><label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
 				<input data-mini="true" class="intel-slider" type="range" data-id_intel="1" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-corporal" min="-2" max="3" value="0" >
-				
 			</div>
-					<div style="width:15%;float:right" align="right">
-					<a class="intels_info" data-id_intel="1"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+			<div style="width:15%;float:right" align="right">
+				<a class="intels_info" data-id_intel="1"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
 			</div>
+			
 			<br/>
 			<br/>
 			<br/>
 			<br/>
-			<div style="width:85%;float:left">
+			<!-- EMOCIONAL -->
+			<div style="width:15%;float:left">
+				<img src="icons\inteligencies-02.png" style="width:30px;text-align:left"></a>
+			</div>
+			<div style="width:70%;float:left">
 				<label data-text="Emocional" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
 				<input data-mini="true" class="intel-slider" type="range" data-id_intel="2" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
-				<br/><br/>
-				</div>
-					<div style="width:15%;float:right" align="right">
-					<a class="intels_info" data-id_intel="2"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
-				</div>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-			<div style="width:85%;float:left">
-				<label data-text="Espacial" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
+			</div>
+			<div style="width:15%;float:right" align="right">
+				<a class="intels_info" data-id_intel="2"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+			</div>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<!-- ESPACIAL -->
+			<div style="width:15%;float:left">
+				<img src="icons\inteligencies-03.png" style="width:30px;text-align:left"></a>
+			</div>
+			<div style="width:70%;float:left">
+				<label data-text="Espacial" style="font-weight: bold;float:left; padding-right:2px"></label><label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
 				<input data-mini="true" class="intel-slider" type="range" data-id_intel="3" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
-				<br/><br/>
-				</div>
-					<div style="width:15%;float:right" align="right">
-					<a class="intels_info" data-id_intel="3"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
-				</div>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-			<div style="width:85%;float:left">
+				
+			</div>
+				<div style="width:15%;float:right" align="right">
+				<a class="intels_info" data-id_intel="3"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+			</div>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<!-- INTERPERSONALCONSTRIBUTIVA -->
+			<div style="width:15%;float:left">
+				<img src="icons\inteligencies-04.png" style="width:30px;text-align:left"></a>
+			</div>
+			<div style="width:70%;float:left">
 				<label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
 				<input data-mini="true" class="intel-slider" type="range" data-id_intel="4" data-levels="Interpersonal no contributiva: Molt alta|Interpersonal no contributiva: Alta|Interpersonal no contributiva: Mig alta|Interpersonal no contributiva: Centrada|Interpersonal contributiva: Centrada|Interpersonal contributiva: Mig alta|Interpersonal contributiva: Alta|Interpersonal contributiva: Molt alta" id="slider-interpersonal" min="0" max="7" value="0" >
-				<br/><br/>
-				</div>
-					<div style="width:15%;float:right" align="right">
-					<a class="intels_info" data-id_intel="4"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
-				</div>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-			<div style="width:85%;float:left">
+			</div>
+			<div style="width:15%;float:right" align="right">
+				<a class="intels_info" data-id_intel="4"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+			</div>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<!-- INTERPERSONAL -->
+			<div style="width:15%;float:left">
+				<img src="icons\inteligencies-06.png" style="width:30px;text-align:left"></a>
+			</div>
+			<div style="width:70%;float:left">
 				<label data-text="Intrapersonal" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
 				<input data-mini="true" class="intel-slider" type="range" data-id_intel="5" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
-				<br/><br/>
-				</div>
-					<div style="width:15%;float:right" align="right">
-					<a class="intels_info" data-id_intel="6"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
-				</div>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-			<div style="width:85%;float:left">
+			</div>
+			<div style="width:15%;float:right" align="right">
+				<a class="intels_info" data-id_intel="6"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+			</div>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<!-- MUSICAL -->
+			<div style="width:15%;float:left">
+				<img src="icons\inteligencies-07.png" style="width:30px;text-align:left"></a>
+			</div>
+			<div style="width:70%;float:left">
 				<label data-text="Musical" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
 				<input data-mini="true" class="intel-slider" type="range" data-id_intel="6" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
-				<br/><br/>
-				</div>
-					<div style="width:15%;float:right" align="right">
-					<a class="intels_info" data-id_intel="7"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
-				</div>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-			<div style="width:85%;float:left">
+			</div>
+			<div style="width:15%;float:right" align="right">
+				<a class="intels_info" data-id_intel="7"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+			</div>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<!-- NUMÈRICA -->
+			<div style="width:15%;float:left">
+				<img src="icons\inteligencies-08.png" style="width:30px;text-align:left"></a>
+			</div>
+			<div style="width:70%;float:left">
 				<label data-text="Numerica" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
 				<input data-mini="true" class="intel-slider" type="range" data-id_intel="7" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
-				<br/><br/>
-				</div>
-					<div style="width:15%;float:right" align="right">
-					<a class="intels_info" data-id_intel="8"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
-				</div>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-			<div style="width:85%;float:left">
+			</div>
+			<div style="width:15%;float:right" align="right">
+				<a class="intels_info" data-id_intel="8"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+			</div>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<!-- RAONAMENT LÒGIC -->
+			<div style="width:15%;float:left">
+				<img src="icons\inteligencies-09.png" style="width:30px;text-align:left"></a>
+			</div>
+			<div style="width:70%;float:left">
 				<label data-text="RaonamentLogic" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
 				<input data-mini="true" class="intel-slider" type="range" data-id_intel="8" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
-				<br/><br/>
-				</div>
-					<div style="width:15%;float:right" align="right">
-					<a class="intels_info" data-id_intel="9"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
-				</div>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-			<div style="width:85%;float:left">
+			</div>
+			<div style="width:15%;float:right" align="right">
+				<a class="intels_info" data-id_intel="9"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+			</div>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<!-- VERBAL -->
+			<div style="width:15%;float:left">
+				<img src="icons\inteligencies-10.png" style="width:30px;text-align:left"></a>
+			</div>
+			<div style="width:70%;float:left">
 				<label data-text="Verbal" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
 				<input data-mini="true" class="intel-slider" type="range" data-id_intel="9" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
-				<br/><br/>
-				</div>
-					<div style="width:15%;float:right" align="right">
-					<a class="intels_info" data-id_intel="10"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
-				</div>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-			<div style="width:85%;float:left">
+			</div>
+			<div style="width:15%;float:right" align="right">
+				<a class="intels_info" data-id_intel="10"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+			</div>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<!-- VISUAL -->
+			<div style="width:15%;float:left">
+				<img src="icons\inteligencies-11.png" style="width:30px;text-align:left"></a>
+			</div>
+			<div style="width:70%;float:left">
 				<label data-text="Visual" style="font-weight: bold;float:left; padding-right:2px"></label> <label for="slider-corporal" style="float:left"><span id="span-corporal"></span></label>
 				<input data-mini="true" class="intel-slider" type="range" data-id_intel="10" data-levels="Baix|Mig baix|Mig|Mig alt|Alt|Molt alt" id="slider-" min="-2" max="3" value="0" >
-				</div>
-					<div style="width:15%;float:right" align="right">
-					<a class="intels_info" data-id_intel="11"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
-				</div>
+			</div>
+			<div style="width:15%;float:right" align="right">
+				<a class="intels_info" data-id_intel="11"><img src="css\themes\images\icons-png\info-white.png" style="width:20px;weight:20px" style="text-align:right"></a>
+			</div>
 	</div>
 		
 	<div data-role="footer" id="intels-footer" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
@@ -553,7 +583,18 @@
 			</form>
 			<br/>
 		</div>
-		</center>		
+		</center>
+
+		<div data-role="popup" id="details-comps-popup" align="center" style="background-color:#004168">
+			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
+			<h3>Observacions</h3>
+			<textarea style="height: 70px;width: 90%" rows="16" cols="10"></textarea>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+				<button type="button" id="si-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Desar</button>
+				<button type="button" id="no-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-right:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">Cancel·lar</button>
+			</fieldset>
+		</div>
+		
 			
 		<div data-role="footer" id="footer-emocions" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
 		<center><button id="emocions-update" style="border-color:green;background-color:green;color:white" class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow-icon" data-text="CompActualitzada">La competència s'ha actualitzat correctament</a></center>
@@ -604,6 +645,15 @@
 			</form>
 		</div>
 		
+		<div data-role="popup" id="details-comps-popup" align="center" style="background-color:#004168">
+			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
+			<h3>Observacions</h3>
+			<textarea style="height: 70px;width: 90%" rows="16" cols="10"></textarea>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+				<button type="button" id="si-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Desar</button>
+				<button type="button" id="no-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-right:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">Cancel·lar</button>
+			</fieldset>
+		</div>
 			
 		<div data-role="footer" id="footer-interessos" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
 		<center><button id="ambits-update" style="border-color:green;background-color:green;color:white" class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow-icon" data-text="CompActualitzada">La competència s'ha actualitzat correctament</a></center>
@@ -704,7 +754,7 @@ var recents_comps = [];
 var total_comp_clicks = 0;
 
 $(document).on('ready',function(){
-	default_lang = 'cat';
+	default_lang = 'esp';
 	$('#logout-popup').popup();
 	$('#success-popup').popup();
 	$('#info-popup').popup();
@@ -803,13 +853,11 @@ $("#diamond").click(function() {
 			success: function(data) {
 				// Arriba la resposta
 				data = JSON.parse(data);
-				console.log(data);
 				if (data.success) {
 					user_name = data.name;
 					user_id = data.user_id;
 					entitat_id = data.entitat;
 					lang = data.lang;
-					console.log('idioma tutor:' + lang);
 					localStorage.setItem('user_id', user_id);
 					localStorage.setItem('user_name', user_name);
 					localStorage.setItem('entitat_id', entitat_id);
@@ -831,17 +879,13 @@ $("#diamond").click(function() {
 		$(this).find('h4').text(__("Projectes de") + " " + user_name);
 		{ // Demanem la llista de competències, emocions i àmbits
 			url = domini_intra + "/assets/php/ajax/ajax_return_competences.php?lang=" + lang + "&id=" + user_id;
-			console.log(url);
 			if ((comps_masc == null) || (comps_fem == null) || (comps_groups == null) || (comps_millora == null) || (emocions == null)) {
 				$.ajax({
 					// TODO: Enviar l'idioma en funció del particular
 					url: url,
 					success: function(data) {
 						// Arriba la resposta
-						console.log("totes les daaaaaaaaades");
-						console.log(data);
 						data = JSON.parse(data);
-						console.log(data);
 						if (data.success) {
 							comps_masc = data.comps_masc;
 							comps_fem = data.comps_fem;
@@ -1044,7 +1088,6 @@ $("#diamond").click(function() {
 				url: url,
 				success: function(data) {
 					data = JSON.parse(data);
-					console.log(data);
 					if (data.success) {
 						$("input.intel-slider").each(function( index ) {
 							$(this).val(parseInt(data[index])).slider('refresh');
@@ -1392,7 +1435,6 @@ function sync() {
 	});
 }
 function exit() {
-	console.log("yeeye");
 	navigator.app.exitApp();
 }
 $(document).on('click', ".goback_btn", goback);
@@ -1414,11 +1456,13 @@ function showLocalStorage() {
 	console.log(localStorage.getItem('project_id'));
 }
 function __(text) {
-	console.log(lang);
 	if(lang == 'undefined'){
 		lang = default_lang;
 	}
-	console.log(lang);
+	
+	if(lang == null){
+		lang = default_lang;
+	}
 	
 	if(text in i18n){
 		if(lang in i18n[text])return i18n[text][lang];
@@ -1464,8 +1508,6 @@ function bySortedValue(obj, callback, context) {
 }
 	
 function build_interes_comps_list() {
-	console.log('Printem interes_comps');
-	console.log(interes_comps);
 	list = "";
 	// TODO: Noms de les competències en masculí o femení
 	if (!student_sex)
