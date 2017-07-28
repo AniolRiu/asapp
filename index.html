@@ -244,7 +244,7 @@
 			<div class="ui-grid-b">
 				<div class="ui-block-a"><a class="ui-intels" href="#intels-page" data-role="button" data-text="Intels">Intel·ligències</a></div>
 				<div class="ui-block-b"><a class="ui-comps" href="#comps-page" data-role="button" data-text="Comps">Competències</a></div>
-				<div class="ui-block-c"><a class="ui-compsmillora" href="#comps_millora-page" data-role="button" data-text="Comps_millora">Competències<br/>de millora</a></div>
+				<div class="ui-block-c"><a class="ui-compsmillora" href="#comps_millora-page"  data-role="button"><span data-text="Comps_millora1">Competènciesbb</span><br><span data-text="Comps_millora2">de millora</span></a></div>
 			</div>
 			<div class="ui-grid-b">
 				<div class="ui-block-a"><a class="ui-emocions" href="#emocions-page" data-role="button" data-text="Emocions">Emocions</a></div>
@@ -1411,9 +1411,11 @@ function showLocalStorage() {
 	console.log(localStorage.getItem('project_id'));
 }
 function __(text) {
+	console.log(lang);
 	if(lang == 'undefined'){
 		lang = default_lang;
 	}
+	console.log(lang);
 	
 	if(text in i18n){
 		if(lang in i18n[text])return i18n[text][lang];
