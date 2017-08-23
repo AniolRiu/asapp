@@ -163,8 +163,8 @@
 		"spa":"Bajo|Medio bajo|Mediano|Medio alto|Alto|Muy alto"
 		},
 	"Interpersonal no contributiva: Molt alta|Interpersonal no contributiva: Alta|Interpersonal no contributiva: Mig alta|Interpersonal no contributiva: Centrada|Interpersonal contributiva: Centrada|Interpersonal contributiva: Mig alta|Interpersonal contributiva: Alta|Interpersonal contributiva: Molt alta" : {
-		"cat":"Interpersonal no contributiva: Molt alta|Interpersonal no contributiva: Alta|Interpersonal no contributiva: Mig alta|Interpersonal no contributiva: Centrada|Interpersonal contributiva: Centrada|Interpersonal contributiva: Mig alta|Interpersonal contributiva: Alta|Interpersonal contributiva: Molt alta",
-		"spa":"Interpersonal no contributiva: Muy alta|Interpersonal no contributiva: Alta|Interpersonal no contributiva: Medio alta|Interpersonal no contributiva: Centrada|Interpersonal contributiva: Centrada|Interpersonal contributiva: Medio alta|Interpersonal contributiva: Alta|Interpersonal contributiva: Muy alta"
+		"cat":"Int. no contrib.: Molt alta|Int. no contrib.: Alta|Int. no contrib.: Mig alta|Int. no contrib.: Centrada|Int. contrib.: Centrada|Int. contrib.: Mig alta|Int. contrib.: Alta|Int. contrib.: Molt alta",
+		"spa":"Int. no contrib.: Muy alta|Int. no contrib.: Alta|Int. no contrib.: Medio alta|Int. no contrib.: Centrada|Int. contrib.: Centrada|Int. contrib.: Medio alta|Int. contrib.: Alta|Int. contrib.: Muy alta"
 		},
 	"PopupComps" : {
 		"cat": "Assignar-la a",
