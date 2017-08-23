@@ -27,6 +27,7 @@ var default_lang;
 var interes_comps = {};
 var recents_comps = [];
 var total_comp_clicks = 0;
+var intel_timeout; // Guardem l'id del timeout que treu el missatge d'èxit al modificar una intel
 
 $(document).on('ready',function(){
 	
@@ -391,6 +392,7 @@ $("#diamond").click(function() {
 			levels = $(this).data('levels');
 			levels = levels.split('|');
 			if ($(this).get(0).id != "slider-interpersonal") level += 2;
+			console.log(levels);
 			$(this).parent().prev().find('span').text(levels[level]);
 		});
 	}
@@ -408,8 +410,10 @@ $("#diamond").click(function() {
 				success: function(data) {
 					data = JSON.parse(data);
 					console.log(data);
+					clearTimeout(intel_timeout);
+					$("#intels-footer").hide(  );
 					$("#intels-footer").show( 400 );
-					setTimeout(function(){
+					intel_timeout = setTimeout(function(){
 						$("#intels-footer").hide( 400 );
 					}, 3000);
 				}

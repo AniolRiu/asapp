@@ -391,21 +391,11 @@
 			<center><h4>Intel·ligències</h4></center>
 			<hr><br/>
 			
-			<!-- <div ng-app="intelsApp" ng-controller="intelsController"> -->
-
-			<!-- First Name: <input type="text" ng-model="firstName"><br> -->
-			<!-- Last Name: <input type="text" ng-model="lastName"><br> -->
-			<!-- <br> -->
-
-			<!-- </div> -->
-			
-			
-			
 			<div ng-app="intelsApp" ng-controller="namesCtrl">
 
 				<div ng-repeat="intel in intels">
 					<div style="width:15%;float:left">
-						<img ng-src="icons\intels\{{intel.icon}}" style="width:30px;text-align:left"></a>
+						<img ng-src="icons\intels\{{intel.icon}}" style="width:30px;text-align:left">
 					</div>
 					<div style="width:70%;float:left">
 						<label data-text="{{intel.name}}" style="font-weight: bold;float:left; padding-right:2px"></label><label style="float:left"><span></span></label>
@@ -425,31 +415,30 @@
 
 			<script>
 
-			angular.module('intelsApp', []).controller('namesCtrl', function($scope) {
-				$scope.levels = "Baix|Mig baix|Mig|Mig alt|Alt|Molt alt";
-				$scope.levels_ic = "Interpersonal no contributiva: Molt alta|Interpersonal no contributiva: Alta|Interpersonal no contributiva: Mig alta|Interpersonal no contributiva: Centrada|Interpersonal contributiva: Centrada|Interpersonal contributiva: Mig alta|Interpersonal contributiva: Alta|Interpersonal contributiva: Molt alta";
-				$scope.intels = [
-					{icon:'corporal.png', name:'Corporal', id:1, min:-2, max:3, levels:$scope.levels},
-					{icon:'emocional.png', name:'Emocional', id:2, min:-2, max:3, levels:$scope.levels},
-					{icon:'espacial.png', name:'Espacial', id:3, min:-2, max:3, levels:$scope.levels},
-					{icon:'ic.png', name:'', id:4, min:0, max:7, levels:$scope.levels_ic},
-					{icon:'intrapersonal.png', name:'Intrapersonal', id:6, min:-2, max:3, levels:$scope.levels},
-					{icon:'musical.png', name:'Musical', id:7, min:-2, max:3, levels:$scope.levels},
-					{icon:'numerica.png', name:'Numèrica', id:8, min:-2, max:3, levels:$scope.levels},
-					{icon:'raonament_logic.png', name:'Raonament lògic', id:9, min:-2, max:3, levels:$scope.levels},
-					{icon:'verbal.png', name:'Verbal', id:10, min:-2, max:3, levels:$scope.levels},
-					{icon:'visual.png', name:'Visual', id:11, min:-2, max:3, levels:$scope.levels}
-				];
-			});
+				angular.module('intelsApp', []).controller('namesCtrl', function($scope) {
+					$scope.levels = "Baix|Mig baix|Mig|Mig alt|Alt|Molt alt";
+					$scope.levels_ic = "Interpersonal no contributiva: Molt alta|Interpersonal no contributiva: Alta|Interpersonal no contributiva: Mig alta|Interpersonal no contributiva: Centrada|Interpersonal contributiva: Centrada|Interpersonal contributiva: Mig alta|Interpersonal contributiva: Alta|Interpersonal contributiva: Molt alta";
+					$scope.intels = [
+						{icon:'corporal.png', name:'Corporal', id:1, min:-2, max:3, levels:$scope.levels},
+						{icon:'emocional.png', name:'Emocional', id:2, min:-2, max:3, levels:$scope.levels},
+						{icon:'espacial.png', name:'Espacial', id:3, min:-2, max:3, levels:$scope.levels},
+						{icon:'ic.png', name:'', id:4, min:0, max:7, levels:$scope.levels_ic},
+						{icon:'intrapersonal.png', name:'Intrapersonal', id:6, min:-2, max:3, levels:$scope.levels},
+						{icon:'musical.png', name:'Musical', id:7, min:-2, max:3, levels:$scope.levels},
+						{icon:'numerica.png', name:'Numèrica', id:8, min:-2, max:3, levels:$scope.levels},
+						{icon:'raonament_logic.png', name:'Raonament lògic', id:9, min:-2, max:3, levels:$scope.levels},
+						{icon:'verbal.png', name:'Verbal', id:10, min:-2, max:3, levels:$scope.levels},
+						{icon:'visual.png', name:'Visual', id:11, min:-2, max:3, levels:$scope.levels}
+					];
+				});
 
 			</script>
-
 			
-	</div>
+		</div>
 		
-	<div data-role="footer" id="intels-footer" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
-		<center><button id="intels-update" style="border-color:green;background-color:green;color:white" class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow-icon" data-text="CompActualitzada">La competència s'ha actualitzat correctament</a></center>
-	</div>
+		<div data-role="footer" id="intels-footer" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
+			<center><button id="intels-update" style="border-color:green;background-color:green;color:white" class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow-icon" data-text="CompActualitzada">La competència s'ha actualitzat correctament</a></center>
+		</div>
 	
 	</div><!-- /page -->
 	
@@ -573,7 +562,6 @@
 	
 	</div>
 	
-	
 	<!-- HELP PAGE -->
 	<div data-role="page" id="help-page">
 
@@ -606,7 +594,6 @@
 		</div>
 	</div>
 		
-		
 	<!-- rightpanel  -->
 	<div data-role="panel" id="rightpanel" data-position="right" data-display="overlay" style="background-color:rgb(24, 103, 146)">
 		<img src="banner.png" alt="AS EduPro" style="width:100%"><br/>
@@ -618,7 +605,6 @@
 		</div>
 	</div><!-- /rightpanel -->
 
-	
 	<div data-rel="popup" data-role="popup" id="info-popup" style="background-color:#FFF;color:#000;border-color:#FFF;">
 		<a href="#" data-rel="back" style="background-color:#000000;border-color:#000000;color:#ffffff" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
 		<div id="info_description" style="margin-left:20px;margin-bottom:20px;margin-top:20px;margin-right:20px;text-align: justify;"></div>
