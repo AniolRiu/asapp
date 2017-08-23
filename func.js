@@ -391,7 +391,20 @@ $("#diamond").click(function() {
 			level = parseInt($(this).val());
 			levels = $(this).data('levels');
 			levels = levels.split('|');
-			if ($(this).get(0).id != "slider-interpersonal") level += 2;
+			console.log($(this));
+			if ($(this).data('id_intel') != 4) {
+				level += 2;
+			}
+			else {
+				if(level<4) {
+					src = 'icons/intels/inc.png';
+				}
+				else {
+					src = 'icons/intels/ic.png';
+				}
+				console.log(src);
+				$(this).parents().eq(2).find('img').first().attr('src',src);
+			}
 			console.log(levels);
 			$(this).parent().prev().find('span').text(levels[level]);
 		});
