@@ -210,6 +210,10 @@
         "cat": "Interessos i habilitats",
         "spa": "Intereses y habilidades"
         },
+	"Error" : {
+        "cat": "No es pot carregar la informació",
+        "spa": "No se ha podido cargar la infomación"
+        },
 	"Ajuda" : {
 		"cat": "Ajuda",
 		"spa": "Ayuda"

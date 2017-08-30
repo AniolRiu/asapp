@@ -351,6 +351,12 @@ $("#diamond").click(function() {
 	$(document).on('click', "#no-comp_millora",function () {
 		update_comp_millora(0);
 	});
+
+	$(document).on('click', ".comps_millora_info",function () {
+		info_id = $(this).prev().data('id');
+		type = 3;
+		get_info(type,info_id);
+	});
 }
 { // Intels page
 	$("#intels-page").on( "pageshow", function( e ) {
@@ -458,6 +464,12 @@ $("#diamond").click(function() {
 		update_emocions(0);
 		$("#emocions-popup").popup('close');
 	});
+
+	$(document).on('click', ".emocions_info",function () {
+		info_id = $(this).prev().data('id');
+		type = 4;
+		get_info(type,info_id);
+	});
 }
 { // Àmbits page
 	$("#ambits-page").on( "pageshow", function( e ) {
@@ -533,7 +545,7 @@ function build_comp_millora_list() {
 	list_millora = "";
 	comps_millora.forEach(function (comp, index) {
 		if(current_groups.indexOf(comp.id) > 0 || current_groups.length == 0) {
-			list_millora = list_millora + '<li><a class="tag1" data-id="' + comp.id + '">' + comp.name + '</a>' + '<a class="info1" href="#info-comps-millora-popup" data-theme="a" data-rel="popup" data-position-to="window" data-transition="pop">Informació</a></li>';
+			list_millora = list_millora + '<li><a class="tag1" data-id="' + comp.id + '">' + comp.name + '</a>' + '<a class="info1 comps_millora_info" data-theme="a">Informació</a></li>';
 		}
 	});
 	$("#comps_millora-list").html(list_millora).listview('refresh'); // No es pot inicialitzar abans de crear-lo
@@ -543,7 +555,7 @@ function build_emocions_list() {
 	console.log(emocions);
 	emocions.forEach(function (emocio, index) {
 		if(current_groups.indexOf(emocio.id) > 0 || current_groups.length == 0) {
-			list_emocions += '<li><a class="tag2" data-id="' + emocio.id + '"><img style="left:5%;top:30%;width:30px;weight:30px" src="icons/' + emocio.id + '.png"><br/>' + emocio.name + '</a>' + '<a class="info2" href="#info-emocions-popup" data-theme="a" data-rel="popup" data-position-to="window" data-transition="pop">Informació</a></li>';
+			list_emocions += '<li><a class="tag2" data-id="' + emocio.id + '"><img style="left:5%;top:30%;width:30px;weight:30px" src="icons/' + emocio.id + '.png"><br/>' + emocio.name + '</a>' + '<a class="info2 emocions_info" data-theme="a">Informació</a></li>';
 		}
 	});
 	$("#emocions-list").html(list_emocions).listview('refresh'); // No es pot inicialitzar abans de crear-lo
@@ -694,7 +706,7 @@ function get_info(type,id) {
 				$("#info-popup").popup('open');
 			}
 			else {
-				$("#info_description").html("No s\'ha pogut carregar!");
+				$("#info_description").html(__("Error"));
 			}
 		}
 	});
