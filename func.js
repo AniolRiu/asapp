@@ -555,7 +555,7 @@ function build_emocions_list() {
 	console.log(emocions);
 	emocions.forEach(function (emocio, index) {
 		if(current_groups.indexOf(emocio.id) > 0 || current_groups.length == 0) {
-			list_emocions += '<li><a class="tag2" data-id="' + emocio.id + '"><img style="left:5%;top:30%;width:30px;weight:30px" src="icons/' + emocio.id + '.png"><br/>' + emocio.name + '</a>' + '<a class="info2 emocions_info" data-theme="a">Informació</a></li>';
+			list_emocions += '<li><a class="tag" data-id="' + emocio.id + '"><img style="left:5%;top:30%;width:30px;weight:30px" src="icons/' + emocio.id + '.png"><br/>' + emocio.name + '</a>' + '<a class="info2 emocions_info" data-theme="a">Informació</a></li>';
 		}
 	});
 	$("#emocions-list").html(list_emocions).listview('refresh'); // No es pot inicialitzar abans de crear-lo
@@ -712,9 +712,11 @@ function get_info(type,id) {
 	});
 }
 function sync() {
+	url = domini_intra + "/assets/php/ajax/ajax_return_competences.php?lang=" + lang + "&id=" + entitat_id;
+	console.log(url);
 	$.ajax({
 		// TODO: Enviar l'idioma en funció del particular
-		url: domini_intra + "/assets/php/ajax/ajax_return_competences.php?lang=" + lang + "&id=" + entitat_id,
+		url: url,
 		success: function(data) {
 			// Arriba la resposta
 			if (data.success) {
