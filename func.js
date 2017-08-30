@@ -831,7 +831,7 @@ function build_interes_comps_list() {
 				break;
 			}
 		}
-		list += '<li><a data-id="' + id_comp + '">' + name + '</a></li>';
+		list += '<li><a class="tag" data-id="' + id_comp + '">' + name + '</a></li>';
 	});
 	$("#interes-comps-list").html(list).listview('refresh');
 }
