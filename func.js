@@ -397,7 +397,6 @@ $("#diamond").click(function() {
 			level = parseInt($(this).val());
 			levels = $(this).data('levels');
 			levels = levels.split('|');
-			console.log($(this));
 			if ($(this).data('id_intel') != 4) {
 				level += 2;
 			}
@@ -408,10 +407,8 @@ $("#diamond").click(function() {
 				else {
 					src = 'icons/intels/ic.png';
 				}
-				console.log(src);
 				$(this).parents().eq(2).find('img').first().attr('src',src);
 			}
-			console.log(levels);
 			$(this).parent().prev().find('span').text(levels[level]);
 		});
 	}
@@ -421,6 +418,7 @@ $("#diamond").click(function() {
 			e.preventDefault();
 			level = $(this).val();
 			id_intel = $(this).data('id_intel');
+			if(id_intel > 4)id_intel--;
 			levels = $(this).data('levels');
 			levels = levels.split('|');
 			url = domini_intra + "/assets/php/ajax/ajax_change_one_inteligence_inscrit.php?pro=" + project_id + "&id_user=" + student_id + "&nivell=" + level + "&id_tutor=" + user_id + "&id_intel=" + id_intel;
