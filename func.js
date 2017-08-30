@@ -32,7 +32,7 @@ var intel_timeout; // Guardem l'id del timeout que treu el missatge d'èxit al m
 $(document).on('ready',function(){
 	
 	
-	default_lang = 'spa';
+	default_lang = 'cat';
 	$('#logout-popup').popup();
 	$('#success-popup').popup();
 	$('#info-popup').popup();
@@ -418,10 +418,12 @@ $("#diamond").click(function() {
 			e.preventDefault();
 			level = $(this).val();
 			id_intel = $(this).data('id_intel');
+			console.log(typeof id_intel);
 			if(id_intel > 4)id_intel--;
 			levels = $(this).data('levels');
 			levels = levels.split('|');
 			url = domini_intra + "/assets/php/ajax/ajax_change_one_inteligence_inscrit.php?pro=" + project_id + "&id_user=" + student_id + "&nivell=" + level + "&id_tutor=" + user_id + "&id_intel=" + id_intel;
+			console.log(url);
 			$.ajax({
 				url: url,
 				success: function(data) {
@@ -469,10 +471,10 @@ $("#diamond").click(function() {
 		get_info(type,info_id);
 	});
 }
-{ // Àmbits page
-	$("#ambits-page").on( "pageshow", function( e ) {
-		$(this).find('h4').text(__("Àmbits") + " " + student_name);
-		build_ambits_list();
+{ // Interessos page
+	$("#interes-page").on( "pageshow", function( e ) {
+		$(this).find('h4').text(__("Interessos de") + " " + student_name);
+		build_ambits_list('i');
 		
 	});
 	$(document).on('click', "#interessos-list li a",function () {
@@ -482,12 +484,6 @@ $("#diamond").click(function() {
 		$('#interessos-popup p').text(comp_name + "?");
 	});
 	
-	$(document).on('click', "#habilitats-list li a",function () {
-		comp_id = $(this).data('id');
-		comp_name = $(this).text();
-		$('#habilitats-popup').popup('open');
-		$('#habilitats-popup p').text("" + comp_name + "?");
-	});
 	
 	$(document).on('click', "#si-interessos",function () {
 		update_interessos(1);
@@ -498,7 +494,21 @@ $("#diamond").click(function() {
 		update_interessos(0);
 		$("#interessos-popup").popup('close');
 	});
+}
+{ // Habilitats page
+	$("#habilitat-page").on( "pageshow", function( e ) {
+		$(this).find('h4').text(__("Habilitats de") + " " + student_name);
+		build_ambits_list('h');
+		
+	});
 	
+	$(document).on('click', "#habilitats-list li a",function () {
+		comp_id = $(this).data('id');
+		comp_name = $(this).text();
+		$('#habilitats-popup').popup('open');
+		$('#habilitats-popup p').text("" + comp_name + "?");
+	});
+
 	$(document).on('click', "#si-habilitats",function () {
 		update_habilitats(1);
 	});
@@ -508,7 +518,6 @@ $("#diamond").click(function() {
 		update_habilitats(0);
 		$("#habilitats-popup").popup('close');
 	});
-	
 }
 function login() {
 	$.mobile.navigate( "#projects-page" );
@@ -558,14 +567,14 @@ function build_emocions_list() {
 	});
 	$("#emocions-list").html(list_emocions).listview('refresh'); // No es pot inicialitzar abans de crear-lo
 }
-function build_ambits_list() {
+function build_ambits_list(type) {
 	list_ambits = "";
 	// console.log(ambits);
 	ambits.forEach(function (ambit, index) {
 		list_ambits += '<li><a data-id="' + ambit.id + '">' + ambit.name + '</a></li>';
 	});
-	$("#interessos-list").html(list_ambits).listview('refresh'); // No es pot inicialitzar abans de crear-lo
-	$("#habilitats-list").html(list_ambits).listview('refresh'); // No es pot inicialitzar abans de crear-lo
+	if(type == 'i') $("#interessos-list").html(list_ambits).listview('refresh'); // No es pot inicialitzar abans de crear-lo
+	else if(type == 'h') $("#habilitats-list").html(list_ambits).listview('refresh'); // No es pot inicialitzar abans de crear-lo
 }
 function build_comps_filter() {
 	filter_buttons = "";

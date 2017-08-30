@@ -250,8 +250,8 @@
 			</div>
 			<div class="ui-grid-b">
 				<div class="ui-block-a"><a class="ui-emocions" href="#emocions-page" data-role="button" data-text="Emocions">Emocions</a></div>
-				<div class="ui-block-b"><a class="ui-interessos" href="#ambits-page" data-role="button" data-text="Interessos">Interessos</a></div>
-				<div class="ui-block-c"><a class="ui-habilitats" href="#ambits-page" data-role="button" data-text="Habilitats">Habilitats</a></div>
+				<div class="ui-block-b"><a class="ui-interessos" href="#interes-page" data-role="button" data-text="Interessos">Interessos</a></div>
+				<div class="ui-block-c"><a class="ui-habilitats" href="#habilitat-page" data-role="button" data-text="Habilitats">Habilitats</a></div>
 			</div>
 		</div>
 			
@@ -473,9 +473,8 @@
 	
 	</div>
 	
-	<!-- ÀMBITS PAGE -->
-	<div data-role="page" id="ambits-page">
-
+	<!-- INTERESSOS PAGE -->
+	<div data-role="page" id="interes-page">
 
 		<div data-role="header">
 			<h1><img border="0" src="logoh.png" alt="AS EduPro" style="display:inline"></h1>
@@ -484,13 +483,10 @@
 		</div>
 
 		<div data-role="main" class="ui-content">
-		<center><h4>Àmbits</h4></center>
+		<center><h4>Interessos de</h4></center>
 		<hr><br/>
 			<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar interessos" data-inset="true" id="interessos-list">
 			</ul>
-			<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar habilitats" data-inset="true" id="habilitats-list">
-			</ul>
-			
 		</div>
 
 	
@@ -505,6 +501,38 @@
 			</form>
 		</div>
 		
+		<div data-role="popup" id="details-comps-popup" align="center" style="background-color:#004168">
+			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
+			<h3>Observacions</h3>
+			<textarea style="height: 70px;width: 90%" rows="16" cols="10"></textarea>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+				<button type="button" id="si-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Desar</button>
+				<button type="button" id="no-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-right:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">Cancel·lar</button>
+			</fieldset>
+		</div>
+			
+		<div data-role="footer" id="footer-interessos" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
+		<center><button id="ambits-update" style="border-color:green;background-color:green;color:white" class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow-icon" data-text="CompActualitzada">La competència s'ha actualitzat correctament</a></center>
+		</div>
+	</div>
+	
+	<!-- HABILITATS PAGE -->
+	<div data-role="page" id="habilitat-page">
+
+
+		<div data-role="header">
+			<h1><img border="0" src="logoh.png" alt="AS EduPro" style="display:inline"></h1>
+			<a href="#" class="ui-btn ui-icon-back goback_btn ui-btn-icon-notext ui-button-header" style="background-color:#186792; border-color:#186792; color=#3dc3ef" data-text="Tornar">Tornar</a>
+			<a href="#rightpanel" data-rel="panel" class="ui-btn ui-icon-bars ui-btn-icon-notext ui-button-header" style="background-color:#186792; border-color:#186792; color=#3dc3ef" data-text="Menu">Menú</a>
+		</div>
+
+		<div data-role="main" class="ui-content">
+		<center><h4>Habilitats de</h4></center>
+		<hr><br/>
+			<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar habilitats" data-inset="true" id="habilitats-list">
+			</ul>
+		</div>
+
 		<div data-rel="popup" data-role="popup" id="habilitats-popup" style="background-color:#004168">
 			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
 			<p></p>
@@ -524,10 +552,6 @@
 				<button type="button" id="si-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Desar</button>
 				<button type="button" id="no-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-right:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">Cancel·lar</button>
 			</fieldset>
-		</div>
-			
-		<div data-role="footer" id="footer-interessos" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
-		<center><button id="ambits-update" style="border-color:green;background-color:green;color:white" class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow-icon" data-text="CompActualitzada">La competència s'ha actualitzat correctament</a></center>
 		</div>
 		
 		<div data-role="footer" id="footer-habilitats" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">

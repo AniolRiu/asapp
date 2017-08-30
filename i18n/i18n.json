@@ -198,6 +198,14 @@
 		"cat": "Sortir de l'app",
 		"spa": "Salir de la app"
 		},
+	 "Interessos" : {
+        "cat": "Interessos",
+        "spa": "Intereses"
+        },
+	 "Habilitats" : {
+        "cat": "Habilitats",
+        "spa": "Habilidades"
+        },
     "Buscar interessos" : {
         "cat": "Buscar interessos",
         "spa": "Buscar intereses"
@@ -209,6 +217,14 @@
 	"Àmbits" : {
         "cat": "Interessos i habilitats",
         "spa": "Intereses y habilidades"
+        },
+	"Interessos de" : {
+        "cat": "Interessos de ",
+        "spa": "Intereses de "
+        },
+	"Habilitats de" : {
+        "cat": "Habilitats de ",
+        "spa": "Habilidades de "
         },
 	"Error" : {
         "cat": "No es pot carregar la informació",
