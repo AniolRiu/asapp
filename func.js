@@ -475,13 +475,17 @@ $("#diamond").click(function() {
 	$("#interes-page").on( "pageshow", function( e ) {
 		$(this).find('h4').text(__("Interessos de") + " " + student_name);
 		build_ambits_list('i');
-		
 	});
-	$(document).on('click', "#interessos-list li a",function () {
+	$(document).on('click', "#interessos-list li a.tag",function () {
 		comp_id = $(this).data('id');
 		comp_name = $(this).text();
 		$('#interessos-popup').popup('open');
 		$('#interessos-popup p').text(comp_name + "?");
+	});
+	$(document).on('click', "#interessos-list li a.info",function () {
+		info_id = $(this).data("id");
+		type = 5;
+		get_info(type,info_id);
 	});
 	
 	
@@ -502,11 +506,16 @@ $("#diamond").click(function() {
 		
 	});
 	
-	$(document).on('click', "#habilitats-list li a",function () {
+	$(document).on('click', "#habilitats-list li a.tag",function () {
 		comp_id = $(this).data('id');
 		comp_name = $(this).text();
 		$('#habilitats-popup').popup('open');
 		$('#habilitats-popup p').text("" + comp_name + "?");
+	});
+	$(document).on('click', "#habilitats-list li a.info",function () {
+		info_id = $(this).data("id");
+		type = 5;
+		get_info(type,info_id);
 	});
 
 	$(document).on('click', "#si-habilitats",function () {
@@ -534,7 +543,7 @@ function build_comp_list() {
 	if (!student_sex) {
 		comps_masc.forEach(function (comp, index) {
 			if(current_groups.indexOf(parseInt(comp.group)) > -1 || current_groups.length == 0) {
-				list = list + '<li><a class="tag" data-id="' + comp.id + '">' + comp.name + '</a>' + '<a class="info" data-theme="a" data-position-to="window" data-transition="pop" data-id="' + comp.id + '">Informació</a></li>';
+				list = list + '<li><a class="tag" data-id="' + comp.id + '">' + comp.name + '</a>' + '<a class="info" data-theme="a" data-id="' + comp.id + '">Informació</a></li>';
 			}
 		});
 	}
@@ -571,7 +580,7 @@ function build_ambits_list(type) {
 	list_ambits = "";
 	// console.log(ambits);
 	ambits.forEach(function (ambit, index) {
-		list_ambits += '<li><a data-id="' + ambit.id + '">' + ambit.name + '</a></li>';
+		list_ambits += '<li><a class="tag" data-id="' + ambit.id + '">' + ambit.name + '</a><a class="info" data-theme="a" data-id="' + ambit.id + '">Informació</a></li>';
 	});
 	if(type == 'i') $("#interessos-list").html(list_ambits).listview('refresh'); // No es pot inicialitzar abans de crear-lo
 	else if(type == 'h') $("#habilitats-list").html(list_ambits).listview('refresh'); // No es pot inicialitzar abans de crear-lo
