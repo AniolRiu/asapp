@@ -189,8 +189,10 @@ $("#diamond").click(function() {
 				build_comps_filter();
 			}
 		}
+		url = "https://comunitat.aim-solo.com/ajax/getProjectsByTutor?tutor_id=" + user_id;
+		console.log(url);
 		$.ajax({
-			url: "https://comunitat.aim-solo.com/ajax/getProjectsByTutor?tutor_id=" + user_id,
+			url: url,
 			success: function(data) {
 				data = JSON.parse(data);
 				if (data.success) {

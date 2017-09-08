@@ -294,9 +294,11 @@
 			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
 			<p></p>
 			<form align="center">
-				<fieldset data-role="controlgroup" data-type="horizontal">
-					<button type="button" id="si-comp" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Sí</button>
-					<button type="button" id="no-comp" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-right:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">No</button>
+				<fieldset data-role="controlgroup" data-type="horizontal" style="display:inline-block; margin-right:20px;">
+					<button type="button" id="si-comp" style="background-color:#3dc3ef;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Sí</button>
+				</fieldset>
+				<fieldset data-role="controlgroup" data-type="horizontal"  style="display:inline-block; margin-left:20px;">
+					<button type="button" id="no-comp" style="background-color:#3dc3ef;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">No</button>
 				</fieldset>
 			</form>
 		</div>
@@ -338,9 +340,11 @@
 			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
 			<p></p>
 			<form align="center">
-				<fieldset data-role="controlgroup" data-type="horizontal">
-					<button type="button" id="si-comp_millora" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Sí</button>
-					<button type="button" id="no-comp_millora" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">No</button>
+				<fieldset data-role="controlgroup" data-type="horizontal" style="display:inline-block; margin-right:20px;">
+					<button type="button" id="si-comp_millora" style="background-color:#3dc3ef;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Sí</button>
+				</fieldset>
+				<fieldset data-role="controlgroup" data-type="horizontal"  style="display:inline-block; margin-left:20px;">
+					<button type="button" id="no-comp_millora" style="background-color:#3dc3ef;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">No</button>
 				</fieldset>
 			</form>
 		</div>
@@ -445,28 +449,19 @@
 		</div>
 
 	
-		<div data-rel="popup" data-role="popup" id="emocions-popup" style="background-color:#004168">
+		<div data-rel="popup" data-role="popup" id="emocions-popup" style="background-color:#004168; padding:20px;">
 			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
 			<p></p>
 			<form align="center">
-				<fieldset data-role="controlgroup" data-type="horizontal">
-					<button type="button" id="si-emocions" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Sí</button>
-					<button type="button" id="no-emocions" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">No</button>
+				<fieldset data-role="controlgroup" data-type="horizontal" style="display:inline-block; margin-right:20px;">
+					<button type="button" id="si-emocions" style="background-color:#3dc3ef;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Sí</button>
+				</fieldset>
+				<fieldset data-role="controlgroup" data-type="horizontal"  style="display:inline-block; margin-left:20px;">
+					<button type="button" id="no-emocions" style="background-color:#3dc3ef;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">No</button>
 				</fieldset>
 			</form>
 		</div>
 
-		<div data-role="popup" id="details-comps-popup" align="center" style="background-color:#004168">
-			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
-			<h3>Observacions</h3>
-			<textarea style="height: 70px;width: 90%" rows="16" cols="10"></textarea>
-			<fieldset data-role="controlgroup" data-type="horizontal">
-				<button type="button" id="si-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Desar</button>
-				<button type="button" id="no-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-right:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">Cancel·lar</button>
-			</fieldset>
-		</div>
-		
-			
 		<div data-role="footer" id="footer-emocions" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
 		<center><button id="emocions-update" style="border-color:green;background-color:green;color:white" class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow-icon" data-text="CompActualitzada">La competència s'ha actualitzat correctament</a></center>
 		</div>
@@ -494,23 +489,16 @@
 			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
 			<p></p>
 			<form align="center">
-				<fieldset data-role="controlgroup" data-type="horizontal">
-					<button type="button" id="si-interessos" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Sí</button>
-					<button type="button" id="no-interessos" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">No</button>
+				<fieldset data-role="controlgroup" data-type="horizontal" style="display:inline-block; margin-right:20px;">
+					<button type="button" id="si-interessos" style="background-color:#3dc3ef;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Sí</button>
 				</fieldset>
+				<fieldset data-role="controlgroup" data-type="horizontal"  style="display:inline-block; margin-left:20px;">
+					<button type="button" id="no-interessos" style="background-color:#3dc3ef;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">No</button>
+				</fieldset>
+				
 			</form>
 		</div>
 		
-		<div data-role="popup" id="details-comps-popup" align="center" style="background-color:#004168">
-			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
-			<h3>Observacions</h3>
-			<textarea style="height: 70px;width: 90%" rows="16" cols="10"></textarea>
-			<fieldset data-role="controlgroup" data-type="horizontal">
-				<button type="button" id="si-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Desar</button>
-				<button type="button" id="no-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-right:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">Cancel·lar</button>
-			</fieldset>
-		</div>
-			
 		<div data-role="footer" id="footer-interessos" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
 		<center><button id="ambits-update" style="border-color:green;background-color:green;color:white" class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow-icon" data-text="CompActualitzada">La competència s'ha actualitzat correctament</a></center>
 		</div>
@@ -537,21 +525,13 @@
 			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
 			<p></p>
 			<form align="center">
-				<fieldset data-role="controlgroup" data-type="horizontal">
-					<button type="button" id="si-habilitats" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Sí</button>
-					<button type="button" id="no-habilitats" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">No</button>
+				<fieldset data-role="controlgroup" data-type="horizontal" style="display:inline-block; margin-right:20px;">
+					<button type="button" id="si-habilitats" style="background-color:#3dc3ef;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Sí</button>
+				</fieldset>
+				<fieldset data-role="controlgroup" data-type="horizontal"  style="display:inline-block; margin-left:20px;">
+					<button type="button" id="no-habilitats" style="background-color:#3dc3ef;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">No</button>
 				</fieldset>
 			</form>
-		</div>
-		
-		<div data-role="popup" id="details-comps-popup" align="center" style="background-color:#004168">
-			<a href="#" data-rel="back" data-role="button" style="background-color:#000000;border-color:#000000;color:#ffffff" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Tancar</a>
-			<h3>Observacions</h3>
-			<textarea style="height: 70px;width: 90%" rows="16" cols="10"></textarea>
-			<fieldset data-role="controlgroup" data-type="horizontal">
-				<button type="button" id="si-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-left:1px" class="ui-btn ui-icon-check ui-btn-icon-left">Desar</button>
-				<button type="button" id="no-details" style="background-color:#004168;border-color:#004168;color:#ffffff;margin-right:1px" class="ui-btn ui-icon-delete ui-btn-icon-left">Cancel·lar</button>
-			</fieldset>
 		</div>
 		
 		<div data-role="footer" id="footer-habilitats" data-id="main-footer" style="background-color:green;border-color:green" data-position="fixed">
@@ -603,14 +583,11 @@
 		</div>
 	</div><!-- /rightpanel -->
 
-	<div data-rel="popup" data-role="popup" id="info-popup" style="background-color:#FFF;color:#000;border-color:#FFF;">
+	<div data-rel="popup" data-role="popup" id="info-popup" style="background-color:#004063;color:white;border-color:#FFF;">
 		<a href="#" data-rel="back" style="background-color:#000000;border-color:#000000;color:#ffffff" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
 		<div id="info_description" style="margin-left:20px;margin-bottom:20px;margin-top:20px;margin-right:20px;text-align: justify;"></div>
 	</div>
 	
-	
-
-
 </body>
 </html>
 <script src="func.js"></script>
