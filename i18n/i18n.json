@@ -213,25 +213,57 @@
     "Buscar habilitats" : {
         "cat": "Buscar habilitats",
         "spa": "Buscar habilidades"
-        },
+    },
 	"Àmbits" : {
         "cat": "Interessos i habilitats",
         "spa": "Intereses y habilidades"
-        },
+    },
 	"Interessos de" : {
         "cat": "Interessos de ",
         "spa": "Intereses de "
-        },
+    },
 	"Habilitats de" : {
         "cat": "Habilitats de ",
         "spa": "Habilidades de "
-        },
+    },
 	"Error" : {
         "cat": "No es pot carregar la informació",
         "spa": "No se ha podido cargar la infomación"
-        },
+    },
 	"Ajuda" : {
 		"cat": "Ajuda",
 		"spa": "Ayuda"
-		}
+	},
+	"Ajuda1Pregunta" : {
+		"cat": "Algunes frases no es veuen bé o només es veuen les icones. Què puc fer?",
+		"spa": "Algunas frases no se ven bien o no se ven los iconos. ¿Qué puedo hacer?"
+	},
+	"Ajuda1Resposta" : {
+		"cat": "Si teniu aquest problema, proveu de tancar la sessió i seguidament reiniciar l'aplicació. Si el problema persisteix, esborreu la memòria cau de l'aplicació i torneu-ho a provar.",
+		"spa": "Si tenéis este problema, provad a cerrar la sesión y seguidamente reiniciar la aplicación. Si el problema persiste, eliminad la memoria caché de la aplicación y volved a probar."
+	},
+	"Ajuda2Pregunta" : {
+		"cat": "Com puc canviar l'idioma de l'aplicació?",
+		"spa": "¿Cómo puedo cambiar el idioma de la aplicación?"
+	},
+	"Ajuda2Resposta" : {
+		"cat": "Per canviar l'idioma de l'aplicació, cal canviar l'idioma des del portal web de EduPRO. Si teniu algun problema, contacteu amb sia@aim-solo.com.",
+		"spa": "Para cambiar el idioma de la aplicación, debes cambiar el idioma desde el portal web de EduPRO. Si tienes algún problema, contactad con sia@aim-solo.com."
+	},
+	"Ajuda3Pregunta" : {
+		"cat": "Necessito canviar las classe. Com ho faig?",
+		"spa": "Necesito cambiar de proyecto. ¿Cómo lo hago?"
+	},
+	"Ajuda3Resposta" : {
+		"cat": "Per canviar de projecte, només cal obrir el menú lateral, prémer Canviar de projecte i dins l'apartat seleccionar el projecte desitjat.",
+		"spa": "Para cambiar de proyecto, solamente debes abrir el panel lateral, pulsar sobre Cambiar proyecto y dentro del apartado seleccionar el proyecto deseado."
+	},
+	"Ajuda4Pregunta" : {
+		"cat": "Haig d'estar connectat a Internet per a que l'aplicació funcioni?",
+		"spa": "¿Tengo que estar conectado a Internet para que la aplicación funcione?"
+	},
+	"Ajuda4Resposta" : {
+		"cat": "Sí. Sense connexió a Internet no es poden sincronitzar les dades amb el servidor i la base de dades.",
+		"spa": "Sí. Sin conexión a Internet no se pueden sincronizar los datos con el servidor y la base de datos."
+	}
 }

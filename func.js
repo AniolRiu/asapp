@@ -32,7 +32,7 @@ var intel_timeout; // Guardem l'id del timeout que treu el missatge d'èxit al m
 $(document).on('ready',function(){
 	
 	
-	default_lang = 'cat';
+	default_lang = 'spa';
 	$('#logout-popup').popup();
 	$('#success-popup').popup();
 	$('#info-popup').popup();
@@ -124,7 +124,7 @@ $("#diamond").click(function() {
 		e.stopPropagation();
 		var username = $('#username').val();
 		var pwd = $('#pwd').val();
-		url = domini_com + "ajax/APPLogin?username=" + username + "&password=" + pwd;
+		url = domini_intra + "/assets/php/ajax/APPedupro_login.php?u=" + username + "&p=" + pwd;
 		console.log(url);
 		$.ajax({
 			url: url,
@@ -244,7 +244,7 @@ $("#diamond").click(function() {
 					}
 					else {
 						data.users.forEach(function (user, index) {
-							var list_item = $('<li><a data-id="' + user.id + '" data-sex="' + user.sex + '">' + user.name + ' ' + user.lastname + '</a></li>');
+							var list_item = $('<li><a data-id="' + user.id + '" data-sex="' + user.sex + '">' + user.lastname + ', ' + user.name + '</a></li>');
 							list.append(list_item).listview('refresh');
 						});
 					}
