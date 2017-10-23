@@ -43,20 +43,20 @@
 		"spa":"Inteligencias"
 		},
 	"Comps" : {
-		"cat":"Competències",
-		"spa":"Competencias"
+		"cat":"Skills",
+		"spa":"Skills"
 		},
 	"Comps_millora" : {
-		"cat":"Competències de millora",
-		"spa":"Competencias de mejora"
+		"cat":"Skills 2do",
+		"spa":"Skills 2do"
 		},
 	"Comps_millora1" : {
-		"cat":"Competències",
-		"spa":"Competencias"
+		"cat":"Skills",
+		"spa":"Skills"
 		},
 	"Comps_millora2" : {
-		"cat":"de millora",
-		"spa":"de mejora"
+		"cat":"2do",
+		"spa":"2do"
 		},
 	"Emocions" : {
 		"cat":"Emocions",
@@ -107,8 +107,8 @@
 		"spa":"Visual: "
 		},
 	"Buscar competència" : {
-		"cat":"Buscar competència",
-		"spa":"Buscar competencia"
+		"cat":"Buscar skill",
+		"spa":"Buscar skill"
 		},
 	"Buscar estudiant" : {
 		"cat":"Buscar estudiant",
@@ -139,12 +139,12 @@
 		"spa":"Proyectos de"
 		},
 	"Competències de" : {
-		"cat":"Competències de",
-		"spa":"Competencias de"
+		"cat":"Skills de",
+		"spa":"Skills de"
 		},
 	"Competències de millora de" : {
-		"cat":"Competències de millora de",
-		"spa":"Competencias de mejora de"
+		"cat":"Skills 2do de",
+		"spa":"Skills 2do de"
 		},
 	"Alumne" : {
 		"cat":"Alumne:",
