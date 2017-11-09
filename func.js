@@ -28,10 +28,9 @@ var interes_comps = {};
 var recents_comps = [];
 var total_comp_clicks = 0;
 var intel_timeout; // Guardem l'id del timeout que treu el missatge d'èxit al modificar una intel
+var app_first_open = true;
 
 $(document).on('ready',function(){
-	
-	
 	default_lang = 'spa';
 	$('#logout-popup').popup();
 	$('#success-popup').popup();
@@ -82,31 +81,31 @@ $(document).on('ready',function(){
 			});
 		});
 	}
-	
-});
-$("#recorder").click(function() {
-	window.location.href="recorder.html";
-});
-$("#diamond").click(function() {
-	window.location.href="recorder/new1.html";
-});
-{ //Splash screen
-	{ // Carreguem variables de la memòria local
-		user_id = localStorage.getItem('user_id');
-		user_name = localStorage.getItem('user_name');
-		entitat_id = localStorage.getItem('entitat_id');
-		project_id = localStorage.getItem('project_id');
-		project_name = localStorage.getItem('project_name');
-		comps_masc = JSON.parse(localStorage.getItem('comps_masc'));
-		comps_fem = JSON.parse(localStorage.getItem('comps_fem'));
-		comps_millora = JSON.parse(localStorage.getItem('comps_millora'));
-		comps_groups = JSON.parse(localStorage.getItem('comps_groups'));
-		emocions = JSON.parse(localStorage.getItem('emocions'));
-		ambits = JSON.parse(localStorage.getItem('ambits'));
-		lang = localStorage.getItem('lang');
+	if(app_first_open) {
+		$.mobile.changePage("#splash");
+		app_first_open  = false;
 	}
-	
+});
+
+{ //Splash screen
 	$( "#splash" ).on( "pageshow", function( e ) {
+		addToHomescreen();
+		{ // Carreguem variables de la memòria local
+			user_id = localStorage.getItem('user_id');
+			user_name = localStorage.getItem('user_name');
+			entitat_id = localStorage.getItem('entitat_id');
+			project_id = localStorage.getItem('project_id');
+			project_name = localStorage.getItem('project_name');
+			comps_masc = JSON.parse(localStorage.getItem('comps_masc'));
+			comps_fem = JSON.parse(localStorage.getItem('comps_fem'));
+			comps_millora = JSON.parse(localStorage.getItem('comps_millora'));
+			comps_groups = JSON.parse(localStorage.getItem('comps_groups'));
+			emocions = JSON.parse(localStorage.getItem('emocions'));
+			ambits = JSON.parse(localStorage.getItem('ambits'));
+			lang = localStorage.getItem('lang');
+		}
+		
+		
 		setTimeout(function() {
 			if ((user_id != null) && (user_name != null) && (lang != null)) {
 				$.mobile.changePage("#projects-page", "fade");
@@ -115,10 +114,9 @@ $("#diamond").click(function() {
 				$.mobile.changePage("#login-page", "fade");
 			}
 		}, 2000);
-	})
+	});
 }
 { // Login page
-		
 	$('#login-form').submit(function(e) {
 		e.preventDefault();
 		e.stopPropagation();
