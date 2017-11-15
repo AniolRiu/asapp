@@ -29,6 +29,7 @@ var recents_comps = [];
 var total_comp_clicks = 0;
 var intel_timeout; // Guardem l'id del timeout que treu el missatge d'èxit al modificar una intel
 var app_first_open = true;
+var dades_comps; // Es guarda l'array que indica per un alumnes si té la competència i si la té compartida
 
 $(document).on('ready',function(){
 	default_lang = 'spa';
@@ -87,7 +88,7 @@ $(document).on('ready',function(){
 	}
 });
 
-{ //Splash screen
+{ // Splash screen
 	$( "#splash" ).on( "pageshow", function( e ) {
 		addToHomescreen();
 		{ // Carreguem variables de la memòria local
@@ -267,39 +268,46 @@ $(document).on('ready',function(){
 	$("#comps-page").on( "pageshow", function( e ) {
 		$("#footer").hide();
 		$(this).find('h4').text(__("Competències de") + " " + student_name);
-		build_comp_list();
-		
+		url = domini_intra + "/assets/php/ajax/get_etiquetatge_comp.php?lang=" + lang + "&id=" + entitat_id + "&i=" + student_id + "&tutor_id=" + user_id;
+		console.log(url);
+		$.get(url, function(data) {
+			data = JSON.parse(data);
+			console.log(data);
+			if(data.success) {
+				dades_comps = data.comps;
+				build_comp_list(data.comps);
+				// build_interes_comps_list();
+			}
+		});
 	});
-	$(document).on('click', "#comps-list li a.tag, #interes-comps-list li a.tag",function () {
-		comp_id = $(this).data('id');
-		total_comp_clicks++;
-		localStorage.setItem('total_comp_clicks', total_comp_clicks);
-		if (comp_id in interes_comps) {
-			interes_comps[comp_id]++;
-		}
-		else {
-			interes_comps[comp_id] = 1;
-		}
-		localStorage.setItem('interes_comps', interes_comps);
-		update_recents_comps(comp_id);
-		build_interes_comps_list();
-		
-		comp_name = $(this).text();
-		$('#comps-popup').popup({ transition: "pop" }).popup('open');
-		$('#comps-popup p').text(comp_name + "?");
-	});
-	$(document).on('click', "#comps-list li a.info, #interes-comps-list li a.info",function () {
+	$(document).on('click', "#comps-list li a.info, #interes-comps-list li a.info", function () {
 		info_id = $(this).data("id");
 		type = 2;
 		get_info(type,info_id);
 	});
-	
-	$(document).on('click', "#si-comp",function () {
-		update_comp(1);
+	$(document).on('click', "#comps-list li a.tag .work, #interes-comps-list li a.tag .work", function () {
+		comp_id = $(this).parent().parent().data("id");
+		state = $(this).data('state');
+		update_work('competencia', !state, $(this));
 	});
-	
-	$(document).on('click', "#no-comp",function () {
-		update_comp(0);
+	$(document).on('change', "#comps-list li a.tag select, #interes-comps-list li a.tag select", function () {
+		comp_id = $(this).parent().parent().data("id");
+		{ // Gestionem la llista de comps destacades
+			total_comp_clicks++;
+			localStorage.setItem('total_comp_clicks', total_comp_clicks);
+			if (comp_id in interes_comps) {
+				interes_comps[comp_id]++;
+			}
+			else {
+				interes_comps[comp_id] = 1;
+			}
+			localStorage.setItem('interes_comps', interes_comps);
+			update_recents_comps(comp_id);
+			// build_interes_comps_list();
+		}
+		value = $(this).val();
+		update_comp(value);
+		
 	});
 	
 	{ //Coses rares comentades...
@@ -311,7 +319,7 @@ $(document).on('ready',function(){
 			else {
 				current_groups.splice(current_groups.indexOf(id), 1);
 			}
-			build_comp_list();
+			build_comp_list(/* Aquí falta el paràmetre array amb les competències que té, les que no té i les que té compartides*/);
 		});
 		
 		/*$(document).on('swipeleft swiperight', "#comps-list li", function (e) {
@@ -335,23 +343,27 @@ $(document).on('ready',function(){
 	$("#comps_millora-page").on( "pageshow", function( e ) {
 		$("#footer").hide();
 		$(this).find('h4').text(__("Competències de millora de") + " " + student_name);
-		build_comp_millora_list();
-	});
-	$(document).on('click', "#comps_millora-list li a.tag1",function () {
-		comp_id = $(this).data('id');
-		comp_name = $(this).text();
-		$('#comps_millora-popup').popup({ positionTo:"window" }).popup({ transition: "pop" }).popup('open');
-		$('#comps_millora-popup p').text(comp_name + "?");
-	});
-	
-	$(document).on('click', "#si-comp_millora",function () {
-		update_comp_millora(1);
+		url = domini_intra + "/assets/php/ajax/get_etiquetatge_comp_millora.php?lang=" + lang + "&id=" + entitat_id + "&i=" + student_id + "&tutor_id=" + user_id;
+		console.log(url);
+		$.get(url, function(data) {
+			data = JSON.parse(data);
+			console.log(data);
+			if(data.success) {
+				build_comp_millora_list(data.comps);
+			}
+		});
 	});
 	
-	$(document).on('click', "#no-comp_millora",function () {
-		update_comp_millora(0);
+	$(document).on('change', "#comps_millora-list li a.tag select",function () {
+		comp_id = $(this).parent().parent().data("id");
+		value = $(this).val();
+		update_comp_millora(value);
 	});
-
+	$(document).on('click', "#comps_millora-list li a.tag .work", function () {
+		comp_id = $(this).parent().parent().data("id");
+		state = $(this).data('state');
+		update_work('competencia_millora', !state, $(this));
+	});
 	$(document).on('click', ".comps_millora_info",function () {
 		info_id = $(this).prev().data('id');
 		type = 3;
@@ -377,6 +389,10 @@ $(document).on('ready',function(){
 							$(this).val(parseInt(data[index])).slider('refresh');
 							$(this).trigger('change');
 						});
+						$(".intel_work").each(function( index ) {
+							$(this).attr('src', 'icons/share/' + data.work[index+1] + '.png');
+							$(this).data('state', data.work[index+1]);
+						});
 					}
 					else {
 					}
@@ -384,6 +400,12 @@ $(document).on('ready',function(){
 			});
 		}
 		
+		$(document).on('click', ".intel_work", function () {
+			comp_id = $(this).data("id_intel");
+			state = $(this).data('state');
+			update_work('intel', !state, $(this));
+		});
+	
 		$(document).on('click', ".intels_info",function () {
 			info_id = $(this).data('id_intel');
 			type = 1;
@@ -444,27 +466,29 @@ $(document).on('ready',function(){
 }
 { // Emocions page
 	$("#emocions-page").on( "pageshow", function( e ) {
-		$(this).find('h4').text(__("Emocions de") + " " + student_name);;
-		build_emocions_list();
+		$(this).find('h4').text(__("Emocions de") + " " + student_name);
+		url = domini_intra + "/assets/php/ajax/get_etiquetatge_emocions.php?lang=" + lang + "&id=" + entitat_id + "&i=" + student_id + "&tutor_id=" + user_id;
+		console.log(url);
+		$.get(url, function(data) {
+			data = JSON.parse(data);
+			console.log(data);
+			if(data.success) {
+				build_emocions_list(data.comps);
+			}
+		});
 		
 	});
-	$(document).on('click', "#emocions-list li a.tag",function () {
-		comp_id = $(this).data('id');
-		comp_name = $(this).text();
-		$('#emocions-popup').popup('open');
-		$('#emocions-popup p').text("Gestiona la " + comp_name + "?");
-	});
-	
-	$(document).on('click', "#si-emocions",function () {
-		update_emocions(1);
-	});
-	
-	$(document).on('click', "#no-emocions",function () {
-		$("#footer-emocions").hide();
-		update_emocions(0);
-		$("#emocions-popup").popup('close');
-	});
 
+	$(document).on('change', "#emocions-list li a.tag select",function () {
+		comp_id = $(this).parent().parent().data("id");
+		value = $(this).val();
+		update_emocions(value);
+	});
+	$(document).on('click', "#emocions-list li a.tag .work", function () {
+		comp_id = $(this).parent().parent().data("id");
+		state = $(this).data('state');
+		update_work('emocio', !state, $(this));
+	});
 	$(document).on('click', ".emocions_info",function () {
 		info_id = $(this).prev().data('id');
 		type = 4;
@@ -474,58 +498,50 @@ $(document).on('ready',function(){
 { // Interessos page
 	$("#interes-page").on( "pageshow", function( e ) {
 		$(this).find('h4').text(__("Interessos de") + " " + student_name);
-		build_ambits_list('i');
+		url = domini_intra + "/assets/php/ajax/get_etiquetatge_i_h.php?lang=" + lang + "&id=" + entitat_id + "&i=" + student_id + "&tutor_id=" + user_id;
+		console.log(url);
+		$.get(url, function(data) {
+			data = JSON.parse(data);
+			console.log(data);
+			if(data.success) {
+				build_ambits_list('i', data.interessos);
+			}
+		});
 	});
-	$(document).on('click', "#interessos-list li a.tag",function () {
-		comp_id = $(this).data('id');
-		comp_name = $(this).text();
-		$('#interessos-popup').popup('open');
-		$('#interessos-popup p').text(comp_name + "?");
+	$(document).on('change', "#interessos-list li a.tag select",function () {
+		comp_id = $(this).parent().parent().data("id");
+		value = $(this).val();
+		update_interessos(value);
 	});
 	$(document).on('click', "#interessos-list li a.info",function () {
 		info_id = $(this).data("id");
 		type = 5;
 		get_info(type,info_id);
 	});
-	
-	
-	$(document).on('click', "#si-interessos",function () {
-		update_interessos(1);
-	});
-	
-	$(document).on('click', "#no-interessos",function () {
-		$("#footer-interessos").hide();
-		update_interessos(0);
-		$("#interessos-popup").popup('close');
-	});
 }
 { // Habilitats page
 	$("#habilitat-page").on( "pageshow", function( e ) {
 		$(this).find('h4').text(__("Habilitats de") + " " + student_name);
-		build_ambits_list('h');
-		
+		url = domini_intra + "/assets/php/ajax/get_etiquetatge_i_h.php?lang=" + lang + "&id=" + entitat_id + "&i=" + student_id + "&tutor_id=" + user_id;
+		console.log(url);
+		$.get(url, function(data) {
+			data = JSON.parse(data);
+			console.log(data);
+			if(data.success) {
+				build_ambits_list('h', data.habilitats);
+			}
+		});
 	});
 	
-	$(document).on('click', "#habilitats-list li a.tag",function () {
-		comp_id = $(this).data('id');
-		comp_name = $(this).text();
-		$('#habilitats-popup').popup('open');
-		$('#habilitats-popup p').text("" + comp_name + "?");
+	$(document).on('change', "#habilitats-list li a.tag select",function () {
+		comp_id = $(this).parent().parent().data("id");
+		value = $(this).val();
+		update_habilitats(value);
 	});
 	$(document).on('click', "#habilitats-list li a.info",function () {
 		info_id = $(this).data("id");
 		type = 5;
 		get_info(type,info_id);
-	});
-
-	$(document).on('click', "#si-habilitats",function () {
-		update_habilitats(1);
-	});
-	
-	$(document).on('click', "#no-habilitats",function () {
-		$("#footer-habilitats").hide();
-		update_habilitats(0);
-		$("#habilitats-popup").popup('close');
 	});
 }
 function login() {
@@ -538,52 +554,155 @@ function goback() {
 	parent.history.back();
 	return false;
 }
-function build_comp_list() {
+function build_comp_list(comps) {
 	list = "";
 	if (!student_sex) {
-		comps_masc.forEach(function (comp, index) {
-			if(current_groups.indexOf(parseInt(comp.group)) > -1 || current_groups.length == 0) {
-				list = list + '<li><a class="tag" data-id="' + comp.id + '">' + comp.name + '</a>' + '<a class="info" data-theme="a" data-id="' + comp.id + '">Informació</a></li>';
-			}
-		});
+		comps_gender = comps_masc;
 	}
 	else {
-		comps_fem.forEach(function (comp, index) {
-			if(current_groups.indexOf(parseInt(comp.group)) > -1 || current_groups.length == 0) {
-				list = list + '<li><a class="tag" data-id="' + comp.id + '">' + comp.name + '</a>' + '<a class="info" data-theme="a" data-position-to="window" data-transition="pop" data-id="' + comp.id + '">Informació</a></li>';
-			}
-		});
+		comps_gender = comps_fem;
 	}
+	comps_gender.forEach(function (comp, index) {
+		if(current_groups.indexOf(parseInt(comp.group)) > -1 || current_groups.length == 0) {
+			list = list + '\
+				<li class="ui-field-contain">\
+					<a class="tag" data-id="' + comp.id + '" style="padding:0px 16px 0px 16px;">\
+						<select class="comp_select" data-role="flipswitch" style="display:inline-block;" data-mini="true" data_id="' + comp.id + '">\
+							<option value="0">' + __('No') + '</option>\
+							<option value="1"' + (comps[comp.id]['te']?'selected':'') + '>' + __('Sí') + '</option>\
+						</select>\
+						<label style="display:inline-block; font-size:11px; margin:0px 0px 0px 10px;">' + comp.name + '</label>\
+						<span style="float:right">\
+							<img class="work" data-state="' + (comps[comp.id]['compartida'] + 0) + '" src="icons/share/' + (comps[comp.id]['compartida'] + 0) + '.png" style="height:25.44px; margin:6.25px; position:relative; top:1.5px">\
+						</span>\
+					</a>\
+					<a class="info" data-theme="a" data-id="' + comp.id + '">Informació</a>\
+				</li>';
+		}
+	});
 	
 	$("#comps-list").html(list).listview('refresh');
+	$("#comps-list").trigger('create');
 }
-function build_comp_millora_list() {
+function build_interes_comps_list() {
+	list = "";
+	// TODO: Noms de les competències en masculí o femení
+	if (!student_sex)
+		competencies_list = comps_masc;
+	else
+		competencies_list = comps_fem;
+	console.log('Construint la llista, abans d\'ordenar');
+	bySortedValue(interes_comps, function(id_comp, interes) {
+		var name;
+		for(i = 0; i < competencies_list.length; i++) {
+		comp = competencies_list[i];
+			if (comp.id == id_comp) {
+				name = comp.name;
+				break;
+			}
+		}
+		list = list + '\
+				<li class="ui-field-contain">\
+					<a class="tag" data-id="' + id_comp + '" style="padding:0px 16px 0px 16px;">\
+						<select class="comp_select" data-role="flipswitch" style="display:inline-block;" data-mini="true" data_id="' + id_comp + '">\
+							<option value="0">' + __('No') + '</option>\
+							<option value="1"' + (dades_comps[id_comp]['te']?'selected':'') + '>' + __('Sí') + '</option>\
+						</select>\
+						<label style="display:inline-block; font-size:11px; margin:0px 0px 0px 10px;">' + name + '</label>\
+						<span style="float:right">\
+							<img class="work" data-state="' + (dades_comps[id_comp]['compartida'] + 0) + '" src="icons/share/' + (dades_comps[id_comp]['compartida'] + 0) + '.png" style="height:25.44px; margin:6.25px; position:relative; top:1.5px">\
+						</span>\
+					</a>\
+					<a class="info" data-theme="a" data-id="' + id_comp + '">Informació</a>\
+				</li>';
+		// list += '\
+			// <li class="ui-field-contain">\
+				// <a class="tag" data-id="' + id_comp + '">' + name + '</a></li>';
+	});
+	$("#interes-comps-list").html(list).listview('refresh');
+	$("#interes-comps-list").trigger('create');
+	console.log('initialized interes comps list');
+}
+function build_comp_millora_list(comps) {
 	list_millora = "";
 	comps_millora.forEach(function (comp, index) {
 		if(current_groups.indexOf(comp.id) > 0 || current_groups.length == 0) {
-			list_millora = list_millora + '<li><a class="tag1" data-id="' + comp.id + '">' + comp.name + '</a>' + '<a class="info1 comps_millora_info" data-theme="a">Informació</a></li>';
+			list_millora = list_millora + '\
+				<li class="ui-field-contain">\
+					<a class="tag" data-id="' + comp.id + '" style="padding:0px 16px 0px 16px;">\
+						<select data-role="flipswitch" style="display:inline-block;" data-mini="true">\
+							<option value="0">' + __('No') + '</option>\
+							<option value="1"' + (comps[comp.id]['te']?'selected':'') + '>' + __('Sí') + '</option>\
+						</select>\
+						<label style="display:inline-block; font-size:11px; margin:0px 0px 0px 10px;">' + comp.name + '</label>\
+						<span style="float:right">\
+							<img class="work" data-state="' + (comps[comp.id]['compartida'] + 0) + '" src="icons/share/' + (comps[comp.id]['compartida'] + 0) + '.png" style="height:25.44px; margin:6.25px; position:relative; top:1.5px">\
+						</span>\
+					</a>\
+					<a class="comps_millora_info" data-theme="a">\
+						Informació\
+					</a>\
+				</li>';
 		}
 	});
 	$("#comps_millora-list").html(list_millora).listview('refresh'); // No es pot inicialitzar abans de crear-lo
+	$("#comps_millora-list").trigger('create');
 }
-function build_emocions_list() {
+function build_emocions_list(comps) {
 	list_emocions = "";
 	console.log(emocions);
 	emocions.forEach(function (emocio, index) {
 		if(current_groups.indexOf(emocio.id) > 0 || current_groups.length == 0) {
-			list_emocions += '<li><a class="tag" data-id="' + emocio.id + '"><img style="left:5%;top:30%;width:30px;weight:30px" src="icons/' + emocio.id + '.png"><br/>' + emocio.name + '</a>' + '<a class="info2 emocions_info" data-theme="a">Informació</a></li>';
+			list_emocions += '\
+				<li class="ui-field-contain">\
+					<a class="tag" data-id="' + emocio.id + '" style="padding:0px 16px 0px 16px;">\
+						<select data-role="flipswitch" style="display:inline-block;" data-mini="true">\
+							<option value="0">' + __('No') + '</option>\
+							<option value="1"' + (comps[emocio.id]['te']?'selected':'') + '>' + __('Sí') + '</option>\
+						</select>\
+						<span>\
+							<img style="float:left; height:25.44px; margin:6.25px; position:relative; top:1.5px" src="icons/' + emocio.id + '.png">\
+						</span>\
+						<label style="display:inline-block; font-size:11px; margin:0px 0px 0px 10px;">' + emocio.name + '</label>\
+						<span style="float:right">\
+							<img class="work" data-state="' + (comps[emocio.id]['compartida'] + 0) + '" src="icons/share/' + (comps[emocio.id]['compartida'] + 0) + '.png" style="height:25.44px; margin:6.25px; position:relative; top:1.5px">\
+						</span>\
+					</a>\
+					<a class="emocions_info" data-theme="a">\
+						Informació\
+					</a>\
+				</li>';				
 		}
 	});
 	$("#emocions-list").html(list_emocions).listview('refresh'); // No es pot inicialitzar abans de crear-lo
+	$("#emocions-list").trigger('create');
 }
-function build_ambits_list(type) {
+function build_ambits_list(type, comps) {
 	list_ambits = "";
 	// console.log(ambits);
 	ambits.forEach(function (ambit, index) {
-		list_ambits += '<li><a class="tag" data-id="' + ambit.id + '">' + ambit.name + '</a><a class="info" data-theme="a" data-id="' + ambit.id + '">Informació</a></li>';
+		list_ambits += '\
+			<li class="ui-field-contain">\
+				<a class="tag" data-id="' + ambit.id + '" style="padding:0px 16px 0px 16px;">\
+					<select data-role="flipswitch" style="display:inline-block;" data-mini="true">\
+						<option value="0">' + __('No') + '</option>\
+						<option value="1"' + (comps[ambit.id]['te']?'selected':'') + '>' + __('Sí') + '</option>\
+					</select>\
+					<label style="display:inline-block; font-size:11px; margin:0px 0px 0px 10px;">' + ambit.name + '</label>\
+				</a>\
+				<a class="info" data-theme="a">\
+					Informació\
+				</a>\
+			</li>';		
 	});
-	if(type == 'i') $("#interessos-list").html(list_ambits).listview('refresh'); // No es pot inicialitzar abans de crear-lo
-	else if(type == 'h') $("#habilitats-list").html(list_ambits).listview('refresh'); // No es pot inicialitzar abans de crear-lo
+	if(type == 'i'){
+		$("#interessos-list").html(list_ambits).listview('refresh'); // No es pot inicialitzar abans de crear-lo
+		$("#interessos-list").trigger('create');
+	}
+	else if(type == 'h') {
+		$("#habilitats-list").html(list_ambits).listview('refresh'); // No es pot inicialitzar abans de crear-lo
+		$("#habilitats-list").trigger('create');
+	}
 }
 function build_comps_filter() {
 	filter_buttons = "";
@@ -595,22 +714,19 @@ function build_comps_filter() {
 }
 function update_comp(v) {
 	$("#footer").hide();
-	$("#comps-popup").popup('close');
 	url = domini_intra + "/assets/php/ajax/ajax_change_competence.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id;
 	$.ajax({
 		url: url,
 		success: function(data) {
+			// console.log('Actualitzem sliders comp a ' + v);
+			// $(".comp_select[data_id='" + comp_id + "']").val(v).flipswitch('refresh');
 			data = JSON.parse(data);
 			console.log(data);
 			if (data.success) {
-				$("#comps-popup").popup('close');
 				$("#comps-footer").show( 400 );
 				setTimeout( function() {
 					$("#comps-footer").hide( 400 );
 				}, 4000);
-				setTimeout( function(){
-					$("#details-popup").popup('open')
-				}, 100 );
 			}
 			else { alert(data.msg);
 			}
@@ -624,7 +740,6 @@ function update_comp_millora(v) {
 		success: function(data) {
 			data = JSON.parse(data);
 			if (data.success) {
-				$("#comps_millora-popup").popup('close');
 				$("#comp_millora-footer").show( 400 );
 				console.log(data);
 				setTimeout(
@@ -648,7 +763,6 @@ function update_emocions(v) {
 		success: function(data) {
 			data = JSON.parse(data);
 			if (data.success) {
-				$("#emocions-popup").popup('close');
 				$("#footer-emocions").show( 400 );
 				setTimeout(
 				 
@@ -707,6 +821,44 @@ function update_habilitats(v) {
 			else {
 				alert(data.msg);
 				$("#habilitats-popup").popup('close');
+			}
+		}
+	});
+}
+function update_work(type, v, object) {
+	url = domini_intra + "/assets/php/ajax/ajax_change_work.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + (v * 1) + "&id=" + student_id + "&type=" + type;
+	$.ajax({
+		url: url,
+		success: function(data) {
+			data = JSON.parse(data);
+			console.log(data);
+			if(data.success) {
+				object.attr('src', 'icons/share/' + (v+0) + '.png')
+				object.data('state', v);
+				if(type == "competencia") {
+					$("#comps-footer").show( 400 );
+					setTimeout( function() {
+						$("#comps-footer").hide( 400 );
+					}, 4000);
+				}
+				else if(type == "competencia_millora") {
+					$("#comp_millora-footer").show( 400 );
+					setTimeout( function() {
+						$("#comp_millora-footer").hide( 400 );
+					}, 4000);
+				}
+				else if(type == "emocio") {
+					$("#footer-emocions").show( 400 );
+					setTimeout( function() {
+						$("#footer-emocions").hide( 400 );
+					}, 4000);
+				}
+				else if(type == "intel") {
+					$("#intels-footer").show( 400 );
+					setTimeout( function() {
+						$("#intels-footer").hide( 400 );
+					}, 4000);
+				}
 			}
 		}
 	});
@@ -828,28 +980,6 @@ function bySortedValue(obj, callback, context) {
 	});
 	var length = tuples.length;
 	while (length--) callback.call(context, tuples[length][0], tuples[length][1]);
-}
-	
-function build_interes_comps_list() {
-	list = "";
-	// TODO: Noms de les competències en masculí o femení
-	if (!student_sex)
-		competencies_list = comps_masc;
-	else
-		competencies_list = comps_fem;
-	console.log('Construint la llista, abans d\'ordenar');
-	bySortedValue(interes_comps, function(id_comp, interes) {
-		var name;
-		for(i = 0; i < competencies_list.length; i++) {
-		comp = competencies_list[i];
-			if (comp.id == id_comp) {
-				name = comp.name;
-				break;
-			}
-		}
-		list += '<li><a class="tag" data-id="' + id_comp + '">' + name + '</a></li>';
-	});
-	$("#interes-comps-list").html(list).listview('refresh');
 }
 function update_recents_comps(id_comp) {
 	recents_comps.unshift(id_comp);	// Afegim pel principi

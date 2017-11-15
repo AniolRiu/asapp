@@ -29,8 +29,8 @@
 	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<script src="js/angular-1.6.4.min.js"></script>
 	
-	<link rel="stylesheet" type="text/css" href="/add-to-homescreen/style/addtohomescreen.css">
-	<script src="/add-to-homescreen/src/addtohomescreen.js"></script>
+	<link rel="stylesheet" type="text/css" href="add-to-homescreen/style/addtohomescreen.css">
+	<script src="add-to-homescreen/src/addtohomescreen.js"></script>
 	
 	<!-- <script type="text/javascript" src="js/jquery.i18n.js"></script> -->
 	<script id="panel-init">
@@ -53,6 +53,13 @@
 			background-position:crop;
 			background-attachment:fixed;
 			background-size:100%;
+			font-size: 11px!important;
+		}
+		div[data-role="header"] {
+			font-size: 16px!important;
+		}
+		ul[data-role="listview"] a, ul[data-role="listview"] li {
+			font-size: 11px!important;
 		}
 		.ui-page {
 			background: transparent;
@@ -405,14 +412,13 @@
 					<div style="width:15%;float:left">
 						<img ng-src="icons\intels\{{intel.icon}}" style="width:30px;text-align:left">
 					</div>
-					<div style="width:70%;float:left">
-						<label data-text="{{intel.name}}" style="font-weight: bold;float:left; padding-right:2px"></label><label style="float:left"><span></span></label>
+					<div style="width:75%;float:left">
+						<label data-text="{{intel.name}}" style="font-weight: bold;float:left; padding-right:2px"></label><label style="float:left"><span></span> <a class="intels_info" data-id_intel="{{intel.id}}"><img src="css\themes\images\icons-png\info-white.png" style="width:15px;weight:15px" style="text-align:right"></a></label>
 						<input data-mini="true" class="intel-slider" type="range" data-id_intel="{{intel.id}}" data-levels="{{intel.levels}}" min="{{intel.min}}" max="{{intel.max}}" value="0" >
 					</div>
-					<div style="width:15%;float:right" align="right">
-						<a class="intels_info" data-id_intel="{{intel.id}}"><img src="css\themes\images\icons-png\info-white.png" style="width:15px;weight:15px" style="text-align:right"></a>
+					<div style="width:10%;float:left">
+						<img class="intel_work" src="icons/share/0.png" data-id_intel="{{intel.id}}" style="width:100%">
 					</div>
-					
 					<br/>
 					<br/>
 					<br/>
