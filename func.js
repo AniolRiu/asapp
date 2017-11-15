@@ -153,36 +153,40 @@ $(document).on('ready',function(){
 }
 { // Project page
 	$( "#projects-page" ).on( "pageshow", function( e ) {
+		console.log('projects page');
 		$(this).find('h4').text(__("Projectes de") + " " + user_name);
 		{ // Demanem la llista de competències, emocions i àmbits
-			url = domini_intra + "/assets/php/ajax/ajax_return_competences.php?lang=" + lang + "&id=" + user_id;
 			if ((comps_masc == null) || (comps_fem == null) || (comps_groups == null) || (comps_millora == null) || (emocions == null)) {
-				$.ajax({
-					// TODO: Enviar l'idioma en funció del particular
-					url: url,
-					success: function(data) {
-						// Arriba la resposta
-						data = JSON.parse(data);
-						if (data.success) {
-							comps_masc = data.comps_masc;
-							comps_fem = data.comps_fem;
-							comps_groups = data.groups;
-							comps_millora = data.comps_millora;
-							emocions = data.emocions;
-							ambits = data.ambits;
-							lang = data.lang;
-							//comps_groups = data;
-							localStorage.setItem('comps_masc', JSON.stringify(comps_masc));
-							localStorage.setItem('comps_fem', JSON.stringify(comps_fem));
-							localStorage.setItem('comps_groups', JSON.stringify(comps_groups));
-							localStorage.setItem('comps_millora', JSON.stringify(comps_millora));
-							localStorage.setItem('emocions', JSON.stringify(emocions));
-							localStorage.setItem('ambits', JSON.stringify(ambits));
-							localStorage.setItem('lang', JSON.stringify(lang));
-							build_comps_filter();
-						}
-					}
-				});
+				sync();
+				// url = domini_intra + "/assets/php/ajax/ajax_return_competences.php?lang=" + lang + "&id=" + entitat_id;
+				// console.log(url);
+				// $.ajax({
+					// // TODO: Enviar l'idioma en funció del particular
+					// url: url,
+					// success: function(data) {
+						// // Arriba la resposta
+						// data = JSON.parse(data);
+						// console.log(data);
+						// if (data.success) {
+							// comps_masc = data.comps_masc;
+							// comps_fem = data.comps_fem;
+							// comps_groups = data.groups;
+							// comps_millora = data.comps_millora;
+							// emocions = data.emocions;
+							// ambits = data.ambits;
+							// lang = data.lang;
+							// //comps_groups = data;
+							// localStorage.setItem('comps_masc', JSON.stringify(comps_masc));
+							// localStorage.setItem('comps_fem', JSON.stringify(comps_fem));
+							// localStorage.setItem('comps_groups', JSON.stringify(comps_groups));
+							// localStorage.setItem('comps_millora', JSON.stringify(comps_millora));
+							// localStorage.setItem('emocions', JSON.stringify(emocions));
+							// localStorage.setItem('ambits', JSON.stringify(ambits));
+							// localStorage.setItem('lang', JSON.stringify(lang));
+							// build_comps_filter();
+						// }
+					// }
+				// });
 			}
 			else {
 				build_comps_filter();
@@ -275,7 +279,7 @@ $(document).on('ready',function(){
 			console.log(data);
 			if(data.success) {
 				dades_comps = data.comps;
-				build_comp_list(data.comps);
+				build_comp_list();
 				// build_interes_comps_list();
 			}
 		});
@@ -312,6 +316,7 @@ $(document).on('ready',function(){
 	
 	{ //Coses rares comentades...
 		$(document).on('change', "#filter-cg input", function () {
+			console.log(dades_comps);
 			id = $(this).data('id');
 			if(this.checked) {
 				current_groups.push(id);
@@ -319,7 +324,7 @@ $(document).on('ready',function(){
 			else {
 				current_groups.splice(current_groups.indexOf(id), 1);
 			}
-			build_comp_list(/* Aquí falta el paràmetre array amb les competències que té, les que no té i les que té compartides*/);
+			build_comp_list();
 		});
 		
 		/*$(document).on('swipeleft swiperight', "#comps-list li", function (e) {
@@ -554,7 +559,8 @@ function goback() {
 	parent.history.back();
 	return false;
 }
-function build_comp_list(comps) {
+function build_comp_list() {
+	comps = dades_comps;
 	list = "";
 	if (!student_sex) {
 		comps_gender = comps_masc;
@@ -562,6 +568,8 @@ function build_comp_list(comps) {
 	else {
 		comps_gender = comps_fem;
 	}
+	console.log('Construïm llista competències amb dades:');
+	console.log(comps);
 	comps_gender.forEach(function (comp, index) {
 		if(current_groups.indexOf(parseInt(comp.group)) > -1 || current_groups.length == 0) {
 			list = list + '\
@@ -705,16 +713,19 @@ function build_ambits_list(type, comps) {
 	}
 }
 function build_comps_filter() {
+	console.log("Construim filtre de grups amb els grups següents: ");
+	console.log(comps_groups);
 	filter_buttons = "";
 	comps_groups.forEach(function (comp, index) {
-		filter_buttons = filter_buttons + '<input type="checkbox" data-id="' + comp.id + '" id="checkbox-' + comp.name + '"><label for="checkbox-' + comp.name + '">' + comp.name + '</label>';
+		filter_buttons = filter_buttons + '<input type="checkbox" style="display:inline-block" data-id="' + comp.id + '" id="checkbox-' + comp.name + '"><label for="checkbox-' + comp.name + '">' + comp.name + '</label>';
 	});
 	$("#filter-cg").html(filter_buttons);
-	$("#comps-page").trigger('create');
+	$("#filter-cg").trigger('create');
 }
 function update_comp(v) {
 	$("#footer").hide();
 	url = domini_intra + "/assets/php/ajax/ajax_change_competence.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id;
+	dades_comps[comp_id]['te'] = +v;
 	$.ajax({
 		url: url,
 		success: function(data) {
@@ -886,15 +897,17 @@ function sync() {
 		// TODO: Enviar l'idioma en funció del particular
 		url: url,
 		success: function(data) {
+			data = JSON.parse(data);
+			console.log(data);
 			// Arriba la resposta
 			if (data.success) {
-				console.log(data);
 				comps_masc = data.comps_masc;
 				comps_fem = data.comps_fem;
 				comps_groups = data.groups;
 				comps_millora = data.comps_millora;
 				emocions = data.emocions;
 				ambits = data.ambits;
+				lang = data.lang;
 				//comps_groups = data;
 				localStorage.removeItem('lang');
 				localStorage.setItem('comps_masc', JSON.stringify(comps_masc));
@@ -903,6 +916,7 @@ function sync() {
 				localStorage.setItem('comps_millora', JSON.stringify(comps_millora));
 				localStorage.setItem('emocions', JSON.stringify(emocions));
 				localStorage.setItem('ambits', JSON.stringify(ambits));
+				localStorage.setItem('lang', JSON.stringify(lang));
 				console.log(lang);
 				build_comps_filter();
 				$("#rightpanel").panel("close");

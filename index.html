@@ -58,7 +58,7 @@
 		div[data-role="header"] {
 			font-size: 16px!important;
 		}
-		ul[data-role="listview"] a, ul[data-role="listview"] li {
+		ul[data-role="listview"] a, ul[data-role="listview"] li, label {
 			font-size: 11px!important;
 		}
 		.ui-page {
@@ -297,12 +297,10 @@
 			<center><h4>Competències</h4></center>
 			<hr>
 			<br/>
-			<!-- <form align="center"> -->
-  				<!-- <fieldset data-role="controlgroup" data-type="horizontal" id="filter-cg"> -->
-					<!-- Això es comenta pq en un principi això distribueix en grups les competències. S'ha optat retirar-ho per no tenir tants elements en pantalla però funciona correctament -->
- 					<!-- <input type="checkbox" data-id="dd" id="checkbox-"><label for="checkbox-" >Grups</label> -->
-  				<!-- </fieldset> -->
-  			<!-- </form>			 -->
+			<fieldset data-role="controlgroup" data-type="horizontal" id="filter-cg" data-mini="true">
+				<!-- Això es comenta pq en un principi això distribueix en grups les competències. S'ha optat retirar-ho per no tenir tants elements en pantalla però funciona correctament -->
+				<input type="checkbox" data-id="dd" id="checkbox-"><label for="checkbox-" >Grups</label>
+			</fieldset>
 			<ul data-role="listview" data-inset="true" id="interes-comps-list">
  			</ul>
 			<br/>
@@ -406,18 +404,33 @@
 			<center><h4>Intel·ligències</h4></center>
 			<hr><br/>
 			
+			<style>
+				.ui-slider-track.ui-mini {
+					height: 2px;
+				}
+				.ui-slider-track.ui-mini .ui-slider-handle {
+					height: 16px;
+					margin: -9px 0 0 -10px;
+				}
+			</style>
 			<div ng-app="intelsApp" ng-controller="namesCtrl">
 
-				<div ng-repeat="intel in intels">
-					<div style="width:15%;float:left">
-						<img ng-src="icons\intels\{{intel.icon}}" style="width:30px;text-align:left">
+				<div ng-repeat="intel in intels" style="margin-bottom:20px;">
+					<div style="width:10%;float:left">
+						<img ng-src="icons\intels\{{intel.icon}}" style="width:25px;text-align:left">
 					</div>
-					<div style="width:75%;float:left">
-						<label data-text="{{intel.name}}" style="font-weight: bold;float:left; padding-right:2px"></label><label style="float:left"><span></span> <a class="intels_info" data-id_intel="{{intel.id}}"><img src="css\themes\images\icons-png\info-white.png" style="width:15px;weight:15px" style="text-align:right"></a></label>
+					<div style="width:80%;float:left">
+						<a class="intels_info" data-id_intel="{{intel.id}}">
+							<img src="css\themes\images\icons-png\info-white.png" style="width:15px;float:left" style="text-align:right">
+						</a> 
+						<label data-text="{{intel.name}}" style="font-weight: bold;float:left; padding-right:2px; margin-left:10px"></label>
+						<label style="float:left">
+							<span></span> 
+						</label>
 						<input data-mini="true" class="intel-slider" type="range" data-id_intel="{{intel.id}}" data-levels="{{intel.levels}}" min="{{intel.min}}" max="{{intel.max}}" value="0" >
 					</div>
 					<div style="width:10%;float:left">
-						<img class="intel_work" src="icons/share/0.png" data-id_intel="{{intel.id}}" style="width:100%">
+						<img class="intel_work" src="icons/share/0.png" data-id_intel="{{intel.id}}" style="width:80%">
 					</div>
 					<br/>
 					<br/>
