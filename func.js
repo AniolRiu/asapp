@@ -395,8 +395,9 @@ $(document).on('ready',function(){
 							$(this).trigger('change');
 						});
 						$(".intel_work").each(function( index ) {
-							$(this).attr('src', 'icons/share/' + data.work[index+1] + '.png');
-							$(this).data('state', data.work[index+1]);
+							compartida = 0 + (!!(data.work[index+1])); // 0 => 0; 1 => 1; 2 => 1
+							$(this).attr('src', 'icons/share/' + compartida + '.png');
+							$(this).data('state', compartida);
 						});
 					}
 					else {
@@ -572,6 +573,7 @@ function build_comp_list() {
 	console.log(comps);
 	comps_gender.forEach(function (comp, index) {
 		if(current_groups.indexOf(parseInt(comp.group)) > -1 || current_groups.length == 0) {
+			compartida = 0 + (!!(comps[comp.id]['compartida'])); // 0 => 0; 1 => 1; 2 => 1
 			list = list + '\
 				<li class="ui-field-contain">\
 					<a class="tag" data-id="' + comp.id + '" style="padding:0px 16px 0px 16px;">\
@@ -581,7 +583,7 @@ function build_comp_list() {
 						</select>\
 						<label style="display:inline-block; font-size:11px; margin:0px 0px 0px 10px;">' + comp.name + '</label>\
 						<span style="float:right">\
-							<img class="work" data-state="' + (comps[comp.id]['compartida'] + 0) + '" src="icons/share/' + (comps[comp.id]['compartida'] + 0) + '.png" style="height:25.44px; margin:6.25px; position:relative; top:1.5px">\
+							<img class="work" data-state="' + compartida + '" src="icons/share/' + compartida + '.png" style="height:25.44px; margin:6.25px; position:relative; top:1.5px">\
 						</span>\
 					</a>\
 					<a class="info" data-theme="a" data-id="' + comp.id + '">Informació</a>\
@@ -635,6 +637,7 @@ function build_comp_millora_list(comps) {
 	list_millora = "";
 	comps_millora.forEach(function (comp, index) {
 		if(current_groups.indexOf(comp.id) > 0 || current_groups.length == 0) {
+			compartida = 0 + (!!(comps[comp.id]['compartida'])); // 0 => 0; 1 => 1; 2 => 1
 			list_millora = list_millora + '\
 				<li class="ui-field-contain">\
 					<a class="tag" data-id="' + comp.id + '" style="padding:0px 16px 0px 16px;">\
@@ -644,7 +647,7 @@ function build_comp_millora_list(comps) {
 						</select>\
 						<label style="display:inline-block; font-size:11px; margin:0px 0px 0px 10px;">' + comp.name + '</label>\
 						<span style="float:right">\
-							<img class="work" data-state="' + (comps[comp.id]['compartida'] + 0) + '" src="icons/share/' + (comps[comp.id]['compartida'] + 0) + '.png" style="height:25.44px; margin:6.25px; position:relative; top:1.5px">\
+							<img class="work" data-state="' + compartida + '" src="icons/share/' + compartida + '.png" style="height:25.44px; margin:6.25px; position:relative; top:1.5px">\
 						</span>\
 					</a>\
 					<a class="comps_millora_info" data-theme="a">\
@@ -661,6 +664,7 @@ function build_emocions_list(comps) {
 	console.log(emocions);
 	emocions.forEach(function (emocio, index) {
 		if(current_groups.indexOf(emocio.id) > 0 || current_groups.length == 0) {
+			compartida = 0 + (!!(comps[emocio.id]['compartida'])); // 0 => 0; 1 => 1; 2 => 1
 			list_emocions += '\
 				<li class="ui-field-contain">\
 					<a class="tag" data-id="' + emocio.id + '" style="padding:0px 16px 0px 16px;">\
@@ -673,7 +677,7 @@ function build_emocions_list(comps) {
 						</span>\
 						<label style="display:inline-block; font-size:11px; margin:0px 0px 0px 10px;">' + emocio.name + '</label>\
 						<span style="float:right">\
-							<img class="work" data-state="' + (comps[emocio.id]['compartida'] + 0) + '" src="icons/share/' + (comps[emocio.id]['compartida'] + 0) + '.png" style="height:25.44px; margin:6.25px; position:relative; top:1.5px">\
+							<img class="work" data-state="' + compartida + '" src="icons/share/' + compartida + '.png" style="height:25.44px; margin:6.25px; position:relative; top:1.5px">\
 						</span>\
 					</a>\
 					<a class="emocions_info" data-theme="a">\
