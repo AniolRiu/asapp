@@ -296,11 +296,28 @@
 		<div data-role="main" class="ui-content">
 			<center><h4>Competències</h4></center>
 			<hr>
+			<select data-role="flipswitch" data-mini="true" id="show_comps_switch">
+				<option value="0">No</option>
+				<option value="1">Sí</option>
+			</select>
+			<label style="display:inline-block; font-size:11px; margin:0px 0px 0px 10px;">Visualitzar totes les competències</label>
+						
 			<br/>
-			<!--<fieldset data-role="controlgroup" data-type="horizontal" id="filter-cg" data-mini="true">
-				Això es comenta pq en un principi això distribueix en grups les competències. S'ha optat retirar-ho per no tenir tants elements en pantalla però funciona correctament
-				<input type="checkbox" data-id="dd" id="checkbox-"><label for="checkbox-" >Grups</label>
-			</fieldset>-->
+			<!-- Això es comenta pq en un principi això distribueix en grups les competències. S'ha optat retirar-ho per no tenir tants elements en pantalla però funciona correctament -->
+			<!-- <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" align="center"> -->
+				<!-- <input type="checkbox" data-id="dd" id="checkbox-"><label for="checkbox-" >Grups</label> -->
+			<!-- </fieldset> -->
+			
+			<!-- <style> -->
+				<!-- #filter-cg .ui-checkbox { -->
+					<!-- display:inline-block; -->
+					<!-- max-width: 30%; -->
+				<!-- } -->
+			<!-- </style> -->
+			<!-- <div id="filter-cg" align="center"> -->
+				
+			<!-- </div> -->
+			
 			<ul data-role="listview" data-inset="true" id="interes-comps-list">
  			</ul>
 			<br/>
@@ -412,36 +429,36 @@
 					height: 16px;
 					margin: -9px 0 0 -10px;
 				}
+				#intels-list .ui-slider-handle {
+					background-color:#004063;
+				}
 			</style>
 			<div ng-app="intelsApp" ng-controller="namesCtrl">
-
-				<div ng-repeat="intel in intels" style="margin-bottom:20px;">
-					<div style="width:10%;float:left">
-						<img ng-src="icons\intels\{{intel.icon}}" style="width:25px;text-align:left">
-					</div>
-					<div style="width:80%;float:left">
+				<ul data-role="listview" data-split-icon="info" data-filter="false" data-filter-placeholder="Buscar intel·ligència" data-inset="true" id="intels-list">
+					<li class="ui-field-contain" ng-repeat="intel in intels">
+						<a>
+							<div style="width:10%;float:left">
+								<img ng-src="icons\intels\{{intel.icon}}" style="width:25px;text-align:left">
+							</div>
+							<div style="width:80%;float:left">
+								<label data-text="{{intel.name}}" style="font-weight: bold;float:left; padding-right:2px; margin-left:10px"></label>
+								<label class="intel_level" style="float:left">
+									<span></span>
+								</label>
+								<!-- 360º<label style="position:relative; top: 9px; display:inline-block; font-size:11px; margin:0px 10px 0px 10px; float:right; border: 1px solid white; border-radius:2px; padding: 2px;" class="360_percent">100%</label> -->
+								<input data-mini="true" class="intel-slider" type="range" data-id_intel="{{intel.id}}" data-levels="{{intel.levels}}" min="{{intel.min}}" max="{{intel.max}}" value="0" >
+							</div>
+							<div style="width:10%;float:left">
+								<img class="intel_work" src="icons/share/0.png" data-id_intel="{{intel.id}}" style="width:80%">
+							</div>
+						</a>
 						<a class="intels_info" data-id_intel="{{intel.id}}">
-							<img src="css\themes\images\icons-png\info-white.png" style="width:15px;float:left" style="text-align:right">
-						</a> 
-						<label data-text="{{intel.name}}" style="font-weight: bold;float:left; padding-right:2px; margin-left:10px"></label>
-						<label style="float:left">
-							<span></span> 
-						</label>
-						<input data-mini="true" class="intel-slider" type="range" data-id_intel="{{intel.id}}" data-levels="{{intel.levels}}" min="{{intel.min}}" max="{{intel.max}}" value="0" >
-					</div>
-					<div style="width:10%;float:left">
-						<img class="intel_work" src="icons/share/0.png" data-id_intel="{{intel.id}}" style="width:80%">
-					</div>
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-				</div>
-
+						</a>
+					</li>
+				</ul>
 			</div>
 
 			<script>
-
 				angular.module('intelsApp', []).controller('namesCtrl', function($scope) {
 					$scope.levels = "Baix|Mig baix|Mig|Mig alt|Alt|Molt alt";
 					$scope.levels_ic = "Interpersonal no contributiva: Molt alta|Interpersonal no contributiva: Alta|Interpersonal no contributiva: Mig alta|Interpersonal no contributiva: Centrada|Interpersonal contributiva: Centrada|Interpersonal contributiva: Mig alta|Interpersonal contributiva: Alta|Interpersonal contributiva: Molt alta";

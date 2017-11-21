@@ -30,6 +30,7 @@ var total_comp_clicks = 0;
 var intel_timeout; // Guardem l'id del timeout que treu el missatge d'èxit al modificar una intel
 var app_first_open = true;
 var dades_comps; // Es guarda l'array que indica per un alumnes si té la competència i si la té compartida
+var visualitzar_comps_sense_ambit = false; // S'hi guarda un bool que determina si s'han de mostrar o no els skills que no tenen àmbit
 
 $(document).on('ready',function(){
 	default_lang = 'spa';
@@ -104,6 +105,10 @@ $(document).on('ready',function(){
 			emocions = JSON.parse(localStorage.getItem('emocions'));
 			ambits = JSON.parse(localStorage.getItem('ambits'));
 			lang = localStorage.getItem('lang');
+			visualitzar_comps_sense_ambit = localStorage.getItem('visualitzar_comps_sense_ambit');
+			if (visualitzar_comps_sense_ambit == null) {
+				visualitzar_comps_sense_ambit = 0;
+			}
 		}
 		
 		
@@ -272,6 +277,7 @@ $(document).on('ready',function(){
 	$("#comps-page").on( "pageshow", function( e ) {
 		$("#footer").hide();
 		$(this).find('h4').text(__("Competències de") + " " + student_name);
+		$("#show_comps_switch").val(visualitzar_comps_sense_ambit + '').flipswitch('refresh');
 		url = domini_intra + "/assets/php/ajax/get_etiquetatge_comp.php?lang=" + lang + "&id=" + entitat_id + "&i=" + student_id + "&tutor_id=" + user_id;
 		console.log(url);
 		$.get(url, function(data) {
@@ -310,10 +316,25 @@ $(document).on('ready',function(){
 			// build_interes_comps_list();
 		}
 		value = $(this).val();
+		// $(this).parent().siblings('.360_percent').text(value*100 + '%');
 		update_comp(value);
 		
 	});
-	
+	$(document).on('change', "#show_comps_switch", function () {
+		visualitzar_comps_sense_ambit = +($(this).val());
+		localStorage.setItem('visualitzar_comps_sense_ambit', visualitzar_comps_sense_ambit);
+		url = domini_intra + "/assets/php/ajax/get_etiquetatge_comp.php?lang=" + lang + "&id=" + entitat_id + "&i=" + student_id + "&tutor_id=" + user_id;
+		console.log(url);
+		$.get(url, function(data) {
+			data = JSON.parse(data);
+			console.log(data);
+			if(data.success) {
+				dades_comps = data.comps;
+				build_comp_list();
+				// build_interes_comps_list();
+			}
+		});
+	});
 	{ //Coses rares comentades...
 		$(document).on('change', "#filter-cg input", function () {
 			console.log(dades_comps);
@@ -437,7 +458,7 @@ $(document).on('ready',function(){
 				}
 				$(this).parents().eq(2).find('img').first().attr('src',src);
 			}
-			$(this).parent().prev().find('span').text(levels[level]);
+			$(this).parent().prevAll('label.intel_level').find('span').text(levels[level]);
 		});
 	}
 	
@@ -572,23 +593,24 @@ function build_comp_list() {
 	console.log('Construïm llista competències amb dades:');
 	console.log(comps);
 	comps_gender.forEach(function (comp, index) {
-		if(current_groups.indexOf(parseInt(comp.group)) > -1 || current_groups.length == 0) {
+		// if((current_groups.indexOf(parseInt(comp.group)) > -1 || current_groups.length == 0)) { // Amb el filtre d'àmbits
+		if(visualitzar_comps_sense_ambit || comp.group != null) { // Amb el filtre de totes les comps o les que estan en algun àmbit
 			compartida = 0 + (!!(comps[comp.id]['compartida'])); // 0 => 0; 1 => 1; 2 => 1
 			list = list + '\
 				<li class="ui-field-contain">\
 					<a class="tag" data-id="' + comp.id + '" style="padding:0px 16px 0px 16px;">\
-						<select class="comp_select" data-role="flipswitch" style="display:inline-block;" data-mini="true" data_id="' + comp.id + '">\
+						<div style="display:inline-block; visibility:hidden; max-width:0px">' + comp.name + '</div>\
+						<select data-role="flipswitch" data-mini="true" data_id="' + comp.id + '">\
 							<option value="0">' + __('No') + '</option>\
 							<option value="1"' + (comps[comp.id]['te']?'selected':'') + '>' + __('Sí') + '</option>\
 						</select>\
-						<label style="display:inline-block; font-size:11px; margin:0px 0px 0px 10px;">' + comp.name + '</label>\
-						<span style="float:right">\
-							<img class="work" data-state="' + compartida + '" src="icons/share/' + compartida + '.png" style="height:25.44px; margin:6.25px; position:relative; top:1.5px">\
-						</span>\
+						<label style="max-width:15%; display:inline-block; font-size:11px; margin:0px 0px 0px 10px;">' + comp.name + '</label>\
+						<img class="work" data-state="' + compartida + '" src="icons/share/' + compartida + '.png" style="height:25.44px; margin:6.25px; position:relative; top:1.5px; float: right">\
 					</a>\
 					<a class="info" data-theme="a" data-id="' + comp.id + '">Informació</a>\
 				</li>';
 		}
+						// 360º això aniria abans de tancar el primer link <a>, igual per  a la resta<label style="position:relative; top: 9px; display:inline-block; font-size:11px; margin:0px 10px 0px 10px; float:right; border: 1px solid white; border-radius:2px; padding: 2px;" class="360_percent">' + (comps[comp.id]['te']?'100%':'0%') + '</label>
 	});
 	
 	$("#comps-list").html(list).listview('refresh');
@@ -614,7 +636,7 @@ function build_interes_comps_list() {
 		list = list + '\
 				<li class="ui-field-contain">\
 					<a class="tag" data-id="' + id_comp + '" style="padding:0px 16px 0px 16px;">\
-						<select class="comp_select" data-role="flipswitch" style="display:inline-block;" data-mini="true" data_id="' + id_comp + '">\
+						<select data-role="flipswitch" style="display:inline-block;" data-mini="true" data_id="' + id_comp + '">\
 							<option value="0">' + __('No') + '</option>\
 							<option value="1"' + (dades_comps[id_comp]['te']?'selected':'') + '>' + __('Sí') + '</option>\
 						</select>\
@@ -641,14 +663,13 @@ function build_comp_millora_list(comps) {
 			list_millora = list_millora + '\
 				<li class="ui-field-contain">\
 					<a class="tag" data-id="' + comp.id + '" style="padding:0px 16px 0px 16px;">\
+						<div style="display:inline-block; visibility:hidden; max-width:0px">' + comp.name + '</div>\
 						<select data-role="flipswitch" style="display:inline-block;" data-mini="true">\
 							<option value="0">' + __('No') + '</option>\
 							<option value="1"' + (comps[comp.id]['te']?'selected':'') + '>' + __('Sí') + '</option>\
 						</select>\
-						<label style="display:inline-block; font-size:11px; margin:0px 0px 0px 10px;">' + comp.name + '</label>\
-						<span style="float:right">\
-							<img class="work" data-state="' + compartida + '" src="icons/share/' + compartida + '.png" style="height:25.44px; margin:6.25px; position:relative; top:1.5px">\
-						</span>\
+						<label style="max-width:15%; display:inline-block; font-size:11px; margin:0px 0px 0px 10px;">' + comp.name + '</label>\
+						<img class="work" data-state="' + compartida + '" src="icons/share/' + compartida + '.png" style="height:25.44px; margin:6.25px; position:relative; top:1.5px; float:right">\
 					</a>\
 					<a class="comps_millora_info" data-theme="a">\
 						Informació\
@@ -675,10 +696,8 @@ function build_emocions_list(comps) {
 						<span>\
 							<img style="float:left; height:25.44px; margin:6.25px; position:relative; top:1.5px" src="icons/' + emocio.id + '.png">\
 						</span>\
-						<label style="display:inline-block; font-size:11px; margin:0px 0px 0px 10px;">' + emocio.name + '</label>\
-						<span style="float:right">\
-							<img class="work" data-state="' + compartida + '" src="icons/share/' + compartida + '.png" style="height:25.44px; margin:6.25px; position:relative; top:1.5px">\
-						</span>\
+						<label style="max-width:15%; display:inline-block; font-size:11px; margin:0px 0px 0px 10px;">' + emocio.name + '</label>\
+						<img class="work" data-state="' + compartida + '" src="icons/share/' + compartida + '.png" style="height:25.44px; margin:6.25px; position:relative; top:1.5px; float:right">\
 					</a>\
 					<a class="emocions_info" data-theme="a">\
 						Informació\
@@ -700,7 +719,7 @@ function build_ambits_list(type, comps) {
 						<option value="0">' + __('No') + '</option>\
 						<option value="1"' + (comps[ambit.id]['te']?'selected':'') + '>' + __('Sí') + '</option>\
 					</select>\
-					<label style="display:inline-block; font-size:11px; margin:0px 0px 0px 10px;">' + ambit.name + '</label>\
+					<label style="max-width:15%; display:inline-block; font-size:11px; margin:0px 0px 0px 10px;">' + ambit.name + '</label>\
 				</a>\
 				<a class="info" data-theme="a">\
 					Informació\
@@ -733,8 +752,6 @@ function update_comp(v) {
 	$.ajax({
 		url: url,
 		success: function(data) {
-			// console.log('Actualitzem sliders comp a ' + v);
-			// $(".comp_select[data_id='" + comp_id + "']").val(v).flipswitch('refresh');
 			data = JSON.parse(data);
 			console.log(data);
 			if (data.success) {
