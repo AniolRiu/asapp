@@ -296,7 +296,7 @@ $(document).on('ready',function(){
 		get_info(type,info_id);
 	});
 	$(document).on('click', "#comps-list li a.tag .work, #interes-comps-list li a.tag .work", function () {
-		comp_id = $(this).parent().parent().data("id");
+		comp_id = $(this).parent().data("id");
 		state = $(this).data('state');
 		update_work('competencia', !state, $(this));
 	});
@@ -386,7 +386,7 @@ $(document).on('ready',function(){
 		update_comp_millora(value);
 	});
 	$(document).on('click', "#comps_millora-list li a.tag .work", function () {
-		comp_id = $(this).parent().parent().data("id");
+		comp_id = $(this).parent().data("id");
 		state = $(this).data('state');
 		update_work('competencia_millora', !state, $(this));
 	});
@@ -512,7 +512,7 @@ $(document).on('ready',function(){
 		update_emocions(value);
 	});
 	$(document).on('click', "#emocions-list li a.tag .work", function () {
-		comp_id = $(this).parent().parent().data("id");
+		comp_id = $(this).parent().data("id");
 		state = $(this).data('state');
 		update_work('emocio', !state, $(this));
 	});
