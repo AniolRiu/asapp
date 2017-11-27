@@ -252,7 +252,7 @@ $(document).on('ready',function(){
 					}
 					else {
 						data.users.forEach(function (user, index) {
-							var list_item = $('<li><a data-id="' + user.id + '" data-sex="' + user.sex + '">' + user.lastname + ', ' + user.name + '</a></li>');
+							var list_item = $('<li class="ui-field-contain"><a data-id="' + user.id + '" data-sex="' + user.sex + '">' + user.lastname + ', ' + user.name + '</a></li>');
 							list.append(list_item).listview('refresh');
 						});
 					}
@@ -324,7 +324,7 @@ $(document).on('ready',function(){
 		visualitzar_comps_sense_ambit = +($(this).val());
 		localStorage.setItem('visualitzar_comps_sense_ambit', visualitzar_comps_sense_ambit);
 		url = domini_intra + "/assets/php/ajax/get_etiquetatge_comp.php?lang=" + lang + "&id=" + entitat_id + "&i=" + student_id + "&tutor_id=" + user_id;
-		console.log(url);
+		// console.log(url);
 		$.get(url, function(data) {
 			data = JSON.parse(data);
 			console.log(data);
@@ -721,7 +721,7 @@ function build_ambits_list(type, comps) {
 					</select>\
 					<label style="max-width:15%; display:inline-block; font-size:11px; margin:0px 0px 0px 10px;">' + ambit.name + '</label>\
 				</a>\
-				<a class="info" data-theme="a">\
+				<a class="info" data-id="' + ambit.id + '" data-theme="a">\
 					Informació\
 				</a>\
 			</li>';		
