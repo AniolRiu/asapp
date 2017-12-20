@@ -2,6 +2,7 @@ var domini_com = 'https://comunitat.aim-solo.com/';
 var domini_intra = 'https://intra.aim-solo.com/schools';
 var user_name;
 var user_id;
+var role;
 var entitat_id;
 var project_id;
 var project_name;
@@ -94,6 +95,7 @@ $(document).on('ready',function(){
 		addToHomescreen();
 		{ // Carreguem variables de la memòria local
 			user_id = localStorage.getItem('user_id');
+			role = localStorage.getItem('role');
 			user_name = localStorage.getItem('user_name');
 			entitat_id = localStorage.getItem('entitat_id');
 			project_id = localStorage.getItem('project_id');
@@ -137,10 +139,15 @@ $(document).on('ready',function(){
 				data = JSON.parse(data);
 				if (data.success) {
 					user_name = data.name;
+					role = data.role;
 					user_id = data.user_id;
+					if(role == 14) {
+						user_id = data.schools_id;
+					}
 					entitat_id = data.entitat;
 					lang = data.lang;
 					localStorage.setItem('user_id', user_id);
+					localStorage.setItem('role', role);
 					localStorage.setItem('user_name', user_name);
 					localStorage.setItem('entitat_id', entitat_id);
 					localStorage.setItem('interes_comps', interes_comps);
@@ -197,7 +204,7 @@ $(document).on('ready',function(){
 				build_comps_filter();
 			}
 		}
-		url = "https://comunitat.aim-solo.com/ajax/getProjectsByTutor?tutor_id=" + user_id;
+		url = "https://comunitat.aim-solo.com/ajax/getProjectsByTutor?tutor_id=" + user_id + "&role=" + role + "&entitat=" + entitat_id ;
 		console.log(url);
 		$.ajax({
 			url: url,
@@ -747,7 +754,7 @@ function build_comps_filter() {
 }
 function update_comp(v) {
 	$("#footer").hide();
-	url = domini_intra + "/assets/php/ajax/ajax_change_competence.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id;
+	url = domini_intra + "/assets/php/ajax/ajax_change_competence.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id + "&r=" + role;
 	dades_comps[comp_id]['te'] = +v;
 	$.ajax({
 		url: url,
@@ -766,7 +773,7 @@ function update_comp(v) {
 	});
 }
 function update_comp_millora(v) {
-	url = domini_intra + "/assets/php/ajax/ajax_change_competence_cm.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id;
+	url = domini_intra + "/assets/php/ajax/ajax_change_competence_cm.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id + "&r=" + role;
 	$.ajax({
 		url: url,
 		success: function(data) {
@@ -789,7 +796,7 @@ function update_comp_millora(v) {
 	});
 }
 function update_emocions(v) {
-	url = domini_intra + "/assets/php/ajax/ajax_change_emocio.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id;
+	url = domini_intra + "/assets/php/ajax/ajax_change_emocio.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id + "&r=" + role;
 	$.ajax({
 		url: url,
 		success: function(data) {
@@ -811,7 +818,7 @@ function update_emocions(v) {
 	});
 }
 function update_interessos(v) {
-	url = domini_intra + "/assets/php/ajax/ajax_change_interes.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id + "&m=0";
+	url = domini_intra + "/assets/php/ajax/ajax_change_interes.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id + "&m=0" + "&r=" + role;
 	console.log(url);
 	$.ajax({
 		url: url,
@@ -835,7 +842,7 @@ function update_interessos(v) {
 	});
 }
 function update_habilitats(v) {
-	url = domini_intra + "/assets/php/ajax/ajax_change_interes.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id + "&m=1";
+	url = domini_intra + "/assets/php/ajax/ajax_change_interes.php?t=" + user_id + "&p=" + project_id + "&c=" + comp_id + "&v=" + v + "&id=" + student_id + "&m=1" + "&r=" + role;
 	$.ajax({
 		url: url,
 		success: function(data) {
